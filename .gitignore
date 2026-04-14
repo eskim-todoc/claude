@@ -1,0 +1,8 @@
+# Projects — each has its own git repo
+projects/
+
+# Credentials — all secrets (entire folder)
+credentials/
+
+# Scratch — one-off experiments, not tracked
+scratch/
