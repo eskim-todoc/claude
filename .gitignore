@@ -6,3 +6,6 @@ credentials/
 
 # Scratch — one-off experiments, not tracked
 scratch/
+
+# Claude Code local settings (may contain tokens/paths)
+.claude/settings.local.json
