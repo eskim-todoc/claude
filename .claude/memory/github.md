@@ -24,7 +24,32 @@
 ## Repositories
 - **eskim-todoc/Claude** — E:\Claude 루트 설정 저장소 (claude_main 브랜치)
 - **eskim-todoc/sullivan1.5-fw-download** — Sullivan 1.5세대 FW 다운로드 GUI (claude_main 브랜치)
-- **todoc-dev/sound1-fw-e8300** — Sound1 펌웨어 (Develop 브랜치)
+- **eskim-todoc/sound1-fw-e8300** — Sound1 펌웨어 **origin** (본인 소유, claude_main / Develop)
+- **todoc-dev/sound1-fw-e8300** — Sound1 펌웨어 **upstream** (원본, PR 기여 대상)
+
+## Fork-and-PR 패턴 (upstream push 권한 제한 시)
+원본이 조직 저장소이고 직접 push 권한이 제한될 때 사용하는 2-remote 구조. **Sound1**이 이 패턴 적용 중.
+
+- `origin` = 본인 저장소 (평소 push 자유)
+- `upstream` = 원본 저장소 (PR 대상, 읽기 위주)
+- 로컬 `Develop`은 `upstream/Develop`과 항상 동기화 유지 (PR base, 공통 조상 확보가 핵심)
+- 일상 작업은 `claude_main`에 통합 → `origin` push
+- 원본 기여: GitHub 웹에서 `{본인}/{repo}:claude_main` → `{조직}/{repo}:Develop` cross-repo PR 생성
+- 빈 repo로 만든 경우 공식 fork 관계는 없지만 공통 커밋 조상만 있으면 PR 가능
+
+### 새 repo에 이 패턴 적용하는 절차
+```bash
+# 기존 origin (원본)을 upstream으로 rename
+git remote rename origin upstream
+
+# 본인 저장소를 새 origin으로 등록 (토큰은 기존 remote에서 추출 — 평문 노출 금지)
+TOKEN=$(git config --get remote.upstream.url | sed -E 's|https://([^@]+)@.*|\1|')
+git remote add origin "https://${TOKEN}@github.com/{본인}/{repo}.git"
+
+# Develop과 작업 브랜치를 origin에 push
+git push -u origin Develop
+git push -u origin claude_main
+```
 
 ## Organizations
 - eskim-todoc (개인)
