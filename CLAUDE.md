@@ -68,10 +68,35 @@ projects/<이름>/
 - 회사 공유폴더로 전달할 때 `.docx`/`.xlsx` 변환이 필요하면, 그시점에 사용자가 명시적으로 요청한다
 
 ## Git Workflow (전역 규칙)
-- 모든 작업은 `claude_<설명>` 형태의 브랜치에서 수행 (예: `claude_fix-dma`, `claude_add-filter`).
-- 메인 브랜치(`main` / `master` / `Develop` 등)에 직접 커밋·푸시 금지.
-- 현재 브랜치가 `claude_` 접두사가 아니면 작업 전 새 브랜치 생성.
-- 사용자가 명시적으로 요청할 때만 그동안의 커밋을 정리(squash/rebase)해서 메인 브랜치에 병합·푸시.
+
+### 브랜치 모델
+| 브랜치 | 용도 | 분기 원점 | 병합 대상 |
+|---|---|---|---|
+| `main` | 릴리즈 전용 (사용자 직접 관리) | — | — |
+| `claude_main` | Claude 측 안정 브랜치 | `main` | `main` (사용자 승인 시) |
+| `claude_develop` | 지속 개발 | `claude_main` | `claude_main` |
+| `claude_feature_*` | 기능 구현/수정 | `claude_develop` | `claude_develop` |
+| `claude_hotfix` | main 긴급 수정 | `claude_main` | `claude_main` + `claude_develop` |
+
+### 규칙
+- `main`에 직접 커밋·푸시 절대 금지. 사용자가 릴리즈 시점에 직접 관리.
+- Claude의 모든 작업은 `claude_` 접두사 브랜치에서 수행.
+- 기능 개발: `claude_develop`에서 `claude_feature_<설명>` 분기 → 완료 후 `claude_develop`에 병합.
+- 안정 병합: 사용자 요청 시 `claude_develop` → `claude_main` 병합.
+- 긴급 수정: `claude_main`에서 `claude_hotfix` 분기 → 수정 후 `claude_main` + `claude_develop` 양쪽에 병합.
+- **모든 병합은 `--no-ff` (fast-forward 금지)로 수행.** merge commit을 남겨서 분기·병합 이력을 보존한다.
+- 사용자가 명시적으로 요청할 때만 커밋 정리(squash/rebase) 후 상위 브랜치에 병합·푸시.
+
+### 워크트리 운영
+- 파일 수정이 수반되는 작업을 시작하기 전에, 반드시 워크트리를 생성하고 진입한다.
+- 워크트리 디렉토리 이름은 `wt_<브랜치명>` 형식으로 생성한다 (예: 브랜치 `claude_feature_led-control` → 워크트리 `wt_claude_feature_led-control`).
+- 단순 조회·질문 등 파일 수정이 없는 세션은 워크트리 없이 진행해도 무방.
+- 작업 완료 후 흐름: 커밋 → 대상 브랜치에 `--no-ff` 병합 → 워크트리 제거(remove).
+  - 병합 전에 워크트리를 제거하면 커밋이 유실되므로, 반드시 병합 완료 후 제거한다.
+  - `--no-ff` 병합으로 merge commit이 남아 있으므로, 브랜치 삭제 후에도 `git log --graph`로 기능 단위 이력 확인 가능.
+
+### 프로젝트별 적용
+각 `projects/<이름>/` repo도 이 브랜치 모델과 워크트리 운영을 동일하게 적용. 프로젝트 고유 사항(upstream 동기화 등)은 해당 프로젝트 `CLAUDE.md`에 기술.
 
 ## Git Identity (중요)
 **모든 commit과 push의 author/committer는 아래 정보로 표시되어야 함.** AI 에이전트(Claude 등) 이름이나 이메일이 commit에 절대 남아서는 안 됨.
