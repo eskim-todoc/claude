@@ -1,0 +1,90 @@
+# 네이밍 컨벤션
+
+모든 프로젝트에 적용되는 C 코드 네이밍 규칙. 신규 코드에 적용하며, 기존 코드를 소급 변경하지 않는다.
+
+## 모듈 prefix
+
+`tdc_` — 모든 외부 노출(public) 심볼에 공통 적용.
+
+## 변수
+
+| 종류 | prefix | 예시 |
+|---|---|---|
+| extern 전역 | `g_tdc_` | `g_tdc_led_state` |
+| static 전역 (파일 스코프) | `s_tdc_` | `s_tdc_prev_battery_state` |
+| static 지역 (함수 내) | `s_` | `s_prev_value` |
+| 지역 변수 | (없음) | `count`, `idx` |
+
+스코프 prefix를 모듈 prefix 앞에 배치한다 (`g_tdc_`, not `tdc_g_`).
+이유: 코드 읽을 때 스코프를 먼저 인식하는 것이 부수효과 파악에 유리.
+
+## 함수
+
+| 종류 | 형식 | 예시 |
+|---|---|---|
+| public (extern) | `tdc_<모듈>_<동작>()` | `tdc_led_set_state()` |
+| static (파일/함수 내부) | prefix 불필요 | `parse_cmd()`, `calc_offset()` |
+
+## 매크로 / 상수
+
+대문자 + 언더스코어. 모듈 prefix도 대문자.
+
+| 종류 | 형식 | 예시 |
+|---|---|---|
+| #define 상수 | `TDC_<NAME>` | `TDC_LED_MAX_BRIGHTNESS` |
+| #define 매크로 | `TDC_<NAME>(...)` | `TDC_ARRAY_SIZE(arr)` |
+| enum 값 | `TDC_<그룹>_<값>` | `TDC_ERR_TIMEOUT` |
+
+## 타입
+
+소문자 + `_t` 접미사.
+
+| 종류 | 형식 | 예시 |
+|---|---|---|
+| typedef struct | `tdc_<이름>_t` | `tdc_led_pattern_t` |
+| typedef enum | `tdc_<이름>_t` | `tdc_led_state_t` |
+
+## 파일
+
+| 종류 | 형식 | 예시 |
+|---|---|---|
+| 소스 | `tdc_<이름>.c` | `tdc_led_output.c` |
+| 헤더 | `tdc_<이름>.h` | `tdc_led_output.h` |
+
+## 명확성 원칙
+
+**약어를 남용하지 않는다.** 이름만 보고 의미를 파악할 수 있어야 한다.
+
+| 금지 | 허용 | 이유 |
+|---|---|---|
+| `ovr` | `override` | 무엇의 축약인지 즉시 알 수 없음 |
+| `st` | `state` | 한두 글자 절약으로 가독성 손해 |
+| `prev_batt_st` | `prev_battery_state` | 맥락 없이 읽어도 이해 가능해야 함 |
+| `pct` | `percent` | 일반적이지 않은 축약 |
+| `desc` | `descriptor` | 축약이 여러 의미로 해석 가능 (`description`?) |
+| `cmd` | `command` | 관례적이나, 전체 단어가 더 명확 |
+
+**허용되는 약어** — 업계에서 보편적으로 통용되어 오히려 풀어 쓰면 어색한 경우:
+
+| 약어 | 의미 | 허용 이유 |
+|---|---|---|
+| `idx` | index | C 업계 관례 |
+| `cnt` | count | C 업계 관례 |
+| `len` | length | C 업계 관례 |
+| `ptr` | pointer | C 업계 관례 |
+| `max`, `min` | maximum, minimum | 보편적 |
+| `init` | initialize | 보편적 |
+| `config` / `cfg` | configuration | 보편적 |
+| `err` | error | 보편적 |
+| `msg` | message | 보편적 |
+| `src`, `dst` | source, destination | 보편적 |
+| `tx`, `rx` | transmit, receive | 통신 업계 표준 |
+| `ack`, `nack` | acknowledge | 통신 업계 표준 |
+
+**판단 기준**: "이 코드를 처음 보는 동료가 이름만으로 의미를 알 수 있는가?" — 아니면 풀어 써라.
+
+## 적용 범위
+
+- **적용 대상**: 새로 생성하는 파일, 함수, 변수, 매크로, 타입
+- **소급 불가**: 기존 코드의 이름을 일괄 변경하지 않는다
+- **혼용 허용**: 기존 코드와 협업하는 인터페이스는 기존 컨벤션을 따를 수 있다
