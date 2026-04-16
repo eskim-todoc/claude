@@ -11,6 +11,7 @@ E:\Claude\
 ├── credentials/           서비스별 토큰 (gitignored)
 ├── projects/              제품별 독립 repo (gitignored)
 │   └── Sound1/            E8300 embedded firmware
+├── docs/                  전역 공용 문서 (네이밍 컨벤션 등)
 ├── tools/                 공용 스크립트 · 자동화
 ├── scratch/               일회성 실험 (gitignored)
 └── .gitignore
@@ -58,6 +59,9 @@ projects/<이름>/
 예시: `[계획] LED 제어.md`, `[입력] LED 요구사항.md`, `[분석] LED 운용 방식.md`
 
 컨벤션은 강제 규칙이 아니라 가이드. 다른 prefix(`[리뷰]`, `[참고]` 등)도 자유롭게 사용 가능.
+
+## 네이밍 컨벤션
+C 코드의 변수·함수·매크로·타입·파일 네이밍 규칙. 상세 내용은 [`docs/naming-convention.md`](docs/naming-convention.md) 참조.
 
 ## 문서 작성 기본 포멧
 **기본값**: 사용자가 명시적으로 다른 포멧(docx / xlsx / pdf / pptx / html 등)을 지정하지 않는 한, **모든 문서는 Markdown (`.md`)로 작성한다.** 예외 없음.
