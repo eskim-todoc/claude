@@ -41,4 +41,4 @@
 각 `projects/<이름>/` repo도 동일한 브랜치 모델과 작업 흐름 적용. 프로젝트 고유 사항은 해당 프로젝트 `CLAUDE.md`에 기술.
 
 ## 상세 Workflow 다이어그램
-브랜치 흐름도·절차 다이어그램은 [`[지침] Git Workflow 플로우차트.md`]([지침]%20Git%20Workflow%20플로우차트.md) 참조.
+브랜치 흐름도·절차 다이어그램은 [`[지침-개발] Git Workflow 플로우차트.md`]([지침-개발]%20Git%20Workflow%20플로우차트.md) 참조.
