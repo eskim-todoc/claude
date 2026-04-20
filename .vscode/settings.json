@@ -1,6 +1,6 @@
 {
-  "markdown.preview.fontFamily": "'NanumSquareRound', '나눔스퀘어 라운드', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', Helvetica, Arial, sans-serif",
-  "markdown.preview.fontSize": 12,
+  "markdown.preview.fontFamily": "D2Coding",
+  "markdown.preview.fontSize": 8,
   "markdown.styles": [
     "tools/vscode-markdown.css"
   ]
