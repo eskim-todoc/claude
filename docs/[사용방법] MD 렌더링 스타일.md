@@ -31,7 +31,24 @@ VSCode 로컬 Markdown Preview의 폰트·Mermaid 다이어그램 굵기를 커�
 
 ## 본문 크기
 
-기본 **13px**. `.vscode/settings.json` 의 `markdown.preview.fontSize` 와 `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` 두 곳이 일치. 변경 시 둘 다 같이 조정.
+기본 **12px**. `.vscode/settings.json` 의 `markdown.preview.fontSize` 와 `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` 두 곳이 일치. 변경 시 둘 다 같이 조정.
+
+## Mermaid 다이어그램 축소 방지
+
+기본 동작: Mermaid SVG 는 `max-width: 100%` 로 컨테이너 폭에 맞춰 축소된다 → 큰 다이어그램의 **내부 텍스트도 함께 작아짐**.
+
+현 스타일은 이 규칙을 해제하여 SVG 가 원본 크기를 유지하고, 컨테이너에서 **좌우 스크롤**로 탐색하게 한다. 결과적으로 다이어그램 내부 글자가 항상 일정 크기로 보인다.
+
+```css
+.markdown-body .mermaid { overflow-x: auto; }
+.markdown-body .mermaid svg {
+    max-width: none !important;
+    width: auto !important;
+    height: auto !important;
+}
+```
+
+원래 동작(화면 폭에 맞춰 전체 축소)으로 되돌리려면 이 규칙을 제거하면 된다.
 
 ## Mermaid 선 굵기
 
