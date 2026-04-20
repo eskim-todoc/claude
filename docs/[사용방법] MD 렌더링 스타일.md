@@ -17,13 +17,21 @@ VSCode 로컬 Markdown Preview의 폰트·Mermaid 다이어그램 굵기를 커�
 
 ## 폰트 의존성
 
-본문 기본 폰트: **JB Pretendard Centered**
+| 용도 | 기본 폰트 | Fallback |
+|---|---|---|
+| 본문·표·헤딩 | **NanumSquareRound** (나눔스퀘어 라운드) | Pretendard → 시스템 기본 sans-serif |
+| 코드블록·인라인 코드 | **JB Pretendard Centered** | Pretendard → Consolas → Courier New → monospace |
+| Mermaid 다이어그램 텍스트 | 본문과 동일 | 본문과 동일 |
 
-- 로컬 PC에 해당 폰트가 **설치되어 있어야** 렌더링된다.
-- 미설치 시 fallback chain 순으로 대체: `Pretendard` → `-apple-system` → `BlinkMacSystemFont` → `Segoe UI` → `Noto Sans KR` → sans-serif
-- 설치 권장: <https://github.com/orioncactus/pretendard> (Pretendard) 또는 JetBrains 계열 커스텀.
+로컬 PC에 해당 폰트가 **설치되어 있어야** 렌더링된다. 미설치 시 fallback chain 순으로 대체되므로 의도한 느낌과 달라질 수 있다.
 
-코드블록은 `JetBrains Mono` → `Consolas` → `Courier New` 순.
+설치처:
+- 나눔스퀘어 라운드: <https://hangeul.naver.com/font/nanum>
+- Pretendard (fallback): <https://github.com/orioncactus/pretendard>
+
+## 본문 크기
+
+기본 **13px**. `.vscode/settings.json` 의 `markdown.preview.fontSize` 와 `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` 두 곳이 일치. 변경 시 둘 다 같이 조정.
 
 ## Mermaid 선 굵기
 
@@ -49,6 +57,7 @@ VSCode 로컬 Markdown Preview의 폰트·Mermaid 다이어그램 굵기를 커�
 | 바꾸고 싶은 것 | 수정 위치 |
 |---|---|
 | 본문 폰트 | `tools/vscode-markdown.css` 의 `font-family`, `.vscode/settings.json` 의 `markdown.preview.fontFamily` |
+| 본문 크기 | `.vscode/settings.json` 의 `markdown.preview.fontSize` + `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` |
 | 선 굵기 | `tools/vscode-markdown.css` 의 `stroke-width` |
 | 코드블록 폰트 | `tools/vscode-markdown.css` 의 `.markdown-body code, pre` 블록 |
 | Mermaid 테마 색 | Mermaid `%%{init: {...}}%%` directive (문서별), 또는 CSS 에서 `.mermaid svg .node rect { fill: ... }` |

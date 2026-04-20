@@ -25,19 +25,26 @@ body,
 .markdown-body h5,
 .markdown-body h6,
 .markdown-body blockquote {
-    font-family: 'JB Pretendard Centered',
+    font-family: 'NanumSquareRound',
+                 '나눔스퀘어 라운드',
                  'Pretendard',
                  -apple-system, BlinkMacSystemFont,
                  'Segoe UI', 'Noto Sans KR',
                  Helvetica, Arial, sans-serif !important;
 }
 
-/* 코드 블록은 고정폭 유지 */
+/* 본문 기본 크기 — VSCode markdown.preview.fontSize 와 일치 */
+.markdown-body {
+    font-size: 13px !important;
+}
+
+/* 코드 블록 — 사용자 지정 JB Pretendard Centered 사용 */
 .markdown-body code,
 .markdown-body pre,
 .markdown-body kbd,
 .markdown-body samp {
-    font-family: 'JetBrains Mono',
+    font-family: 'JB Pretendard Centered',
+                 'Pretendard',
                  'Consolas', 'Courier New',
                  ui-monospace, monospace !important;
 }
@@ -110,7 +117,8 @@ body,
 .mermaid svg .nodeLabel,
 .mermaid svg .edgeLabel,
 .mermaid svg .messageText {
-    font-family: 'JB Pretendard Centered',
+    font-family: 'NanumSquareRound',
+                 '나눔스퀘어 라운드',
                  'Pretendard',
                  -apple-system, BlinkMacSystemFont,
                  'Segoe UI', 'Noto Sans KR',
