@@ -35,7 +35,7 @@ body,
 
 /* 본문 기본 크기 — VSCode markdown.preview.fontSize 와 일치 */
 .markdown-body {
-    font-size: 13px !important;
+    font-size: 12px !important;
 }
 
 /* 코드 블록 — 사용자 지정 JB Pretendard Centered 사용 */
@@ -123,4 +123,26 @@ body,
                  -apple-system, BlinkMacSystemFont,
                  'Segoe UI', 'Noto Sans KR',
                  sans-serif !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * 3) Mermaid 축소 방지 (큰 다이어그램 글자 가독성 보호)
+ *
+ *    Mermaid 가 생성한 SVG 에는 기본적으로 max-width: 100% 가 걸려
+ *    컨테이너 폭에 맞춰 전체가 축소된다 → 내부 글자도 같이 작아짐.
+ *    SVG 자체 크기(viewBox) 를 그대로 유지하고, 컨테이너에서 좌우
+ *    스크롤 하도록 변경한다.
+ * ------------------------------------------------------------------ */
+
+.markdown-body .mermaid,
+.mermaid {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.markdown-body .mermaid svg,
+.mermaid svg {
+    max-width: none !important;
+    width: auto !important;
+    height: auto !important;
 }
