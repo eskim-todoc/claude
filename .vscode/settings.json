@@ -1,0 +1,6 @@
+{
+  "markdown.preview.fontFamily": "'JB Pretendard Centered', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', Helvetica, Arial, sans-serif",
+  "markdown.styles": [
+    "tools/vscode-markdown.css"
+  ]
+}
