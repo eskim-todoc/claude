@@ -31,7 +31,12 @@ VSCode 로컬 Markdown Preview의 폰트·Mermaid 다이어그램 굵기를 커�
 
 ## 본문 크기
 
-기본 **12px**. `.vscode/settings.json` 의 `markdown.preview.fontSize` 와 `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` 두 곳이 일치. 변경 시 둘 다 같이 조정.
+`.vscode/settings.json` 의 `markdown.preview.fontSize` 로만 제어 (단일 소스).
+
+> [!IMPORTANT]
+> 이전 버전에서 CSS `.markdown-body { font-size: ... !important }` 로 하드코딩해 두었다가, settings.json 을 바꿔도 크기가 변하지 않는 현상이 있었다. `!important` 가 설정값을 덮어쓴 게 원인. 지금은 CSS 에서 font-size 하드코딩을 제거하여 `markdown.preview.fontSize` 만으로 크기가 제어된다.
+
+범위: 8 ~ 100 (VSCode 기본 제약). 너무 작으면 렌더러가 번질 수 있으니 보통 10~14 권장.
 
 ## Mermaid 다이어그램 축소 방지
 
@@ -74,7 +79,7 @@ VSCode 로컬 Markdown Preview의 폰트·Mermaid 다이어그램 굵기를 커�
 | 바꾸고 싶은 것 | 수정 위치 |
 |---|---|
 | 본문 폰트 | `tools/vscode-markdown.css` 의 `font-family`, `.vscode/settings.json` 의 `markdown.preview.fontFamily` |
-| 본문 크기 | `.vscode/settings.json` 의 `markdown.preview.fontSize` + `tools/vscode-markdown.css` 의 `.markdown-body { font-size }` |
+| 본문 크기 | `.vscode/settings.json` 의 `markdown.preview.fontSize` (단일 소스) |
 | 선 굵기 | `tools/vscode-markdown.css` 의 `stroke-width` |
 | 코드블록 폰트 | `tools/vscode-markdown.css` 의 `.markdown-body code, pre` 블록 |
 | Mermaid 테마 색 | Mermaid `%%{init: {...}}%%` directive (문서별), 또는 CSS 에서 `.mermaid svg .node rect { fill: ... }` |
