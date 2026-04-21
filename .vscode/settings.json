@@ -1,7 +1,4 @@
 {
-  "markdown.preview.fontFamily": "D2Coding",
-  "markdown.preview.fontSize": 8,
-  "markdown.styles": [
-    "tools/vscode-markdown.css"
-  ]
+  "markdown.preview.fontFamily": "Noto Sans KR",
+  "markdown.preview.fontSize": 8
 }
