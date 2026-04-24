@@ -11,14 +11,14 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| docs 폴더 구조 세분화 | meta | docs, convention | [meta/docs-restructure](meta/docs-restructure/) | 진행 | 2026-04-24 | → [meta/sound1-docs-migration](meta/sound1-docs-migration/) (예정) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
-| Sound1 docs 구조 migration | meta | docs, Sound1, migration | [meta/sound1-docs-migration](meta/sound1-docs-migration/) _(폴더 미생성)_ | 대기 | - | → [meta/docs-restructure](meta/docs-restructure/) | Sound1 `docs/` 22개 파일을 새 컨벤션 따라 재편 (사용자 후속 지시 대기) |
+| _(없음)_ | | | | | | | |
 
 ## 완료
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작·완료 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| docs 폴더 구조 세분화 | meta | docs, convention | [meta/docs-restructure](meta/docs-restructure/) | 완료 | 2026-04-24 | → Sound1 [meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
+| Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [meta/docs-restructure](meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
 
 ---
 
@@ -37,3 +37,4 @@
 | 날짜 | 이벤트 |
 |---|---|
 | 2026-04-24 | 레지스트리 생성. `meta/docs-restructure` 등재 (진행). Sound1 migration 등재 (대기). |
+| 2026-04-24 | `meta/docs-restructure` 완료 (루트 repo 병합 `174cc7d`). Sound1 migration 완료 (Sound1 repo 병합 `129212e`). 양자 완료 섹션으로 이동. |
