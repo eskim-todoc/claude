@@ -64,6 +64,7 @@ projects/<이름>/
 `tools/`는 공용 스크립트와 자동화 보관소. 예: 문서 템플릿 복사·파일명 규칙 자동 적용·프로젝트 간 공용 유틸.
 
 - `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](docs/사용방법/Slack%20작업%20완료%20알림.md)
+- `rename_sessions.py` — Claude Code Desktop app의 모든 세션 제목을 AI 요약으로 일괄 변경. 상세: [`tools/rename_sessions.README.md`](tools/rename_sessions.README.md)
 
 ## Scratch
 `scratch/`는 일회성 실험·초안·임시 파일 공간. git 추적 안 됨. 가치 있는 결과물은 적절한 프로젝트나 `tools/`로 승격, 아니면 삭제.
