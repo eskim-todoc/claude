@@ -38,3 +38,4 @@
 |---|---|
 | 2026-04-24 | 레지스트리 생성. `meta/docs-restructure` 등재 (진행). Sound1 migration 등재 (대기). |
 | 2026-04-24 | `meta/docs-restructure` 완료 (루트 repo 병합 `174cc7d`). Sound1 migration 완료 (Sound1 repo 병합 `129212e`). 양자 완료 섹션으로 이동. |
+| 2026-04-24 | 구조 정정 follow-up — Sound1: `기준/` → `지침/` 통합 + `참고/` 모듈 분할(칩·LED·터치). 루트: `문서 작성 규칙.md`에 scope꯳ 지침/ 허용 + 참고 모듈화 + 기준 폴더 금지 규정 반영. |
