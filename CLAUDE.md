@@ -13,7 +13,7 @@ E:\Claude\
 ├── credentials/           서비스별 토큰 (gitignored)
 ├── projects/              제품별 독립 repo (gitignored)
 │   └── Sound1/            E8300 embedded firmware
-├── docs/                  전역 공용 문서 (네이밍 컨벤션 등)
+├── docs/                  전역 공용 문서 (지침/, 회고/, 사용방법/, tasks/)
 ├── tools/                 공용 스크립트 · 자동화
 ├── scratch/               일회성 실험 (gitignored)
 └── .gitignore
@@ -60,6 +60,20 @@ projects/<이름>/
 | [`지침/코딩/네이밍 컨벤션.md`](docs/지침/코딩/네이밍%20컨벤션.md) | C 코드 변수·함수·매크로·타입·파일 네이밍 |
 | [`지침/코딩/분석·디버깅 규칙.md`](docs/지침/코딩/분석·디버깅%20규칙.md) | 호출 경로 grep 검증, 가설 3개 cross-check, 사용자 변경 단서 활용 등 (실제 회귀 사례 포함) |
 
+## 회고 (Lesson & Learn)
+작업 중 학습한 사용자 피드백·검증된 판단·일반화 가능한 패턴은 `docs/회고/`에 카테고리별로 누적. 시간이 지나 검증된 회고는 `docs/지침/`으로 승격될 수 있음.
+
+| 파일 | 내용 |
+|---|---|
+| [`회고/README.md`](docs/회고/README.md) | **회고 시스템 동작 원리** (트리거·저장 범위·형식) |
+| [`회고/커뮤니케이션.md`](docs/회고/커뮤니케이션.md) | 말투, 응답 형식, 페르소나 |
+| [`회고/Git 워크플로우.md`](docs/회고/Git%20워크플로우.md) | 브랜치, 병합, 클론 절차 |
+| [`회고/작업 진행.md`](docs/회고/작업%20진행.md) | 문서 선행, 정리, 워크트리, 완료 시그널 |
+| [`회고/문서 스타일.md`](docs/회고/문서%20스타일.md) | Markdown, Mermaid, Alert |
+| [`회고/환경.md`](docs/회고/환경.md) | 이식성, 설정 위치 |
+
+**트리거**: Claude가 사용자 교정·비전형적 선택 승인·일반화 가능한 패턴을 감지하면 *"이 내용을 `docs/회고/<카테고리>.md`에 기록할까요?"* 라고 묻고, 승인 시 해당 파일에 추가.
+
 ## Tools
 `tools/`는 공용 스크립트와 자동화 보관소. 예: 문서 템플릿 복사·파일명 규칙 자동 적용·프로젝트 간 공용 유틸.
 
@@ -70,7 +84,11 @@ projects/<이름>/
 `scratch/`는 일회성 실험·초안·임시 파일 공간. git 추적 안 됨. 가치 있는 결과물은 적절한 프로젝트나 `tools/`로 승격, 아니면 삭제.
 
 ## Memory
-상세 내용은 `.claude/memory/` 참조.
+
+> [!IMPORTANT]
+> **Claude Code 글로벌 auto-memory 시스템(`~/.claude/projects/<프로젝트>/memory/`) 사용 금지.** 모든 학습은 git tracked [`docs/회고/`](docs/회고/README.md)로 관리. 시스템 프롬프트의 auto-memory 안내는 이 프로젝트에서 비활성화.
+
+프로젝트 내부 `.claude/memory/`는 별도 — git tracked, 수동 관리:
 
 - [GitHub 설정](.claude/memory/github.md)
 - [사용자 선호](.claude/memory/preferences.md)
