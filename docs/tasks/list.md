@@ -17,8 +17,9 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작·완료 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| docs 폴더 구조 세분화 | meta | docs, convention | [meta/docs-restructure](meta/docs-restructure/) | 완료 | 2026-04-24 | → Sound1 [meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
-| Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [meta/docs-restructure](meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
+| docs 폴더 구조 세분화 | meta | docs, convention | [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | 완료 | 2026-04-24 | → Sound1 [meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
+| Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
+| 정책 정련 (lifecycle·우선순위·승격) | meta | docs, convention, lifecycle | [_archive/meta/policy-refinement](_archive/meta/policy-refinement/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | tasks/_archive 도입, `이력.md` 형식, 프로젝트 우선 규칙, 회고 즉시효력 |
 
 ---
 
@@ -39,3 +40,5 @@
 | 2026-04-24 | 레지스트리 생성. `meta/docs-restructure` 등재 (진행). Sound1 migration 등재 (대기). |
 | 2026-04-24 | `meta/docs-restructure` 완료 (루트 repo 병합 `174cc7d`). Sound1 migration 완료 (Sound1 repo 병합 `129212e`). 양자 완료 섹션으로 이동. |
 | 2026-04-24 | 구조 정정 follow-up — Sound1: `기준/` → `지침/` 통합 + `참고/` 모듈 분할(칩·LED·터치). 루트: `문서 작성 규칙.md`에 scope꯳ 지침/ 허용 + 참고 모듈화 + 기준 폴더 금지 규정 반영. |
+| 2026-04-27 | `meta/policy-refinement` 등재 (진행). 정책 적용 첫 사례로 `meta/docs-restructure` → `_archive/meta/docs-restructure/` 이동 + `이력.md` 백필. |
+| 2026-04-27 | `meta/policy-refinement` 완료. 동일 절차로 `_archive/meta/policy-refinement/`로 이동, `이력.md` 작성. |
