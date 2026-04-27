@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [meta/context-rules](meta/context-rules/) | 진행 | 2026-04-27 | - | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 |
+| _(없음)_ | | | | | | | |
 
 ## 완료
 
@@ -21,6 +21,7 @@
 | Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
 | 정책 정련 (lifecycle·우선순위·승격) | meta | docs, convention, lifecycle | [_archive/meta/policy-refinement](_archive/meta/policy-refinement/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | tasks/_archive 도입, `이력.md` 형식, 프로젝트 우선 규칙, 회고 즉시효력 |
 | docs md 효율 향상 | meta | docs, llm-efficiency, frontmatter | [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 완료 | 2026-04-27 ~ 2026-04-27 | - | frontmatter·TL;DR·폴더 README 전 영역 도입 (Phase 1+2) |
+| docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [_archive/meta/context-rules](_archive/meta/context-rules/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 + `작업 규칙.md §6` 신규 |
 
 ---
 
@@ -47,3 +48,4 @@
 | 2026-04-27 | `meta/md-efficiency` Phase 1 완료 (claude_develop 병합 `2ed13f0`). Phase 2 진행 — 회고·지침·사용방법·tasks 전반에 frontmatter+TL;DR+README 확장. |
 | 2026-04-27 | `meta/md-efficiency` Phase 2 완료 (claude_develop 병합 `99c475a`). 작업 완료 처리 — `_archive/meta/md-efficiency/`로 이동, `이력.md` 작성. |
 | 2026-04-27 | `meta/context-rules` 등재 (진행). 사용자 추가 지침(`claude_code_context_rules.md`)을 `docs/지침/일반/컨텍스트 절약 규칙.md`로 통합. |
+| 2026-04-27 | `meta/context-rules` 완료 (claude_develop 병합 `0f40002`). 작업 완료 처리 — `_archive/meta/context-rules/`로 이동, `이력.md` 작성. |
