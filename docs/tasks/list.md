@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| docs md 효율 향상 (Phase 1) | meta | docs, llm-efficiency, frontmatter | [meta/md-efficiency](meta/md-efficiency/) | 진행 | 2026-04-27 | - | frontmatter·TL;DR·폴더 README 도입 |
 
 ## 완료
 
@@ -42,3 +42,4 @@
 | 2026-04-24 | 구조 정정 follow-up — Sound1: `기준/` → `지침/` 통합 + `참고/` 모듈 분할(칩·LED·터치). 루트: `문서 작성 규칙.md`에 scope꯳ 지침/ 허용 + 참고 모듈화 + 기준 폴더 금지 규정 반영. |
 | 2026-04-27 | `meta/policy-refinement` 등재 (진행). 정책 적용 첫 사례로 `meta/docs-restructure` → `_archive/meta/docs-restructure/` 이동 + `이력.md` 백필. |
 | 2026-04-27 | `meta/policy-refinement` 완료. 동일 절차로 `_archive/meta/policy-refinement/`로 이동, `이력.md` 작성. |
+| 2026-04-27 | `meta/md-efficiency` 등재 (진행). docs LLM 토큰 효율 향상 Phase 1 (frontmatter·TL;DR·폴더 README 도입) 시작. |
