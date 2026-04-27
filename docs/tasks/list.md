@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [meta/context-rules](meta/context-rules/) | 진행 | 2026-04-27 | - | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 |
 
 ## 완료
 
@@ -46,3 +46,4 @@
 | 2026-04-27 | `meta/md-efficiency` 등재 (진행). docs LLM 토큰 효율 향상 Phase 1 (frontmatter·TL;DR·폴더 README 도입) 시작. |
 | 2026-04-27 | `meta/md-efficiency` Phase 1 완료 (claude_develop 병합 `2ed13f0`). Phase 2 진행 — 회고·지침·사용방법·tasks 전반에 frontmatter+TL;DR+README 확장. |
 | 2026-04-27 | `meta/md-efficiency` Phase 2 완료 (claude_develop 병합 `99c475a`). 작업 완료 처리 — `_archive/meta/md-efficiency/`로 이동, `이력.md` 작성. |
+| 2026-04-27 | `meta/context-rules` 등재 (진행). 사용자 추가 지침(`claude_code_context_rules.md`)을 `docs/지침/일반/컨텍스트 절약 규칙.md`로 통합. |
