@@ -1,4 +1,13 @@
+---
+name: Git 워크플로우 회고
+purpose: 브랜치 모델·병합·클론 절차 학습 누적
+type: 회고
+tags: [git, branch, merge, workflow, clone]
+---
+
 # Git 워크플로우 회고
+
+**TL;DR**: `claude_*` 브랜치 체계, 모든 병합 `--no-ff` + 사용자 승인 후, 클론 직후 자동으로 `claude_develop` 체크아웃 (확인 생략).
 
 브랜치 모델, 병합, 클론 절차 관련 학습.
 

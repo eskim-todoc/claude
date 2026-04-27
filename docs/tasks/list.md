@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| docs md 효율 향상 (Phase 1) | meta | docs, llm-efficiency, frontmatter | [meta/md-efficiency](meta/md-efficiency/) | 진행 | 2026-04-27 | - | frontmatter·TL;DR·폴더 README 도입 |
+| docs md 효율 향상 | meta | docs, llm-efficiency, frontmatter | [meta/md-efficiency](meta/md-efficiency/) | 진행 | 2026-04-27 | - | frontmatter·TL;DR·폴더 README 전 영역 도입 |
 
 ## 완료
 
@@ -43,3 +43,4 @@
 | 2026-04-27 | `meta/policy-refinement` 등재 (진행). 정책 적용 첫 사례로 `meta/docs-restructure` → `_archive/meta/docs-restructure/` 이동 + `이력.md` 백필. |
 | 2026-04-27 | `meta/policy-refinement` 완료. 동일 절차로 `_archive/meta/policy-refinement/`로 이동, `이력.md` 작성. |
 | 2026-04-27 | `meta/md-efficiency` 등재 (진행). docs LLM 토큰 효율 향상 Phase 1 (frontmatter·TL;DR·폴더 README 도입) 시작. |
+| 2026-04-27 | `meta/md-efficiency` Phase 1 완료 (claude_develop 병합 `2ed13f0`). Phase 2 진행 — 회고·지침·사용방법·tasks 전반에 frontmatter+TL;DR+README 확장. |
