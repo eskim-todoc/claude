@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| 새 프로젝트 초기 세팅 절차 신설 | meta | docs, guideline, automation, project-bootstrap | [meta/project-init-procedure](meta/project-init-procedure/) | 진행 | 2026-05-08 | - | 사용자 트리거 명령(자유 표현)으로 신규 프로젝트 CLAUDE.md(슬림 패턴)·표준 폴더·루트 인덱스를 자동 세팅하는 정형 절차 지침 신설 |
 
 ## 완료
 
