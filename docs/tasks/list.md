@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| 작업 진행 4단계 프로세스 일반화 + Git 범주 처리 신설 | meta | docs, guideline, workflow, git-scope | [meta/work-process-git-scope](meta/work-process-git-scope/) | 진행 | 2026-05-07 | - | 4단계(요구사항→현황→계획→구현) 일반 작업 규칙화, 작업 위치별 git scope 분리 |
 
 ## 완료
 
