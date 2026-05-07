@@ -23,6 +23,7 @@
 | docs md 효율 향상 | meta | docs, llm-efficiency, frontmatter | [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 완료 | 2026-04-27 ~ 2026-04-27 | - | frontmatter·TL;DR·폴더 README 전 영역 도입 (Phase 1+2) |
 | docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [_archive/meta/context-rules](_archive/meta/context-rules/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 + `작업 규칙.md §6` 신규 |
 | 작업 진행 4단계 + Git 스코프 + 서브에이전트 활용 규칙 신설 | meta | docs, guideline, workflow, git-scope, subagent | [_archive/meta/work-process-git-scope](_archive/meta/work-process-git-scope/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 4단계 일반 규칙(요구사항→분석→계획→구현)·Git 작업 스코프 분리·서브에이전트 적극 활용 신설 |
+| 문서 정합성 일괄 점검·수정 | meta | docs, audit, links, consistency | [_archive/meta/docs-consistency-audit](_archive/meta/docs-consistency-audit/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 루트·프로젝트 docs 전수 점검(서브에이전트 3개 병렬). 루트 4건 수정(CLAUDE.md Projects 표·Slack md frontmatter·rename README frontmatter·meta/ 잔재 정리). 프로젝트 repo 작업은 후속 분기 권고 |
 
 ---
 
@@ -51,3 +52,4 @@
 | 2026-04-27 | `meta/context-rules` 등재 (진행). 사용자 추가 지침(`claude_code_context_rules.md`)을 `docs/지침/일반/컨텍스트 절약 규칙.md`로 통합. |
 | 2026-04-27 | `meta/context-rules` 완료 (claude_develop 병합 `0f40002`). 작업 완료 처리 — `_archive/meta/context-rules/`로 이동, `이력.md` 작성. |
 | 2026-05-07 | `meta/work-process-git-scope` 등재·완료 (claude_develop 병합 `c2e8864`). 작업 진행 4단계 일반화 + Git 작업 스코프 분리 + 서브에이전트 활용 규칙 신설. 작업 자체가 신규 4단계 첫 적용 사례. `_archive/meta/work-process-git-scope/`로 이동, `이력.md` 작성. |
+| 2026-05-07 | `meta/docs-consistency-audit` 등재·완료. Explore 서브에이전트 3개 병렬로 루트·프로젝트·링크 점검 → 루트 repo 4건 일괄 수정 (CLAUDE.md Projects 표 확장 / Slack md·rename README frontmatter+TL;DR / `meta/` 빈 잔재 제거). 프로젝트 repo 정합성 작업(Sound1 README, auto-rtt-viewer·ez8300-study 마이그레이션)은 후속 분기 권고로 이력에 명시. `_archive/meta/docs-consistency-audit/`로 이동. |
