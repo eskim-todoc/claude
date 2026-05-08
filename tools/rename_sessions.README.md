@@ -1,4 +1,14 @@
+---
+name: rename_sessions.py — 세션 제목 일괄 요약 변경
+purpose: Claude Code Desktop 세션 JSONL을 읽어 Haiku로 한국어 제목 생성·append
+type: 사용방법
+applies_to: [root]
+tags: [tool, claude-code, session, batch-rename]
+---
+
 # rename_sessions.py
+
+**TL;DR**: `%USERPROFILE%\.claude\projects\<프로젝트>\<sessionId>.jsonl`을 전수 스캔 → Claude Haiku 4.5로 한국어 제목(≤30자) 생성 → 각 JSONL 끝에 `custom-title` 한 줄 append (원본 대화 무손상). Desktop app이 가장 최근 `custom-title`을 우선 표시.
 
 Claude Code Desktop app에 쌓인 모든 세션의 제목을, 대화 내용을 짧게 요약한 문구로 **일괄** 변경하는 스크립트입니다.
 

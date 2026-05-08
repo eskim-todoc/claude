@@ -1,4 +1,14 @@
+---
+name: Slack 작업 완료 알림
+purpose: Stop 훅 + Slack Incoming Webhook으로 응답 종료 시 DM 알림 세팅·이식
+type: 사용방법
+applies_to: [root]
+tags: [slack, hook, notification, webhook, stop-hook]
+---
+
 # Slack 작업 완료 알림
+
+**TL;DR**: `.claude/settings.json`의 Stop 훅이 `tools/slack-notify.ps1`을 호출 → `credentials/slack/webhook.url`을 읽어 마지막 응답 첫 줄을 140자 요약으로 본인 DM에 POST. Webhook URL이 없으면 조용히 종료. 새 환경 이식 시 `credentials/slack/webhook.url`만 별도 발급·저장.
 
 Claude Code가 응답을 마칠 때(`Stop` 훅 발생 시) Slack Incoming Webhook으로 DM 알림을 전송하는 세팅.
 

@@ -31,9 +31,14 @@ E:\Claude\
 - Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](docs/사용방법/Slack%20작업%20완료%20알림.md))
 
 ## Projects
-프로젝트(제품 모델)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리.
+프로젝트(제품 모델 또는 독립 산출물)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리.
 
-- [Sound1](projects/Sound1/CLAUDE.md) — E8300 embedded firmware
+| 프로젝트 | 성격 | 비고 |
+|---|---|---|
+| [Sound1](projects/Sound1/CLAUDE.md) | E8300 embedded firmware | 표준 docs 구조 적용 완료 |
+| [auto-rtt-viewer](projects/auto-rtt-viewer/CLAUDE.md) | J-Link RTT 자동 뷰어 (Sound1 디버깅 보조) | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
+| [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
+| [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | Sound1 FW Ezairo 영역 ASCII 16진수→바이너리 4종 추출 (Python) | 통합 입력 1 → 출력 4 (MANIFEST·APP000~002.FEZ) 구조 전환 예정 |
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 폴더는 다음 레이아웃을 따름:
@@ -55,6 +60,9 @@ projects/<이름>/
 | **일반** | |
 | [`지침/일반/커뮤니케이션 규칙.md`](docs/지침/일반/커뮤니케이션%20규칙.md) | 존댓말 사용 등 |
 | [`지침/일반/명령 해석 규칙.md`](docs/지침/일반/명령%20해석%20규칙.md) | 사용자 명령 모호 시 무조건 질문 (이분→yes/no, 다항→선택지) |
+| [`지침/일반/작업 진행 규칙.md`](docs/지침/일반/작업%20진행%20규칙.md) | **모든 작업 4단계** (요구사항→분석→계획→구현), 산출물·자체검토·진행상황·이력 의무 |
+| [`지침/일반/서브에이전트 활용.md`](docs/지침/일반/서브에이전트%20활용.md) | **서브에이전트 적극 활용** — 병렬·효율 위해 작업 패턴별 매핑·병렬 호출·안티패턴 |
+| [`지침/일반/프로젝트 초기 세팅.md`](docs/지침/일반/프로젝트%20초기%20세팅.md) | **신규 프로젝트 자동 세팅** — 트리거 → CLAUDE.md·표준 폴더·루트 인덱스 + Git push 자동 (4단계 면제) |
 | [`지침/일반/문서 작성 규칙.md`](docs/지침/일반/문서%20작성%20규칙.md) | 기본 포멧(.md), 폴더·파일명 컨벤션, tasks/ 레지스트리 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](docs/지침/일반/컨텍스트%20절약%20규칙.md) | 응답·툴 사용 시 컨텍스트·토큰 절감 |
 | **Git** | |
