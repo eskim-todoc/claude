@@ -38,12 +38,6 @@ E:\Claude\
 | [Sound1](projects/Sound1/CLAUDE.md) | E8300 embedded firmware | 표준 docs 구조 적용 완료 |
 | [auto-rtt-viewer](projects/auto-rtt-viewer/CLAUDE.md) | J-Link RTT 자동 뷰어 (Sound1 디버깅 보조) | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
 | [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
-| [sullivan1.5-fw-download](projects/sullivan1.5-fw-download/CLAUDE.md) | Sullivan 1.5 FW 다운로드 도구 (초기 단계) | docs 비어 있음 — 작업 진행 시 표준 구조로 채움 |
-
-> [!NOTE]
-> `projects/markdown-css/` 는 VSCode Markdown Preview용 공용 CSS 자원(독립 GitHub repo)으로, 정식 프로젝트 표준 구조 대상이 아닌 단순 도구 자원. 사용 안내는 [`projects/markdown-css/README.md`](projects/markdown-css/README.md).
->
-> `projects/travel_okinawa/` 는 잡담 메모 성격으로 정식 프로젝트가 아님 — `scratch/` 또는 외부로 이동 검토 필요.
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 폴더는 다음 레이아웃을 따름:

@@ -23,7 +23,6 @@
 
 ## Repositories
 - **eskim-todoc/Claude** — E:\Claude 루트 설정 저장소 (claude_main 브랜치)
-- **eskim-todoc/sullivan1.5-fw-download** — Sullivan 1.5세대 FW 다운로드 GUI (claude_main 브랜치)
 - **eskim-todoc/sound1-fw-e8300** — Sound1 펌웨어 **origin** (본인 소유, claude_main / Develop)
 - **todoc-dev/sound1-fw-e8300** — Sound1 펌웨어 **upstream** (원본, PR 기여 대상)
 
