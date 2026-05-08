@@ -38,6 +38,7 @@ E:\Claude\
 | [Sound1](projects/Sound1/CLAUDE.md) | E8300 embedded firmware | 표준 docs 구조 적용 완료 |
 | [auto-rtt-viewer](projects/auto-rtt-viewer/CLAUDE.md) | J-Link RTT 자동 뷰어 (Sound1 디버깅 보조) | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
 | [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
+| [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | _(TBD: 성격)_ | _(TBD: 비고)_ |
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 폴더는 다음 레이아웃을 따름:
