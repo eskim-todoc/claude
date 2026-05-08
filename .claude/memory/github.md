@@ -25,7 +25,7 @@
 - **eskim-todoc/Claude** — E:\Claude 루트 설정 저장소 (claude_main 브랜치)
 - **eskim-todoc/sound1-fw-e8300** — Sound1 펌웨어 **origin** (본인 소유, claude_main / Develop)
 - **todoc-dev/sound1-fw-e8300** — Sound1 펌웨어 **upstream** (원본, PR 기여 대상)
-- **eskim-todoc/sound1-fw-extractor** — Sound1 FW 추출 도구 (claude_main / claude_develop)
+- **eskim-todoc/sound1-fw-extractor** — Sound1 FW Ezairo 영역 텍스트→바이너리 4종 추출 (claude_main / claude_develop)
 
 ## Fork-and-PR 패턴 (upstream push 권한 제한 시)
 원본이 조직 저장소이고 직접 push 권한이 제한될 때 사용하는 2-remote 구조. **Sound1**이 이 패턴 적용 중.
