@@ -16,7 +16,7 @@ E:\Claude\
 ├── credentials/           서비스별 토큰 (gitignored)
 ├── projects/              제품별 독립 repo (gitignored)
 │   └── Sound1/            E8300 embedded firmware
-├── docs/                  전역 공용 문서 (지침/, 회고/, 사용방법/, tasks/)
+├── docs/                  전역 공용 문서 (지침/, 회고/, tasks/) — 사용방법·참고는 Wiki Vault로 이전
 ├── tools/                 공용 스크립트 · 자동화
 ├── scratch/               일회성 실험 (gitignored)
 └── .gitignore

@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| docs 구조 근본 재설계 (Task α) | meta | docs, policy-redesign, archive, wiki-integration, simplification | [meta/docs-structure-redesign](meta/docs-structure-redesign/) | 진행 | 2026-05-15 | ← [_archive/meta/archive-modules-index](_archive/meta/archive-modules-index/) (사용자 본질 재검토) · → Task β·γ | 4가지 변화 정책(A 아카이브 폐지·B 진행상황/이력 통합·C list 단일표·D 영속 콘텐츠 Wiki 통합) + 지침 5개 + CLAUDE.md + 회고 갱신 (25곳). 마이그레이션은 Task β·γ 후속 |
 
 ## 완료
 
