@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| Archive 모듈 인덱스 신설 | meta | docs, archive, index, wiki-sync, automation | [meta/archive-modules-index](meta/archive-modules-index/) | 진행 | 2026-05-15 | ← [_archive/meta/wiki-bootstrap](_archive/meta/wiki-bootstrap/) (Wiki sync 기반) | 5 repo `_archive/_modules.md` 단일 인덱스(모듈별 최종 업데이트 날짜·최근 작업) 신설 + 지침 3개 패치. Wiki sync 진입판단 인프라 |
+| _(없음)_ | | | | | | | |
 
 ## 완료
 
@@ -26,6 +26,7 @@
 | 문서 정합성 일괄 점검·수정 | meta | docs, audit, links, consistency | [_archive/meta/docs-consistency-audit](_archive/meta/docs-consistency-audit/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 루트·프로젝트 docs 전수 점검(서브에이전트 3개 병렬). 루트 4건 수정(CLAUDE.md Projects 표·Slack md frontmatter·rename README frontmatter·meta/ 잔재 정리). 프로젝트 repo 작업은 후속 분기 권고 |
 | 새 프로젝트 초기 세팅 절차 신설 | meta | docs, guideline, automation, project-bootstrap | [_archive/meta/project-init-procedure](_archive/meta/project-init-procedure/) | 완료 | 2026-05-08 ~ 2026-05-08 | ← Sound1·auto-rtt-viewer·ez8300·sullivan 슬림화 (선행 패턴 검증) | 자유 트리거(예: "기본 세팅 해줘") 인식 + 5단계 정형 절차(진단·CLAUDE.md·표준 폴더·루트 인덱스·Git 자동 push) 지침 신설. CLAUDE.md·list.md 템플릿 인라인. 본 절차 적용은 4단계 면제, 변경 시는 4단계 적용. placeholder 정책(TBD)·default branch 보호 옵션 처리 포함 |
 | 개인 Wiki 프로젝트 초기 구축 | meta | docs, project-bootstrap, wiki, obsidian | [_archive/meta/wiki-bootstrap](_archive/meta/wiki-bootstrap/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [_archive/meta/project-init-procedure](_archive/meta/project-init-procedure/) (절차 적용) | `projects/wiki/` Obsidian Vault 신규 프로젝트 — 4 카테고리(프로젝트·학습·일상·참고) + `_attachments/` + 슬림 CLAUDE.md + `.gitignore`(Obsidian 코어 설정 5종 화이트리스트) + 시드(홈.md + 4 MOC). Wiki repo `https://github.com/eskim-todoc/wiki.git` 양 브랜치 push 완료. 표준 절차 변형(`src/`·`tests/`·`docs/` 생략) 사유 분석.md 기재 |
+| Archive 모듈 인덱스 신설 | meta | docs, archive, index, wiki-sync, automation | [_archive/meta/archive-modules-index](_archive/meta/archive-modules-index/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [_archive/meta/wiki-bootstrap](_archive/meta/wiki-bootstrap/) (Wiki sync 기반 인프라) | 5 repo `_archive/_modules.md` 단일 인덱스(모듈별 최종 업데이트·최근 작업·작업 수) 신설 + 지침 3건 패치(`작업 진행 규칙.md §6.1` archive 5→6단계·`문서 작성 규칙.md §3.4.1`·`프로젝트 초기 세팅.md §2.3`). 초기 채움: 루트 meta 8 + Sound1 9 모듈 20 + auto-rtt-viewer 2 + ez8300-study 1 + sound1-fw-extractor 1 = 5 repo 32 작업. archive 처리 흐름 첫 사용 사례 자기 반영 |
 
 ---
 
@@ -57,3 +58,4 @@
 | 2026-05-07 | `meta/docs-consistency-audit` 등재·완료. Explore 서브에이전트 3개 병렬로 루트·프로젝트·링크 점검 → 루트 repo 4건 일괄 수정 (CLAUDE.md Projects 표 확장 / Slack md·rename README frontmatter+TL;DR / `meta/` 빈 잔재 제거). 프로젝트 repo 정합성 작업(Sound1 README, auto-rtt-viewer·ez8300-study 마이그레이션)은 후속 분기 권고로 이력에 명시. `_archive/meta/docs-consistency-audit/`로 이동. |
 | 2026-05-08 | `meta/project-init-procedure` 등재·완료 (claude_develop 병합 `0c23642`). 새 프로젝트 초기 세팅 5단계 정형 절차 지침 신설 — 자유 트리거 → CLAUDE.md(슬림 패턴+placeholder)·표준 폴더 풀 세트·루트 인덱스·Git 자동 push. 본 절차 적용은 4단계 면제. `_archive/meta/project-init-procedure/`로 이동, `이력.md` 작성. |
 | 2026-05-15 | `meta/wiki-bootstrap` 등재·완료 (claude_develop 병합 `49e6d7d`). 개인 Wiki 프로젝트 초기 구축 — `projects/wiki/` Obsidian Vault 골격(4 카테고리 `프로젝트/`·`학습/`·`일상/`·`참고/` + `_attachments/` + 슬림 CLAUDE.md + `.gitignore`(Obsidian 코어 설정 5종 화이트리스트) + 시드 `홈.md` + 4 MOC). Wiki repo `https://github.com/eskim-todoc/wiki.git` `claude_main`·`claude_develop` 양 브랜치 push 완료 (root commit `f559859`). 표준 절차 변형(`src/`·`tests/`·`docs/` 생략) 사유 분석.md 기재. `_archive/meta/wiki-bootstrap/`로 이동, `이력.md` 작성. |
+| 2026-05-15 | `meta/archive-modules-index` 등재·완료 (루트 claude_develop 병합 `175925f` + 4 프로젝트 각각 머지: Sound1 `5156e03`·auto-rtt-viewer `8c78ed0`·ez8300-study `cf69db6`·sound1-fw-extractor `7bea74d`). 5 repo `_archive/_modules.md` 신설(모듈별 최종 업데이트·최근 작업·작업 수 — Wiki sync 진입판단용) + 지침 3건 패치(`작업 진행 규칙.md §6.1` archive 5→6단계 + `문서 작성 규칙.md §3.4.1` + `프로젝트 초기 세팅.md §2.3`). 초기 채움 5 repo 32 작업 일괄. `_archive/meta/archive-modules-index/`로 이동, `이력.md` 작성. 새 §6.1 5단계의 **첫 사용 사례** 자기 반영 — 루트 `_modules.md` `meta` 행 갱신(작업 수 8→9, 최근 작업 `archive-modules-index`). |
