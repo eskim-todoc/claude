@@ -11,7 +11,7 @@
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| 개인 Wiki 프로젝트 초기 구축 | meta | docs, project-bootstrap, wiki, obsidian | [meta/wiki-bootstrap](meta/wiki-bootstrap/) | 진행 | 2026-05-15 | - | `projects/wiki/` Obsidian Vault 골격(4 카테고리 + `_attachments` + CLAUDE.md + .gitignore + 홈.md/MOC 시드). Wiki repo는 로컬 커밋까지, push는 사용자 GitHub repo 결정 후 |
 
 ## 완료
 
