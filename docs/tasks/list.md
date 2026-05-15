@@ -1,4 +1,4 @@
-# 작업 목록 (Root tasks index)
+﻿# 작업 목록 (Root tasks index)
 
 루트 스코프(`E:\Claude`) 작업의 중앙 레지스트리.
 
@@ -7,27 +7,21 @@
 
 ---
 
-## 활성
+## 작업 목록
 
-| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
+| 작업명 | 모듈 | 태그 | 상태 | 시작·완료 | 폴더 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
-
-## 완료
-
-| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작·완료 | 연계 | 요약 |
-|---|---|---|---|---|---|---|---|
-| docs 폴더 구조 세분화 | meta | docs, convention | [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | 완료 | 2026-04-24 | → Sound1 [meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
-| Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
-| 정책 정련 (lifecycle·우선순위·승격) | meta | docs, convention, lifecycle | [_archive/meta/policy-refinement](_archive/meta/policy-refinement/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/docs-restructure](_archive/meta/docs-restructure/) | tasks/_archive 도입, `이력.md` 형식, 프로젝트 우선 규칙, 회고 즉시효력 |
-| docs md 효율 향상 | meta | docs, llm-efficiency, frontmatter | [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 완료 | 2026-04-27 ~ 2026-04-27 | - | frontmatter·TL;DR·폴더 README 전 영역 도입 (Phase 1+2) |
-| docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [_archive/meta/context-rules](_archive/meta/context-rules/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [_archive/meta/md-efficiency](_archive/meta/md-efficiency/) | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 + `작업 규칙.md §6` 신규 |
-| 작업 진행 4단계 + Git 스코프 + 서브에이전트 활용 규칙 신설 | meta | docs, guideline, workflow, git-scope, subagent | [_archive/meta/work-process-git-scope](_archive/meta/work-process-git-scope/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 4단계 일반 규칙(요구사항→분석→계획→구현)·Git 작업 스코프 분리·서브에이전트 적극 활용 신설 |
-| 문서 정합성 일괄 점검·수정 | meta | docs, audit, links, consistency | [_archive/meta/docs-consistency-audit](_archive/meta/docs-consistency-audit/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 루트·프로젝트 docs 전수 점검(서브에이전트 3개 병렬). 루트 4건 수정(CLAUDE.md Projects 표·Slack md frontmatter·rename README frontmatter·meta/ 잔재 정리). 프로젝트 repo 작업은 후속 분기 권고 |
-| 새 프로젝트 초기 세팅 절차 신설 | meta | docs, guideline, automation, project-bootstrap | [_archive/meta/project-init-procedure](_archive/meta/project-init-procedure/) | 완료 | 2026-05-08 ~ 2026-05-08 | ← Sound1·auto-rtt-viewer·ez8300·sullivan 슬림화 (선행 패턴 검증) | 자유 트리거(예: "기본 세팅 해줘") 인식 + 5단계 정형 절차(진단·CLAUDE.md·표준 폴더·루트 인덱스·Git 자동 push) 지침 신설. CLAUDE.md·list.md 템플릿 인라인. 본 절차 적용은 4단계 면제, 변경 시는 4단계 적용. placeholder 정책(TBD)·default branch 보호 옵션 처리 포함 |
-| 개인 Wiki 프로젝트 초기 구축 | meta | docs, project-bootstrap, wiki, obsidian | [_archive/meta/wiki-bootstrap](_archive/meta/wiki-bootstrap/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [_archive/meta/project-init-procedure](_archive/meta/project-init-procedure/) (절차 적용) | `projects/wiki/` Obsidian Vault 신규 프로젝트 — 4 카테고리(프로젝트·학습·일상·참고) + `_attachments/` + 슬림 CLAUDE.md + `.gitignore`(Obsidian 코어 설정 5종 화이트리스트) + 시드(홈.md + 4 MOC). Wiki repo `https://github.com/eskim-todoc/wiki.git` 양 브랜치 push 완료. 표준 절차 변형(`src/`·`tests/`·`docs/` 생략) 사유 분석.md 기재 |
-| Archive 모듈 인덱스 신설 | meta | docs, archive, index, wiki-sync, automation | [_archive/meta/archive-modules-index](_archive/meta/archive-modules-index/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [_archive/meta/wiki-bootstrap](_archive/meta/wiki-bootstrap/) (Wiki sync 기반 인프라) | 5 repo `_archive/_modules.md` 단일 인덱스(모듈별 최종 업데이트·최근 작업·작업 수) 신설 + 지침 3건 패치(`작업 진행 규칙.md §6.1` archive 5→6단계·`문서 작성 규칙.md §3.4.1`·`프로젝트 초기 세팅.md §2.3`). 초기 채움: 루트 meta 8 + Sound1 9 모듈 20 + auto-rtt-viewer 2 + ez8300-study 1 + sound1-fw-extractor 1 = 5 repo 32 작업. archive 처리 흐름 첫 사용 사례 자기 반영 |
-| docs 구조 근본 재설계 (Task α) | meta | docs, policy-redesign, archive, wiki-integration, simplification | [_archive/meta/docs-structure-redesign](_archive/meta/docs-structure-redesign/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [_archive/meta/archive-modules-index](_archive/meta/archive-modules-index/) (사용자 본질 재검토) · → Task β·γ | 4가지 변화(A 아카이브 폐지·B 진행상황/이력 통합·C list 단일표·D 영속 콘텐츠 Wiki 통합) 정책 + 지침 5개 + CLAUDE.md + 회고 갱신 (25곳). 자기 적용 면제(시간 순서) — Task β에서 일괄 변환 |
+| docs 폴더 구조 세분화 | meta | docs, convention | [meta/docs-restructure](meta/docs-restructure/) | 완료 | 2026-04-24 | → Sound1 [meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/) | 폴더 계층·list·태그 컨벤션 도입, 루트 repo 마이그레이션 완료 |
+| Sound1 docs 구조 migration | meta | docs, Sound1, migration | (Sound1 repo에 존재: [projects/Sound1/docs/tasks/meta/docs-restructure](../../../projects/Sound1/docs/tasks/meta/docs-restructure/)) | 완료 | 2026-04-24 | → [meta/docs-restructure](meta/docs-restructure/) | Sound1 `docs/` 23건 파일 (22 + `.gitkeep`) 재편 완료. 상세: Sound1 repo 내 `tasks/meta/docs-restructure/진행상황.md` |
+| 정책 정련 (lifecycle·우선순위·승격) | meta | docs, convention, lifecycle | [meta/policy-refinement](meta/policy-refinement/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [meta/docs-restructure](meta/docs-restructure/) | tasks/_archive 도입, `이력.md` 형식, 프로젝트 우선 규칙, 회고 즉시효력 |
+| docs md 효율 향상 | meta | docs, llm-efficiency, frontmatter | [meta/md-efficiency](meta/md-efficiency/) | 완료 | 2026-04-27 ~ 2026-04-27 | - | frontmatter·TL;DR·폴더 README 전 영역 도입 (Phase 1+2) |
+| docs 컨텍스트 절약 지침 추가 | meta | docs, guideline, token-efficiency | [meta/context-rules](meta/context-rules/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [meta/md-efficiency](meta/md-efficiency/) | 사용자 지침 → `지침/일반/컨텍스트 절약 규칙.md` 통합 + `작업 규칙.md §6` 신규 |
+| 작업 진행 4단계 + Git 스코프 + 서브에이전트 활용 규칙 신설 | meta | docs, guideline, workflow, git-scope, subagent | [meta/work-process-git-scope](meta/work-process-git-scope/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 4단계 일반 규칙(요구사항→분석→계획→구현)·Git 작업 스코프 분리·서브에이전트 적극 활용 신설 |
+| 문서 정합성 일괄 점검·수정 | meta | docs, audit, links, consistency | [meta/docs-consistency-audit](meta/docs-consistency-audit/) | 완료 | 2026-05-07 ~ 2026-05-07 | - | 루트·프로젝트 docs 전수 점검(서브에이전트 3개 병렬). 루트 4건 수정(CLAUDE.md Projects 표·Slack md frontmatter·rename README frontmatter·meta/ 잔재 정리). 프로젝트 repo 작업은 후속 분기 권고 |
+| 새 프로젝트 초기 세팅 절차 신설 | meta | docs, guideline, automation, project-bootstrap | [meta/project-init-procedure](meta/project-init-procedure/) | 완료 | 2026-05-08 ~ 2026-05-08 | ← Sound1·auto-rtt-viewer·ez8300·sullivan 슬림화 (선행 패턴 검증) | 자유 트리거(예: "기본 세팅 해줘") 인식 + 5단계 정형 절차(진단·CLAUDE.md·표준 폴더·루트 인덱스·Git 자동 push) 지침 신설. CLAUDE.md·list.md 템플릿 인라인. 본 절차 적용은 4단계 면제, 변경 시는 4단계 적용. placeholder 정책(TBD)·default branch 보호 옵션 처리 포함 |
+| 개인 Wiki 프로젝트 초기 구축 | meta | docs, project-bootstrap, wiki, obsidian | [meta/wiki-bootstrap](meta/wiki-bootstrap/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [meta/project-init-procedure](meta/project-init-procedure/) (절차 적용) | `projects/wiki/` Obsidian Vault 신규 프로젝트 — 4 카테고리(프로젝트·학습·일상·참고) + `_attachments/` + 슬림 CLAUDE.md + `.gitignore`(Obsidian 코어 설정 5종 화이트리스트) + 시드(홈.md + 4 MOC). Wiki repo `https://github.com/eskim-todoc/wiki.git` 양 브랜치 push 완료. 표준 절차 변형(`src/`·`tests/`·`docs/` 생략) 사유 분석.md 기재 |
+| Archive 모듈 인덱스 신설 | meta | docs, archive, index, wiki-sync, automation | [meta/archive-modules-index](meta/archive-modules-index/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [meta/wiki-bootstrap](meta/wiki-bootstrap/) (Wiki sync 기반 인프라) | 5 repo `_archive/_modules.md` 단일 인덱스(모듈별 최종 업데이트·최근 작업·작업 수) 신설 + 지침 3건 패치(`작업 진행 규칙.md §6.1` archive 5→6단계·`문서 작성 규칙.md §3.4.1`·`프로젝트 초기 세팅.md §2.3`). 초기 채움: 루트 meta 8 + Sound1 9 모듈 20 + auto-rtt-viewer 2 + ez8300-study 1 + sound1-fw-extractor 1 = 5 repo 32 작업. archive 처리 흐름 첫 사용 사례 자기 반영 |
+| docs 구조 근본 재설계 (Task α) | meta | docs, policy-redesign, archive, wiki-integration, simplification | [meta/docs-structure-redesign](meta/docs-structure-redesign/) | 완료 | 2026-05-15 ~ 2026-05-15 | ← [meta/archive-modules-index](meta/archive-modules-index/) (사용자 본질 재검토) · → Task β·γ | 4가지 변화(A 아카이브 폐지·B 진행상황/이력 통합·C list 단일표·D 영속 콘텐츠 Wiki 통합) 정책 + 지침 5개 + CLAUDE.md + 회고 갱신 (25곳). 자기 적용 면제(시간 순서) — Task β에서 일괄 변환 |
 
 ---
 
