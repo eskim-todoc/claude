@@ -20,4 +20,4 @@ tags: [meta, archive, index, wiki-sync]
 
 | 모듈 | 최종 업데이트 | 최근 작업 | 작업 수 |
 |---|---|---|---|
-| meta | 2026-05-15 | [archive-modules-index](meta/archive-modules-index/) | 9 |
+| meta | 2026-05-15 | [docs-structure-redesign](meta/docs-structure-redesign/) | 10 |
