@@ -28,7 +28,7 @@ E:\Claude\
 인증 정보는 `credentials/` 폴더에서 서비스별로 관리.
 
 - GitHub: `credentials/github/classic.token`, `credentials/github/fine-grained.token`
-- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](docs/사용방법/Slack%20작업%20완료%20알림.md))
+- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](projects/wiki/사용방법/Slack%20작업%20완료%20알림.md))
 
 ## Projects
 프로젝트(제품 모델 또는 독립 산출물)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리.
@@ -94,7 +94,7 @@ projects/<이름>/
 ## Tools
 `tools/`는 공용 스크립트와 자동화 보관소. 예: 문서 템플릿 복사·파일명 규칙 자동 적용·프로젝트 간 공용 유틸.
 
-- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](docs/사용방법/Slack%20작업%20완료%20알림.md)
+- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](projects/wiki/사용방법/Slack%20작업%20완료%20알림.md)
 - `rename_sessions.py` — Claude Code Desktop app의 모든 세션 제목을 AI 요약으로 일괄 변경. 상세: [`tools/rename_sessions.README.md`](tools/rename_sessions.README.md)
 
 ## Scratch
