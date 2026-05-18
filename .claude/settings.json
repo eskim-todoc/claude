@@ -1,5 +1,17 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -Command \"Write-Output '[SessionStart] 루트 지침 자동 주입 완료. CLAUDE.md 핵심 지침 (maturity:core) 즉시 효력 - 위반 시 즉시 중단. 세션 시작 첫 동작: CLAUDE.md Read 후 한 줄 보고 의무.'\"",
+            "async": false,
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
