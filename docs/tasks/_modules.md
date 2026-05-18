@@ -21,3 +21,23 @@ tags: [meta, tasks, index, wiki-sync]
 | 모듈 | 최종 업데이트 | 최근 작업 | 작업 수 |
 |---|---|---|---|
 | meta | 2026-05-15 | [permanent-docs-to-wiki](meta/permanent-docs-to-wiki/) | 12 |
+
+## 작업 상세 (Task α 이후 신규)
+
+### meta
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| archive-modules-index | 2026-05-15 | [meta/archive-modules-index](meta/archive-modules-index/) |
+| context-rules | 2026-04-27 | [meta/context-rules](meta/context-rules/) |
+| docs-consistency-audit | 2026-05-07 | [meta/docs-consistency-audit](meta/docs-consistency-audit/) |
+| docs-restructure | 2026-04-24 | [meta/docs-restructure](meta/docs-restructure/) |
+| docs-structure-redesign | 2026-05-15 | [meta/docs-structure-redesign](meta/docs-structure-redesign/) |
+| md-efficiency | 2026-04-27 | [meta/md-efficiency](meta/md-efficiency/) |
+| permanent-docs-to-wiki | 2026-05-15 | [meta/permanent-docs-to-wiki](meta/permanent-docs-to-wiki/) |
+| policy-refinement | 2026-04-27 | [meta/policy-refinement](meta/policy-refinement/) |
+| project-init-procedure | 2026-05-08 | [meta/project-init-procedure](meta/project-init-procedure/) |
+| tasks-structure-migration | 2026-05-15 | [meta/tasks-structure-migration](meta/tasks-structure-migration/) |
+| wiki-bootstrap | — | [meta/wiki-bootstrap](meta/wiki-bootstrap/) |
+| work-process-git-scope | 2026-05-07 | [meta/work-process-git-scope](meta/work-process-git-scope/) |
+
