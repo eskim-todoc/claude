@@ -100,7 +100,7 @@ E:\Claude\
 | [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | Sound1 FW Ezairo 영역 ASCII 16진수→바이너리 4종 추출 (Python) | 통합 입력 1 → 출력 4 (MANIFEST·APP000~002.FEZ) 구조 전환 예정 |
 | [wiki](projects/wiki/CLAUDE.md) | 개인 Wiki (Obsidian Vault, 프로젝트 횡단 지식 + 학습·일상·참고) | 로컬 우선, 추후 private GitHub + (선택) 웹 공개 |
 | [mermaid-study](projects/mermaid-study/CLAUDE.md) | Mermaid 다이어그램 문법·스타일 학습 노트 (플로우차트·상태·테마) | 문서 작성 시 1차 레퍼런스, 로컬 폴더 시작 (GitHub repo 미생성) |
-| [sullivan-1-5-board-eol-test](projects/sullivan-1-5-board-eol-test/CLAUDE.md) | _(TBD: 성격)_ | _(TBD: 비고)_ |
+| [sullivan-1-5-board-eol-test](projects/sullivan-1-5-board-eol-test/CLAUDE.md) | Sullivan1.5 세대 완제품 EOL용 주파수 분석 검사 음원 생성 | 신규 세팅 (2026-05-19 clone), 초기 골격만 — 음원 생성 구현 _(TBD)_ |
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 폴더는 다음 레이아웃을 따름:
