@@ -99,6 +99,7 @@ E:\Claude\
 | [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
 | [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | Sound1 FW Ezairo 영역 ASCII 16진수→바이너리 4종 추출 (Python) | 통합 입력 1 → 출력 4 (MANIFEST·APP000~002.FEZ) 구조 전환 예정 |
 | [wiki](projects/wiki/CLAUDE.md) | 개인 Wiki (Obsidian Vault, 프로젝트 횡단 지식 + 학습·일상·참고) | 로컬 우선, 추후 private GitHub + (선택) 웹 공개 |
+| [mermaid-study](projects/mermaid-study/CLAUDE.md) | Mermaid 다이어그램 문법·스타일 학습 노트 (플로우차트·상태·테마) | 문서 작성 시 1차 레퍼런스, 로컬 폴더 시작 (GitHub repo 미생성) |
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 폴더는 다음 레이아웃을 따름:
