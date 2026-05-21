@@ -25,5 +25,5 @@
       }
     ]
   },
-  "plansDirectory": "./plans"
+  "plansDirectory": "./docs/plans"
 }
