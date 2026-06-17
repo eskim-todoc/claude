@@ -65,6 +65,7 @@ E:\Claude\
 - 광범위 탐색·다중 가설·독립 작업·반복 작업 시 서브에이전트 **병렬 호출** 우선
 - 한 응답에 multiple Agent tool use 묶어 효율 극대화
 - 특히 단계 ②(현상태 분석)에서 가장 큰 가치
+- **서브에이전트 기본 모델·Effort**: Agent 호출 시 `model: "sonnet"` + `effort: "high"` 항상 명시. 세션이 Opus여도 동일. 단순 기계적 작업은 `effort: "low"` 예외.
 - 상세: [`docs/지침/일반/서브에이전트 활용.md`](docs/지침/일반/서브에이전트%20활용.md)
 
 ### 6. 문서 메타 (lazy-loading)
