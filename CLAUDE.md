@@ -62,10 +62,10 @@ E:\Claude\
 
 - **default가 활용** — 단순 단일 lookup만 예외, 의심스러우면 무조건 활용
 - 광범위 탐색·다중 가설·독립 작업·반복 작업 시 서브에이전트 **병렬 호출** 우선
-- 한 응답에 multiple Agent tool use 묶어 효율 극대화
+- 비단순 처리 fan-out은 **`Workflow` 도구 우선**(effort 실제 보장), 호출 불가 세션에서만 한 응답에 multiple Agent tool use 묶어 폴백
 - 특히 단계 ②(현상태 분석)에서 가장 큰 가치
 - 다노드 fan-out·검증 루프·반복 등 **동적 오케스트레이션**(4대 패턴)은 별도 지침에서 규정
-- **서브에이전트 기본 모델·Effort**: Agent 호출 시 `model: "sonnet"` + `effort: "high"` 항상 명시. 세션이 Opus여도 동일. 단순 기계적 작업은 `effort: "low"` 예외.
+- **서브에이전트 기본 모델·Effort**: 항상 `model: "sonnet"` 명시(세션이 Opus여도 동일). **`effort: "high"`는 `Workflow` 도구 `agent({effort})` 경로에서만 실제 적용** — `Agent` 도구엔 effort 인자가 없어 폴백 시 미지원(세션 기본 상속, 로그에 "Agent-폴백(effort 미지원)" 명시). 단순 기계 작업은 `effort: "low"` 예외(Workflow 경로).
 - 상세: [`docs/지침/일반/서브에이전트 활용.md`](docs/지침/일반/서브에이전트%20활용.md), [`docs/지침/일반/워크플로우 오케스트레이션.md`](docs/지침/일반/워크플로우%20오케스트레이션.md)
 
 ### 6. 문서 메타 (lazy-loading)
