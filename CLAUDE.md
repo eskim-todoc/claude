@@ -134,6 +134,10 @@ projects/<이름>/
 | ↳ [`지침/일반/문서/폴더-구조.md`](docs/지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md |
 | ↳ [`지침/일반/문서/메타-frontmatter.md`](docs/지침/일반/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) |
 | ↳ [`지침/일반/문서/작성-스타일.md`](docs/지침/일반/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 |
+| [`지침/일반/문서 테마 스타일.md`](docs/지침/일반/문서%20테마%20스타일.md) | experimental | **웜 페이퍼 테마** 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 |
+| ↳ [`지침/일반/테마/HTML-아티팩트.md`](docs/지침/일반/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 |
+| ↳ [`지침/일반/테마/Mermaid.md`](docs/지침/일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트(대비 안전 stroke) |
+| ↳ [`지침/일반/테마/Obsidian.md`](docs/지침/일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](docs/지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
 | **Git** | | |
 | [`지침/Git/브랜치, 병합 규칙.md`](docs/지침/Git/브랜치,%20병합%20규칙.md) | core | 브랜치 모델·병합·Identity |
