@@ -65,7 +65,8 @@ E:\Claude\
 - 비단순 처리 fan-out은 **`Workflow` 도구 우선**(effort 실제 보장), 호출 불가 세션에서만 한 응답에 multiple Agent tool use 묶어 폴백
 - 특히 단계 ②(현상태 분석)에서 가장 큰 가치
 - 다노드 fan-out·검증 루프·반복 등 **동적 오케스트레이션**(4대 패턴)은 별도 지침에서 규정
-- **서브에이전트 기본 모델·Effort**: 항상 `model: "sonnet"` 명시(세션이 Opus여도 동일), effort는 **항상 `"max"`**(난이도별 차등 폐지). **`Workflow` 도구 `agent({model, effort})` 경로에서만 실제 적용** — `Agent` 도구엔 effort 인자가 없어 폴백 시 미지원(세션 기본 상속, 로그에 "Agent-폴백(effort 미지원)" 명시).
+- **서브에이전트 기본 모델·Effort**: 항상 `model: "sonnet"` 명시(세션이 Opus여도 동일), effort는 **기본 `"max"`**(추론·분석·설계·검증). **단, 확정 스펙을 옮기는 결정론적 대형 저술은 오케스트레이터 직접 또는 저-effort**(max 저술 폭주 방지 — 서브에이전트 활용.md §3.1 CAUTION). **`Workflow` 도구 `agent({model, effort})` 경로에서만 실제 적용** — `Agent` 도구엔 effort 인자가 없어 폴백 시 미지원.
+- **폭주 서킷브레이커**: fan-out을 fire-and-forget 금지 — 산출물 없이 부푸는 노드는 `TaskStop`→직접 폴백(워크플로우 오케스트레이션.md §7). 저술/검증 분리·flaky MCP 배제(서브에이전트 활용.md §4.4).
 - 상세: [`docs/지침/일반/서브에이전트 활용.md`](docs/지침/일반/서브에이전트%20활용.md), [`docs/지침/일반/워크플로우 오케스트레이션.md`](docs/지침/일반/워크플로우%20오케스트레이션.md)
 
 ### 6. 문서 메타 (lazy-loading)
