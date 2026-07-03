@@ -60,12 +60,12 @@ E:\Claude\
 
 ### 5. 서브에이전트 최대 활용
 
-- **default가 활용** — 단순 단일 lookup만 예외, 의심스러우면 무조건 활용
+- **전면 위임** — 오케스트레이터는 자기 컨텍스트 확보(대화 파악·위임 설계 조사·git 상태 확인·fan-in 합성)만 직접, 사용자에게 전달되는 실제 작업은 규모·난이도 불문 100% 위임 (전면 위임 정책, 은수님 2026-07-03)
 - 광범위 탐색·다중 가설·독립 작업·반복 작업 시 서브에이전트 **병렬 호출** 우선
 - 비단순 처리 fan-out은 **`Workflow` 도구 우선**(effort 실제 보장), 호출 불가 세션에서만 한 응답에 multiple Agent tool use 묶어 폴백
 - 특히 단계 ②(현상태 분석)에서 가장 큰 가치
 - 다노드 fan-out·검증 루프·반복 등 **동적 오케스트레이션**(4대 패턴)은 별도 지침에서 규정
-- **서브에이전트 기본 모델·Effort**: 항상 `model: "sonnet"` 명시(세션이 Opus여도 동일). **`effort: "high"`는 `Workflow` 도구 `agent({effort})` 경로에서만 실제 적용** — `Agent` 도구엔 effort 인자가 없어 폴백 시 미지원(세션 기본 상속, 로그에 "Agent-폴백(effort 미지원)" 명시). 단순 기계 작업은 `effort: "low"` 예외(Workflow 경로).
+- **서브에이전트 기본 모델·Effort**: 항상 `model: "sonnet"` 명시(세션이 Opus여도 동일), effort는 **항상 `"max"`**(난이도별 차등 폐지). **`Workflow` 도구 `agent({model, effort})` 경로에서만 실제 적용** — `Agent` 도구엔 effort 인자가 없어 폴백 시 미지원(세션 기본 상속, 로그에 "Agent-폴백(effort 미지원)" 명시).
 - 상세: [`docs/지침/일반/서브에이전트 활용.md`](docs/지침/일반/서브에이전트%20활용.md), [`docs/지침/일반/워크플로우 오케스트레이션.md`](docs/지침/일반/워크플로우%20오케스트레이션.md)
 
 ### 6. 문서 메타 (lazy-loading)
@@ -131,7 +131,7 @@ projects/<이름>/
 | [`지침/일반/워크플로우 오케스트레이션.md`](docs/지침/일반/워크플로우%20오케스트레이션.md) | experimental | 4대 패턴(parallel·pipeline·loop-until-dry·adversarial-verify)·검증 루프·fan-out 경계 |
 | [`지침/일반/프로젝트 초기 세팅.md`](docs/지침/일반/프로젝트%20초기%20세팅.md) | stable | 신규 프로젝트 5단계 자동 세팅 |
 | [`지침/일반/문서 작성 규칙.md`](docs/지침/일반/문서%20작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) |
-| ↳ [`지침/일반/문서/폴더-구조.md`](docs/지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·작업 목록.md·모듈 현황.md |
+| ↳ [`지침/일반/문서/폴더-구조.md`](docs/지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md |
 | ↳ [`지침/일반/문서/메타-frontmatter.md`](docs/지침/일반/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) |
 | ↳ [`지침/일반/문서/작성-스타일.md`](docs/지침/일반/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](docs/지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
