@@ -131,7 +131,7 @@ projects/<이름>/
 | [`지침/일반/워크플로우 오케스트레이션.md`](docs/지침/일반/워크플로우%20오케스트레이션.md) | experimental | 4대 패턴(parallel·pipeline·loop-until-dry·adversarial-verify)·검증 루프·fan-out 경계 |
 | [`지침/일반/프로젝트 초기 세팅.md`](docs/지침/일반/프로젝트%20초기%20세팅.md) | stable | 신규 프로젝트 5단계 자동 세팅 |
 | [`지침/일반/문서 작성 규칙.md`](docs/지침/일반/문서%20작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) |
-| ↳ [`지침/일반/문서/폴더-구조.md`](docs/지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·작업 목록.md·모듈 현황.md |
+| ↳ [`지침/일반/문서/폴더-구조.md`](docs/지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md |
 | ↳ [`지침/일반/문서/메타-frontmatter.md`](docs/지침/일반/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) |
 | ↳ [`지침/일반/문서/작성-스타일.md`](docs/지침/일반/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](docs/지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
