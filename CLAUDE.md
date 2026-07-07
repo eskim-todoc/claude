@@ -139,7 +139,8 @@ projects/<이름>/
 | ↳ [`지침/일반/테마/Mermaid.md`](docs/지침/일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트(대비 안전 stroke) |
 | ↳ [`지침/일반/테마/Obsidian.md`](docs/지침/일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](docs/지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
-| [`지침/일반/위키 배경지식 조회.md`](docs/지침/일반/위키%20배경지식%20조회.md) | experimental | 작업 착수 시 `projects/wiki`에서 키워드+링크 추적(최대 2-hop)으로 배경지식 조회 |
+| [`지침/일반/위키 배경지식 조회.md`](docs/지침/일반/위키%20배경지식%20조회.md) | experimental | 작업 착수 시 `projects/wiki`에서 키워드+링크 추적(최대 2-hop)으로 배경지식 조회 (회수) |
+| [`지침/일반/위키 반영 절차.md`](docs/지침/일반/위키%20반영%20절차.md) | stable | task 완료 시점 즉시 판단·신규/개정 분기·재작성 템플릿·공개검수 (캡처) — `projects/wiki` 고유 운영 방침 전량 이관처 |
 | **Git** | | |
 | [`지침/Git/브랜치, 병합 규칙.md`](docs/지침/Git/브랜치,%20병합%20규칙.md) | core | 브랜치 모델·병합·Identity |
 | [`지침/Git/워크플로우.md`](docs/지침/Git/워크플로우.md) | core | 작업 스코프·기능 개발·hotfix·릴리즈 + 학습 노트(.gitignore·미머지 회수·atomic 함정) |
