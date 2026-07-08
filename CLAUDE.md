@@ -88,10 +88,10 @@ E:\Claude\
 인증 정보는 `credentials/` 폴더에서 서비스별로 관리.
 
 - GitHub: `credentials/github/classic.token`, `credentials/github/fine-grained.token`
-- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](projects/wiki/사용방법/Slack%20작업%20완료%20알림.md))
+- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](projects/wiki/도구/Slack%20작업%20완료%20알림.md))
 
 ## Projects
-프로젝트(제품 모델 또는 독립 산출물)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리.
+프로젝트(제품 모델 또는 독립 산출물)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리(단, `wiki`는 예외 — 자체 운영 방침을 갖지 않고 `README.md`로만 시작, 2026-07-08~).
 
 | 프로젝트 | 성격 | 비고 |
 |---|---|---|
@@ -99,7 +99,7 @@ E:\Claude\
 | [auto-rtt-viewer](projects/auto-rtt-viewer/CLAUDE.md) | J-Link RTT 자동 뷰어 (Sound1 디버깅 보조) | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
 | [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
 | [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | Sound1 FW Ezairo 영역 ASCII 16진수→바이너리 4종 추출 (Python) | 통합 입력 1 → 출력 4 (MANIFEST·APP000~002.FEZ) 구조 전환 예정 |
-| [wiki](projects/wiki/CLAUDE.md) | 개인 Wiki (Obsidian Vault, 프로젝트 횡단 지식 + 학습·일상·참고) | 로컬 우선, 추후 private GitHub + (선택) 웹 공개 |
+| [wiki](projects/wiki/README.md) | 개인 Wiki (Obsidian Vault, 도메인 기준 지식 저장소) | CLAUDE.md 없음(2026-07-08~) — 운영 방침은 [`위키 반영 절차.md`](docs/지침/일반/위키%20반영%20절차.md)·[`위키 배경지식 조회.md`](docs/지침/일반/위키%20배경지식%20조회.md)로 전량 이관. 로컬 우선, 추후 private GitHub + (선택) 웹 공개 |
 | [mermaid-study](projects/mermaid-study/CLAUDE.md) | Mermaid 다이어그램 문법·스타일 학습 노트 (플로우차트·상태·테마) | 문서 작성 시 1차 레퍼런스, 로컬 폴더 시작 (GitHub repo 미생성) |
 | [sullivan-1-5-board-eol-test](projects/sullivan-1-5-board-eol-test/CLAUDE.md) | Sullivan1.5 세대 완제품 EOL용 주파수 분석 검사 음원 생성 | 신규 세팅 (2026-05-19 clone), 초기 골격만 — 음원 생성 구현 _(TBD)_ |
 
@@ -157,7 +157,7 @@ projects/<이름>/
 ## Tools
 `tools/`는 공용 스크립트와 자동화 보관소. 예: 문서 템플릿 복사·파일명 규칙 자동 적용·프로젝트 간 공용 유틸.
 
-- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](projects/wiki/사용방법/Slack%20작업%20완료%20알림.md)
+- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](projects/wiki/도구/Slack%20작업%20완료%20알림.md)
 - `rename_sessions.py` — Claude Code Desktop app의 모든 세션 제목을 AI 요약으로 일괄 변경. 상세: [`tools/rename_sessions.README.md`](tools/rename_sessions.README.md)
 
 ## Scratch
