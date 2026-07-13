@@ -5,25 +5,27 @@
 >
 > **작업 전 필수 참조**: [`지침/작업 규칙.md`](지침/작업%20규칙.md) — 모든 작업을 시작하기 전에 반드시 확인할 것.
 
-Root: `E:\Claude` — 이 폴더를 복제하면 다른 환경에서도 컨텍스트 유지 가능.
+이 저장소(`rules`)는 **헌법·전역 지침의 단일 출처**다. `E:\workspace\`(git 아닌 로컬 엄브렐러 폴더) 아래에 이 `rules`와 제품별 `projects/<name>`이 **형제 독립 repo**로 나란히 놓인다(각자 자기 `.git`). 어느 프로젝트 폴더에서 세션을 열든 이 `rules`의 `CLAUDE.md`를 최상위 헌법으로 참조한다.
 
 ## Layout
 
 ```
-E:\Claude\
-├── CLAUDE.md              이 파일 — 전역 진입점 (maturity: core 핵심 지침 인라인)
-├── .claude/memory/        장기 메모리 (수동 관리)
-├── credentials/           서비스별 토큰 (gitignored)
-├── projects/              제품별 독립 repo (gitignored)
-│   └── Sound1/            E8300 embedded firmware
-├── 지침/                  전역 공통 지침 (산출물 본체) — docs/ 밖 루트 승격(2026-07-13~). 회고는 지침 흡수(2026-05-18~)
-├── docs/                  작업 과정 기록 (tasks/) — 사용방법·참고는 Wiki Vault
-├── tools/                 공용 스크립트 · 자동화
-├── scratch/               일회성 실험 (gitignored)
-└── .gitignore
+E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관리 대상 아님)
+├── rules\                           이 저장소 — 헌법·지침 단일 출처 (독립 git repo)
+│   ├── CLAUDE.md                    이 파일 — 전역 진입점 (maturity: core 핵심 지침 인라인)
+│   ├── .claude/memory/              장기 메모리 (수동 관리)
+│   ├── credentials/                 서비스별 토큰 (gitignored)
+│   ├── 지침/                        전역 공통 지침 (산출물 본체) — docs/ 밖 루트 승격(2026-07-13~). 회고는 지침 흡수(2026-05-18~)
+│   ├── docs/                        작업 과정 기록 (tasks/) — 사용방법·참고는 Wiki Vault
+│   ├── tools/                       공용 스크립트 · 자동화
+│   ├── scratch/                     일회성 실험 (gitignored)
+│   └── .gitignore
+└── projects\                        제품별 독립 repo들 (rules와 형제, rules가 추적하지 않음)
+    ├── Sound1\                       E8300 embedded firmware (별도 git repo)
+    └── <name>\                       각자 자기 CLAUDE.md로 self-describing
 ```
 
-루트 Git은 `CLAUDE.md`, `.claude/memory/`, `지침/`, `tools/`, `docs/`를 추적. `credentials/`, `projects/`, `scratch/`는 `.gitignore`로 차단.
+이 `rules` repo의 Git은 `CLAUDE.md`, `.claude/memory/`, `지침/`, `tools/`, `docs/`를 추적. `credentials/`, `scratch/`는 `.gitignore`로 차단. `projects/`는 rules 안에 두지 않는다 — 엄브렐러(`E:\workspace\`) 아래 형제로 놓이며 각 프로젝트가 자기 repo에서 독립 관리한다.
 
 ## 핵심 지침 (자동 적용) — maturity: core
 
@@ -89,27 +91,22 @@ E:\Claude\
 인증 정보는 `credentials/` 폴더에서 서비스별로 관리.
 
 - GitHub: `credentials/github/classic.token`, `credentials/github/fine-grained.token`
-- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 ([사용방법](projects/wiki/도구/Slack%20작업%20완료%20알림.md))
+- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 (사용방법: 형제 wiki repo `E:\workspace\projects\wiki\도구\Slack 작업 완료 알림.md`)
 
 ## Projects
-프로젝트(제품 모델 또는 독립 산출물)는 `projects/<이름>/` 폴더에서 **독립 repo**로 관리. 각 프로젝트 내 `CLAUDE.md`에서 프로젝트별 컨텍스트 관리(단, `wiki`는 예외 — 자체 운영 방침을 갖지 않고 `README.md`로만 시작, 2026-07-08~).
+프로젝트(제품 모델 또는 독립 산출물)는 엄브렐러(`E:\workspace\`) 아래 `projects/<이름>/`에 **rules와 형제인 독립 repo**로 놓인다(예: `E:\workspace\projects\Sound1`). 각 프로젝트는 자기 `CLAUDE.md`로 self-describing하며, 어느 프로젝트에서 작업하든 세션 시작 시 이 루트 `CLAUDE.md`를 헌법으로 참조한다.
 
-| 프로젝트 | 성격 | 비고 |
-|---|---|---|
-| [Sound1](projects/Sound1/CLAUDE.md) | E8300 embedded firmware | 표준 docs 구조 적용 완료 |
-| [auto-rtt-viewer](projects/auto-rtt-viewer/CLAUDE.md) | J-Link RTT 자동 뷰어 (Sound1 디버깅 보조) | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
-| [ez8300-study](projects/ez8300-study/CLAUDE.md) | EZ8300 CFX 아키텍처 학습 노트 | docs 구 prefix 컨벤션 잔존 — 후속 마이그레이션 권고 |
-| [sound1-fw-extractor](projects/sound1-fw-extractor/CLAUDE.md) | Sound1 FW Ezairo 영역 ASCII 16진수→바이너리 4종 추출 (Python) | 통합 입력 1 → 출력 4 (MANIFEST·APP000~002.FEZ) 구조 전환 예정 |
-| [wiki](projects/wiki/README.md) | 개인 Wiki (Obsidian Vault, 도메인 기준 지식 저장소) | CLAUDE.md 없음(2026-07-08~) — 운영 방침은 [`위키 반영 절차.md`](지침/일반/위키%20반영%20절차.md)·[`위키 배경지식 조회.md`](지침/일반/위키%20배경지식%20조회.md)로 전량 이관. 로컬 우선, 추후 private GitHub + (선택) 웹 공개 |
-| [mermaid-study](projects/mermaid-study/CLAUDE.md) | Mermaid 다이어그램 문법·스타일 학습 노트 (플로우차트·상태·테마) | 문서 작성 시 1차 레퍼런스, 로컬 폴더 시작 (GitHub repo 미생성) |
-| [sullivan-1-5-board-eol-test](projects/sullivan-1-5-board-eol-test/CLAUDE.md) | Sullivan1.5 세대 완제품 EOL용 주파수 분석 검사 음원 생성 | 신규 세팅 (2026-05-19 clone), 초기 골격만 — 음원 생성 구현 _(TBD)_ |
+> [!IMPORTANT]
+> **rules는 프로젝트 목록을 추적하지 않는다** — 중앙 Projects 레지스트리 폐지(2026-07-13~). 옛 단일 git 구조(그 아래 `projects/`를 중첩 관리)에서 유지하던 Projects 표는 삭제됐다. 프로젝트의 성격·상태·docs 컨벤션은 **각 프로젝트 repo의 `CLAUDE.md`**에서 확인한다.
+>
+> 예외: `wiki`는 자체 운영 방침 없이 `README.md`로만 시작(2026-07-08~). 운영 방침은 [`위키 반영 절차.md`](지침/일반/위키%20반영%20절차.md)·[`위키 배경지식 조회.md`](지침/일반/위키%20배경지식%20조회.md)로 이관(형제 repo `E:\workspace\projects\wiki`).
 
 ### 프로젝트 내부 표준 구조
-각 프로젝트 폴더는 다음 레이아웃을 따름:
+각 프로젝트 repo는 다음 레이아웃을 따름:
 
 ```
-projects/<이름>/
-├── CLAUDE.md       프로젝트 컨텍스트
+<workspace>\projects\<이름>\
+├── CLAUDE.md       프로젝트 컨텍스트 (루트 헌법을 절대경로로 참조)
 ├── src/            펌웨어 / SW 코드
 ├── tests/          단위 · 통합 테스트
 └── docs/           SW 문서 (지침/ + tasks/<모듈>/YYYYMMDD_<작업>/)
@@ -158,7 +155,7 @@ projects/<이름>/
 ## Tools
 `tools/`는 공용 스크립트와 자동화 보관소. 예: 문서 템플릿 복사·파일명 규칙 자동 적용·프로젝트 간 공용 유틸.
 
-- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: [사용방법 문서](projects/wiki/도구/Slack%20작업%20완료%20알림.md)
+- `slack-notify.ps1` — Stop 훅에서 호출되어 Slack DM으로 작업 완료 알림 전송. 상세: 형제 wiki repo `E:\workspace\projects\wiki\도구\Slack 작업 완료 알림.md`
 - `rename_sessions.py` — Claude Code Desktop app의 모든 세션 제목을 AI 요약으로 일괄 변경. 상세: [`tools/rename_sessions.README.md`](tools/rename_sessions.README.md)
 
 ## Scratch

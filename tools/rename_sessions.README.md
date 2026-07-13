@@ -24,7 +24,7 @@ Claude Code Desktop app에 쌓인 모든 세션의 제목을, 대화 내용을 �
 ### 1. Python 의존성 설치 (최초 1회)
 
 ```powershell
-pip install -r E:\Claude\tools\requirements-rename-sessions.txt
+pip install -r E:\workspace\rules\tools\requirements-rename-sessions.txt
 ```
 
 ### 2. API 키 주입
@@ -40,8 +40,8 @@ $env:ANTHROPIC_API_KEY = "sk-ant-api03-..."
 **방법 B — fallback 파일 (영구)**
 
 ```powershell
-New-Item -ItemType Directory -Force -Path E:\Claude\credentials\anthropic | Out-Null
-Set-Content -Path E:\Claude\credentials\anthropic\api.key -Value "sk-ant-api03-..." -NoNewline
+New-Item -ItemType Directory -Force -Path E:\workspace\rules\credentials\anthropic | Out-Null
+Set-Content -Path E:\workspace\rules\credentials\anthropic\api.key -Value "sk-ant-api03-..." -NoNewline
 ```
 
 프로젝트 루트의 `.gitignore`가 `credentials/` 폴더를 제외하므로 키는 버전 관리에 포함되지 않습니다.
@@ -58,9 +58,9 @@ Set-Content -Path E:\Claude\credentials\anthropic\api.key -Value "sk-ant-api03-.
 ### 드라이런 (기본값) — 어떤 이름으로 바뀔지 미리보기
 
 ```powershell
-python E:\Claude\tools\rename_sessions.py
+python E:\workspace\rules\tools\rename_sessions.py
 # 또는
-python E:\Claude\tools\rename_sessions.py --dry-run
+python E:\workspace\rules\tools\rename_sessions.py --dry-run
 ```
 
 출력 예시:
@@ -69,19 +69,19 @@ python E:\Claude\tools\rename_sessions.py --dry-run
 [i] 대상 세션 26개 (모드: DRY-RUN)
 [DRY] (1/26) 18769da6-ac3e-47aa-a1e9-0c65cc11b176 -> JLink 자동 재연결
 [DRY] (2/26) ...
-[=] 완료: 성공 26, 실패 0, 로그 E:\Claude\tools\.logs\rename_sessions_20260424_153022.log
+[=] 완료: 성공 26, 실패 0, 로그 E:\workspace\rules\tools\.logs\rename_sessions_20260424_153022.log
 ```
 
 ### 소량 테스트 (3개만, 백업 포함)
 
 ```powershell
-python E:\Claude\tools\rename_sessions.py --apply --backup --max-sessions 3
+python E:\workspace\rules\tools\rename_sessions.py --apply --backup --max-sessions 3
 ```
 
 ### 전체 적용
 
 ```powershell
-python E:\Claude\tools\rename_sessions.py --apply --backup
+python E:\workspace\rules\tools\rename_sessions.py --apply --backup
 ```
 
 ### 옵션
@@ -109,7 +109,7 @@ python E:\Claude\tools\rename_sessions.py --apply --backup
    {"type":"custom-title","customTitle":"제목","sessionId":"<uuid>"}
    ```
 
-6. 로그 파일: `E:\Claude\tools\.logs\rename_sessions_YYYYMMDD_HHMMSS.log` (JSONL)
+6. 로그 파일: `E:\workspace\rules\tools\.logs\rename_sessions_YYYYMMDD_HHMMSS.log` (JSONL)
 
 ## 검증
 

@@ -1,15 +1,15 @@
 # GitHub
 
 ## Tokens
-- Classic token: `E:/Claude/credentials/github/classic.token`
-- Fine-grained token: `E:/Claude/credentials/github/fine-grained.token`
+- Classic token: `E:/workspace/rules/credentials/github/classic.token`
+- Fine-grained token: `E:/workspace/rules/credentials/github/fine-grained.token`
 - 개인계정(`eskim-todoc`)과 조직계정(`todoc-dev`) 모두 동일 토큰으로 접근 가능
 
 ## Remote URL 규칙
 - 이 환경은 토큰을 URL에 임베드하는 방식 사용: `https://{token}@github.com/{owner}/{repo}.git`
 - 새 repo 추가 시 같은 방식으로 세팅. 토큰을 명령에 하드코딩하지 말고 파일·기존 remote에서 추출:
   ```bash
-  TOKEN=$(cd E:/Claude/projects/Sound1 && git config --get remote.origin.url | sed -E 's|https://([^@]+)@.*|\1|')
+  TOKEN=$(cd E:/workspace/projects/Sound1 && git config --get remote.origin.url | sed -E 's|https://([^@]+)@.*|\1|')
   git remote set-url origin "https://${TOKEN}@github.com/{owner}/{repo}.git"
   ```
 
@@ -22,7 +22,7 @@
 - 한 번 노출된 토큰은 회수 불가. 실수로 노출 시 사용자에게 즉시 알리고 토큰 재발급 권고.
 
 ## Repositories
-- **eskim-todoc/Claude** — E:\Claude 루트 설정 저장소 (claude_main 브랜치)
+- **eskim-todoc/claude** — rules 헌법·지침 저장소 (로컬 `E:\workspace\rules`, claude_main 브랜치)
 - **eskim-todoc/sound1-fw-e8300** — Sound1 펌웨어 **origin** (본인 소유, claude_main / Develop)
 - **todoc-dev/sound1-fw-e8300** — Sound1 펌웨어 **upstream** (원본, PR 기여 대상)
 - **eskim-todoc/sound1-fw-extractor** — Sound1 FW Ezairo 영역 텍스트→바이너리 4종 추출 (claude_main / claude_develop)
