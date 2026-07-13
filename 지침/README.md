@@ -8,16 +8,16 @@
 | **일반** | [`일반/작업 진행 규칙.md`](일반/작업%20진행%20규칙.md) | core | **4단계 프로세스 인덱스** | 모든 작업 시작 시 |
 | ↳ | [`일반/작업/4단계-프로세스.md`](일반/작업/4단계-프로세스.md) | core | ①~④ 단계·산출물·자체검토·승인·이력 및 결과 형식 | 단계 진행 시 |
 | ↳ | [`일반/작업/완료처리.md`](일반/작업/완료처리.md) | core | 완료 시 모듈별 작업 목록.md·모듈 현황.md 갱신 | 작업 종료 시 |
-|  | [`일반/문서 작성 규칙.md`](일반/문서%20작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) | 문서 작성 시 |
-| ↳ | [`일반/문서/폴더-구조.md`](일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md | 폴더 결정 시 |
-| ↳ | [`일반/문서/메타-frontmatter.md`](일반/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) | 신규 .md 작성 시 |
-| ↳ | [`일반/문서/작성-스타일.md`](일반/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 | 모든 .md 작성 시 |
+|  | [`문서/작성 규칙.md`](문서/작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) | 문서 작성 시 |
+| ↳ | [`문서/폴더-구조.md`](문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md | 폴더 결정 시 |
+| ↳ | [`문서/메타-frontmatter.md`](문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) | 신규 .md 작성 시 |
+| ↳ | [`문서/작성-스타일.md`](문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 | 모든 .md 작성 시 |
 |  | [`일반/명령 해석 규칙.md`](일반/명령%20해석%20규칙.md) | core | 사용자 명령 모호 시 무조건 질문 (이분→yes/no, 다항→선택지, 인터뷰 모드) | 명령 수신 직후 |
 |  | [`일반/계획 모드 자동 진입.md`](일반/계획%20모드%20자동%20진입.md) | ~~deprecated~~ | ~~Plan Mode 자동 진입~~ (비활성화 2026-06-17) | — |
-|  | [`일반/문서 테마 스타일.md`](일반/문서%20테마%20스타일.md) | experimental | 웜 페이퍼 테마 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 | 문서·뷰어 스타일 시 |
-| ↳ | [`일반/테마/HTML-아티팩트.md`](일반/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 | HTML 작성 시 |
-| ↳ | [`일반/테마/Mermaid.md`](일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트 매핑(대비 안전) | 다이어그램 채색 시 |
-| ↳ | [`일반/테마/Obsidian.md`](일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 | Obsidian Vault 스타일 시 |
+|  | [`문서/테마 토큰.md`](문서/테마%20토큰.md) | experimental | 웜 페이퍼 테마 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 | 문서·뷰어 스타일 시 |
+| ↳ | [`문서/테마/HTML-아티팩트.md`](문서/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 | HTML 작성 시 |
+| ↳ | [`문서/테마/Mermaid.md`](문서/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트 매핑(대비 안전) | 다이어그램 채색 시 |
+| ↳ | [`문서/테마/Obsidian.md`](문서/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 | Obsidian Vault 스타일 시 |
 |  | [`일반/프로젝트 초기 세팅.md`](일반/프로젝트%20초기%20세팅.md) | stable | 신규 프로젝트 자동 세팅 정형 절차 (4단계 면제) | 새 프로젝트 클론 직후 |
 |  | [`일반/커뮤니케이션 규칙.md`](일반/커뮤니케이션%20규칙.md) | core | 존댓말·페르소나·말미 한 줄 요약 | 모든 응답 |
 |  | [`일반/컨텍스트 절약 규칙.md`](일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 출력 압축, 보고 형식 | 모든 응답·툴 사용 |
@@ -37,7 +37,7 @@
 > 새 지침 추가 시 이 표에도 반드시 행을 추가한다. **2026-05-18 Package C 이후**: 회고 폴더 폐지 → 모든 학습은 적합 지침 파일의 `§학습 노트` 섹션에 `*(maturity: experimental)*` 라벨로 추가 → 검증 후 본문 통합 + 라벨 승급(`stable` → `core`). 회고 README의 "검증된 회고는 지침으로 승격" 메커니즘이 0건 승격이었던 데이터 근거로 평행 누적 레이어 통합.
 
 > [!TIP]
-> 각 파일 상단의 `**TL;DR**:`만 읽어도 핵심 결정을 알 수 있다 (frontmatter+TL;DR 컨벤션은 [`일반/문서/메타-frontmatter.md`](일반/문서/메타-frontmatter.md)).
+> 각 파일 상단의 `**TL;DR**:`만 읽어도 핵심 결정을 알 수 있다 (frontmatter+TL;DR 컨벤션은 [`문서/메타-frontmatter.md`](문서/메타-frontmatter.md)).
 
 > [!IMPORTANT]
 > **maturity 라벨 의미** (frontmatter + 인라인 마커 모두):

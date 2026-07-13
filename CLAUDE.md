@@ -77,7 +77,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 - 신규 .md 작성 직후 frontmatter+TL;DR 셀프 체크 (체크리스트: maturity 필드 포함)
 - 마크다운 스타일: GFM + GitHub Alert(`[!NOTE]` 등) + Mermaid (ASCII 다이어그램 금지)
 - 라벨링: 알파벳 약어(Q1·H1) 금지 — `질문_1`·`가설_1` 같은 한글 라벨
-- 상세: [`지침/일반/문서 작성 규칙.md`](지침/일반/문서%20작성%20규칙.md) (인덱스)
+- 상세: [`지침/문서/작성 규칙.md`](지침/문서/작성%20규칙.md) (인덱스)
 
 ### 7. 프로그래밍 작업 (코드 작성 전 문서 선행)
 
@@ -127,14 +127,14 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 | [`지침/서브에이전트/활용.md`](지침/서브에이전트/활용.md) | core | 병렬·효율 — 작업 패턴별 매핑·병렬 호출·fan-in 예산 |
 | [`지침/서브에이전트/오케스트레이션.md`](지침/서브에이전트/오케스트레이션.md) | experimental | 4대 패턴(parallel·pipeline·loop-until-dry·adversarial-verify)·검증 루프·fan-out 경계 |
 | [`지침/일반/프로젝트 초기 세팅.md`](지침/일반/프로젝트%20초기%20세팅.md) | stable | 신규 프로젝트 5단계 자동 세팅 |
-| [`지침/일반/문서 작성 규칙.md`](지침/일반/문서%20작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) |
-| ↳ [`지침/일반/문서/폴더-구조.md`](지침/일반/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md |
-| ↳ [`지침/일반/문서/메타-frontmatter.md`](지침/일반/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) |
-| ↳ [`지침/일반/문서/작성-스타일.md`](지침/일반/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 |
-| [`지침/일반/문서 테마 스타일.md`](지침/일반/문서%20테마%20스타일.md) | experimental | **웜 페이퍼 테마** 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 |
-| ↳ [`지침/일반/테마/HTML-아티팩트.md`](지침/일반/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 |
-| ↳ [`지침/일반/테마/Mermaid.md`](지침/일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트(대비 안전 stroke) |
-| ↳ [`지침/일반/테마/Obsidian.md`](지침/일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 |
+| [`지침/문서/작성 규칙.md`](지침/문서/작성%20규칙.md) | core | **문서 인덱스** (폴더·메타·스타일) |
+| ↳ [`지침/문서/폴더-구조.md`](지침/문서/폴더-구조.md) | stable | docs/ 2레벨·tasks·모듈별 작업 목록.md·루트 인덱스·모듈 현황.md |
+| ↳ [`지침/문서/메타-frontmatter.md`](지침/문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) |
+| ↳ [`지침/문서/작성-스타일.md`](지침/문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 |
+| [`지침/문서/테마 토큰.md`](지침/문서/테마%20토큰.md) | experimental | **웜 페이퍼 테마** 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 |
+| ↳ [`지침/문서/테마/HTML-아티팩트.md`](지침/문서/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 |
+| ↳ [`지침/문서/테마/Mermaid.md`](지침/문서/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트(대비 안전 stroke) |
+| ↳ [`지침/문서/테마/Obsidian.md`](지침/문서/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
 | **Git** | | |
 | [`지침/Git/브랜치, 병합 규칙.md`](지침/Git/브랜치,%20병합%20규칙.md) | core | 브랜치 모델·병합·Identity |

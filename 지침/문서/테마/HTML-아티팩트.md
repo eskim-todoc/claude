@@ -9,11 +9,11 @@ tags: [docs, style, theme, html, artifact, css]
 
 # 웜 페이퍼 테마 — HTML·아티팩트 적용
 
-**TL;DR**: [문서 테마 스타일.md](../문서%20테마%20스타일.md) 토큰을 HTML 뷰어·self-contained 아티팩트에 입히는 복사-붙여넣기 가이드. `:root` 블록을 통째로 넣고 컴포넌트 CSS를 골라 쓴다. 라이트 전용 — Artifact 도구로 렌더 시 "의도적 단일톤 committing"임을 명시한다.
+**TL;DR**: [문서 테마 스타일.md](../테마%20토큰.md) 토큰을 HTML 뷰어·self-contained 아티팩트에 입히는 복사-붙여넣기 가이드. `:root` 블록을 통째로 넣고 컴포넌트 CSS를 골라 쓴다. 라이트 전용 — Artifact 도구로 렌더 시 "의도적 단일톤 committing"임을 명시한다.
 
 ## 1. :root 토큰 블록 (복붙)
 
-`<style>` 최상단에 그대로 붙인다. 토큰명은 [SSOT §2](../문서%20테마%20스타일.md)와 동일.
+`<style>` 최상단에 그대로 붙인다. 토큰명은 [SSOT §2](../테마%20토큰.md)와 동일.
 
 ```css
 :root {
@@ -139,5 +139,5 @@ input[type=number], select {
 
 ## 5. 관련
 
-- [문서 테마 스타일.md](../문서%20테마%20스타일.md) — 토큰 SSOT(§2 색·§3 타이포)
+- [문서 테마 스타일.md](../테마%20토큰.md) — 토큰 SSOT(§2 색·§3 타이포)
 - [Mermaid.md](Mermaid.md) · [Obsidian.md](Obsidian.md) — 다른 트랙
