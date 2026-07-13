@@ -25,5 +25,8 @@
       }
     ]
   },
-  "plansDirectory": "./docs/plans"
+  "plansDirectory": "./docs/plans",
+  "worktree": {
+    "bgIsolation": "none"
+  }
 }
