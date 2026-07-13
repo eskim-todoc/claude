@@ -22,7 +22,5 @@ powershell -NoProfile -File tools/check-links.ps1 -Include 지침 # 대상 지�
 
 ## 설정·사용법 문서 위치
 
-- Slack 알림 배선·트러블슈팅: `지침/설정/Slack 알림.md`
-- statusline·스피너 한글 설정: `지침/설정/Statusline·스피너 설정.md`
-
-(위 문서는 `지침/설정/` 폴더에 있다.)
+- Slack 알림 배선·트러블슈팅: [`지침/설정/Slack 알림.md`](../지침/설정/Slack%20알림.md)
+- statusline·스피너 한글 설정: [`지침/설정/Statusline·스피너 설정.md`](../지침/설정/Statusline·스피너%20설정.md)
