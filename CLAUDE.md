@@ -16,7 +16,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 │   ├── .claude/memory/              장기 메모리 (수동 관리)
 │   ├── credentials/                 서비스별 토큰 (gitignored)
 │   ├── 지침/                        전역 공통 지침 (산출물 본체) — docs/ 밖 루트 승격(2026-07-13~). 회고는 지침 흡수(2026-05-18~)
-│   ├── docs/                        작업 과정 기록 (tasks/) — 사용방법·참고는 Wiki Vault
+│   ├── docs/                        작업 과정 기록 (tasks/)
 │   ├── tools/                       공용 스크립트 · 자동화
 │   ├── scratch/                     일회성 실험 (gitignored)
 │   └── .gitignore
@@ -99,7 +99,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 > [!IMPORTANT]
 > **rules는 프로젝트 목록을 추적하지 않는다** — 중앙 Projects 레지스트리 폐지(2026-07-13~). 옛 단일 git 구조(그 아래 `projects/`를 중첩 관리)에서 유지하던 Projects 표는 삭제됐다. 프로젝트의 성격·상태·docs 컨벤션은 **각 프로젝트 repo의 `CLAUDE.md`**에서 확인한다.
 >
-> 예외: `wiki`는 자체 운영 방침 없이 `README.md`로만 시작(2026-07-08~). 운영 방침은 [`위키 반영 절차.md`](지침/일반/위키%20반영%20절차.md)·[`위키 배경지식 조회.md`](지침/일반/위키%20배경지식%20조회.md)로 이관(형제 repo `E:\workspace\projects\wiki`).
+> `wiki`(형제 repo `E:\workspace\projects\wiki`)의 운영 방침은 wiki repo가 자체 지침 체계로 갖는다 — **rules는 wiki 운영에 관여하지 않는다**(2026-07-13~). 작업 지식의 wiki 반영 여부는 은수님이 판단해 수동으로 넘긴다.
 
 ### 프로젝트 내부 표준 구조
 각 프로젝트 repo는 다음 레이아웃을 따름:
@@ -137,8 +137,6 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 | ↳ [`지침/일반/테마/Mermaid.md`](지침/일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트(대비 안전 stroke) |
 | ↳ [`지침/일반/테마/Obsidian.md`](지침/일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 |
 | [`지침/일반/컨텍스트 절약 규칙.md`](지침/일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 사용 시 토큰 절감 |
-| [`지침/일반/위키 배경지식 조회.md`](지침/일반/위키%20배경지식%20조회.md) | experimental | 작업 착수 시 `projects/wiki`에서 키워드+링크 추적(최대 2-hop)으로 배경지식 조회 (회수) |
-| [`지침/일반/위키 반영 절차.md`](지침/일반/위키%20반영%20절차.md) | stable | task 완료 시점 즉시 판단·신규/개정 분기·재작성 템플릿·공개검수 (캡처) — `projects/wiki` 고유 운영 방침 전량 이관처 |
 | **Git** | | |
 | [`지침/Git/브랜치, 병합 규칙.md`](지침/Git/브랜치,%20병합%20규칙.md) | core | 브랜치 모델·병합·Identity |
 | [`지침/Git/워크플로우.md`](지침/Git/워크플로우.md) | core | 작업 스코프·기능 개발·hotfix·릴리즈 + 학습 노트(.gitignore·미머지 회수·atomic 함정) |
