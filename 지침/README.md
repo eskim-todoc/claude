@@ -13,7 +13,6 @@
 | ↳ | [`문서/메타-frontmatter.md`](문서/메타-frontmatter.md) | core | frontmatter·TL;DR·README (lazy-loading) | 신규 .md 작성 시 |
 | ↳ | [`문서/작성-스타일.md`](문서/작성-스타일.md) | core | GFM·Alert·Mermaid·라벨링 | 모든 .md 작성 시 |
 |  | [`일반/명령 해석 규칙.md`](일반/명령%20해석%20규칙.md) | core | 사용자 명령 모호 시 무조건 질문 (이분→yes/no, 다항→선택지, 인터뷰 모드) | 명령 수신 직후 |
-|  | [`일반/계획 모드 자동 진입.md`](일반/계획%20모드%20자동%20진입.md) | ~~deprecated~~ | ~~Plan Mode 자동 진입~~ (비활성화 2026-06-17) | — |
 |  | [`문서/테마 토큰.md`](문서/테마%20토큰.md) | experimental | 웜 페이퍼 테마 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 | 문서·뷰어 스타일 시 |
 | ↳ | [`문서/테마/HTML-아티팩트.md`](문서/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 | HTML 작성 시 |
 | ↳ | [`문서/테마/Mermaid.md`](문서/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트 매핑(대비 안전) | 다이어그램 채색 시 |
