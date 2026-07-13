@@ -19,7 +19,7 @@
 |  | [`일반/문서 테마 스타일.md`](일반/문서%20테마%20스타일.md) | experimental | 웜 페이퍼 테마 토큰 SSOT + HTML·Mermaid·Obsidian 적용 인덱스 | 문서·뷰어 스타일 시 |
 | ↳ | [`일반/테마/HTML-아티팩트.md`](일반/테마/HTML-아티팩트.md) | experimental | HTML 뷰어·아티팩트 CSS 스니펫 | HTML 작성 시 |
 | ↳ | [`일반/테마/Mermaid.md`](일반/테마/Mermaid.md) | experimental | Mermaid 웜 팔레트 매핑(대비 안전) | 다이어그램 채색 시 |
-| ↳ | [`일반/테마/Obsidian.md`](일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 | wiki 스타일 시 |
+| ↳ | [`일반/테마/Obsidian.md`](일반/테마/Obsidian.md) | experimental | Obsidian 라이트 스니펫 | Obsidian Vault 스타일 시 |
 |  | [`일반/프로젝트 초기 세팅.md`](일반/프로젝트%20초기%20세팅.md) | stable | 신규 프로젝트 자동 세팅 정형 절차 (4단계 면제) | 새 프로젝트 클론 직후 |
 |  | [`일반/커뮤니케이션 규칙.md`](일반/커뮤니케이션%20규칙.md) | core | 존댓말·페르소나·말미 한 줄 요약 | 모든 응답 |
 |  | [`일반/컨텍스트 절약 규칙.md`](일반/컨텍스트%20절약%20규칙.md) | stable | 응답·툴 출력 압축, 보고 형식 | 모든 응답·툴 사용 |
