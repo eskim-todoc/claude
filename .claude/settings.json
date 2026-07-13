@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"E:/Claude/tools/slack-notify.ps1\" > /dev/null 2>&1",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"E:/workspace/rules/tools/slack-notify.ps1\" > /dev/null 2>&1",
             "async": true,
             "timeout": 15
           }

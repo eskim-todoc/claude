@@ -22,7 +22,7 @@ import anthropic
 
 
 DEFAULT_PROJECTS_DIR = Path(os.environ.get("USERPROFILE", "")) / ".claude" / "projects"
-CREDENTIALS_FALLBACK = Path("E:/Claude/credentials/anthropic/api.key")
+CREDENTIALS_FALLBACK = Path("E:/workspace/rules/credentials/anthropic/api.key")
 LOG_DIR = Path(__file__).resolve().parent / ".logs"
 
 MODEL = "claude-haiku-4-5"
