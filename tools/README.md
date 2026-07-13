@@ -9,6 +9,7 @@ rules repo의 공용 스크립트·자동화 보관소. 실행 파일은 여기�
 | [`rename_sessions.py`](rename_sessions.py) | Claude Code Desktop 세션 제목 일괄 요약 변경 | 수동 실행 (`rename_sessions.README.md` 참조) |
 | `rename_sessions.README.md` | `rename_sessions.py` 사용법 | — |
 | `requirements-rename-sessions.txt` | `rename_sessions.py` 파이썬 의존성 | — |
+| `credentials/` | 서비스별 인증 토큰(anthropic·github·slack) — **gitignored**, 로컬 전용 | slack-notify·rename_sessions·git remote |
 
 ## check-links.ps1
 

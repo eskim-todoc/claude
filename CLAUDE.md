@@ -14,10 +14,9 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 ├── rules\                           이 저장소 — 헌법·지침 단일 출처 (독립 git repo)
 │   ├── CLAUDE.md                    이 파일 — 전역 진입점 (maturity: core 핵심 지침 인라인)
 │   ├── .claude/memory/              장기 메모리 (수동 관리)
-│   ├── credentials/                 서비스별 토큰 (gitignored)
 │   ├── 지침/                        전역 공통 지침 (산출물 본체) — docs/ 밖 루트 승격(2026-07-13~). 회고는 지침 흡수(2026-05-18~)
 │   ├── docs/                        작업 과정 기록 (tasks/)
-│   ├── tools/                       공용 스크립트 · 자동화
+│   ├── tools/                       공용 스크립트 · 자동화 (credentials/ 하위 — 서비스별 토큰, gitignored)
 │   ├── scratch/                     일회성 실험 (gitignored)
 │   └── .gitignore
 └── projects\                        제품별 독립 repo들 (rules와 형제, rules가 추적하지 않음)
@@ -25,7 +24,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
     └── <name>\                       각자 자기 CLAUDE.md로 self-describing
 ```
 
-이 `rules` repo의 Git은 `CLAUDE.md`, `.claude/memory/`, `지침/`, `tools/`, `docs/`를 추적. `credentials/`, `scratch/`는 `.gitignore`로 차단. `projects/`는 rules 안에 두지 않는다 — 엄브렐러(`E:\workspace\`) 아래 형제로 놓이며 각 프로젝트가 자기 repo에서 독립 관리한다.
+이 `rules` repo의 Git은 `CLAUDE.md`, `.claude/memory/`, `지침/`, `tools/`, `docs/`를 추적. `tools/credentials/`, `scratch/`는 `.gitignore`로 차단. `projects/`는 rules 안에 두지 않는다 — 엄브렐러(`E:\workspace\`) 아래 형제로 놓이며 각 프로젝트가 자기 repo에서 독립 관리한다.
 
 ## 핵심 지침 (자동 적용) — maturity: core
 
@@ -88,10 +87,10 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 - 상세: [`지침/코딩/작업 규칙.md`](지침/코딩/작업%20규칙.md)
 
 ## Credentials
-인증 정보는 `credentials/` 폴더에서 서비스별로 관리.
+인증 정보는 `tools/credentials/` 폴더에서 서비스별로 관리 (gitignored).
 
-- GitHub: `credentials/github/classic.token`, `credentials/github/fine-grained.token`
-- Slack Webhook: `credentials/slack/webhook.url` — 작업 완료 알림 전송용 (사용방법: 형제 wiki repo `E:\workspace\projects\wiki\도구\Slack 작업 완료 알림.md`)
+- GitHub: `tools/credentials/github/classic.token`, `tools/credentials/github/fine-grained.token`
+- Slack Webhook: `tools/credentials/slack/webhook.url` — 작업 완료 알림 전송용 (사용방법: 형제 wiki repo `E:\workspace\projects\wiki\도구\Slack 작업 완료 알림.md`)
 
 ## Projects
 프로젝트(제품 모델 또는 독립 산출물)는 엄브렐러(`E:\workspace\`) 아래 `projects/<이름>/`에 **rules와 형제인 독립 repo**로 놓인다(예: `E:\workspace\projects\Sound1`). 각 프로젝트는 자기 `CLAUDE.md`로 self-describing하며, 어느 프로젝트에서 작업하든 세션 시작 시 이 루트 `CLAUDE.md`를 헌법으로 참조한다.

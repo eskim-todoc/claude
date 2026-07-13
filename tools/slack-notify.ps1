@@ -1,7 +1,7 @@
 ﻿[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 
-$webhookFile = Join-Path $PSScriptRoot '..\credentials\slack\webhook.url'
+$webhookFile = Join-Path $PSScriptRoot 'credentials\slack\webhook.url'
 if (-not (Test-Path $webhookFile)) { exit 0 }
 $webhookUrl = (Get-Content -Encoding UTF8 -LiteralPath $webhookFile -Raw).Trim()
 if (-not $webhookUrl) { exit 0 }

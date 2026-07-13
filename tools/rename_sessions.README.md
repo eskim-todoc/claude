@@ -40,8 +40,8 @@ $env:ANTHROPIC_API_KEY = "sk-ant-api03-..."
 **방법 B — fallback 파일 (영구)**
 
 ```powershell
-New-Item -ItemType Directory -Force -Path E:\workspace\rules\credentials\anthropic | Out-Null
-Set-Content -Path E:\workspace\rules\credentials\anthropic\api.key -Value "sk-ant-api03-..." -NoNewline
+New-Item -ItemType Directory -Force -Path E:\workspace\rules\tools\credentials\anthropic | Out-Null
+Set-Content -Path E:\workspace\rules\tools\credentials\anthropic\api.key -Value "sk-ant-api03-..." -NoNewline
 ```
 
 프로젝트 루트의 `.gitignore`가 `credentials/` 폴더를 제외하므로 키는 버전 관리에 포함되지 않습니다.

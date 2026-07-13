@@ -1,8 +1,8 @@
 # GitHub
 
 ## Tokens
-- Classic token: `E:/workspace/rules/credentials/github/classic.token`
-- Fine-grained token: `E:/workspace/rules/credentials/github/fine-grained.token`
+- Classic token: `E:/workspace/rules/tools/credentials/github/classic.token`
+- Fine-grained token: `E:/workspace/rules/tools/credentials/github/fine-grained.token`
 - 개인계정(`eskim-todoc`)과 조직계정(`todoc-dev`) 모두 동일 토큰으로 접근 가능
 
 ## Remote URL 규칙
