@@ -20,8 +20,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 │   ├── scratch/                     일회성 실험 (gitignored)
 │   └── .gitignore
 └── projects\                        제품별 독립 repo들 (rules와 형제, rules가 추적하지 않음)
-    ├── Sound1\                       E8300 embedded firmware (별도 git repo)
-    └── <name>\                       각자 자기 CLAUDE.md로 self-describing
+    └── <name>\                       각자 자기 CLAUDE.md로 self-describing (예: Sound1)
 ```
 
 이 `rules` repo의 Git은 `CLAUDE.md`, `.claude/memory/`, `지침/`, `tools/`, `docs/`를 추적. `tools/credentials/`, `scratch/`는 `.gitignore`로 차단. `projects/`는 rules 안에 두지 않는다 — 엄브렐러(`E:\workspace\`) 아래 형제로 놓이며 각 프로젝트가 자기 repo에서 독립 관리한다.
@@ -101,15 +100,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 > `wiki`(형제 repo `E:\workspace\projects\wiki`)의 운영 방침은 wiki repo가 자체 지침 체계로 갖는다 — **rules는 wiki 운영에 관여하지 않는다**(2026-07-13~). 작업 지식의 wiki 반영 여부는 은수님이 판단해 수동으로 넘긴다.
 
 ### 프로젝트 내부 표준 구조
-각 프로젝트 repo는 다음 레이아웃을 따름:
-
-```
-<workspace>\projects\<이름>\
-├── CLAUDE.md       프로젝트 컨텍스트 (루트 헌법을 절대경로로 참조)
-├── src/            펌웨어 / SW 코드
-├── tests/          단위 · 통합 테스트
-└── docs/           SW 문서 (지침/ + tasks/<모듈>/YYYYMMDD_<작업>/)
-```
+각 프로젝트 repo의 표준 폴더(`CLAUDE.md`·`src/`·`tests/`·`docs/`)와 세팅 절차는 [`지침/일반/프로젝트 초기 세팅.md`](지침/일반/프로젝트%20초기%20세팅.md)가 단일 출처다. **프로젝트 `docs/지침/`이 루트 지침과 충돌하면 프로젝트 우선**(더 구체적 컨텍스트 반영 — 상세 [`지침/문서/작성 규칙.md §1.1`](지침/문서/작성%20규칙.md)).
 
 ## 지침 문서 (전체)
 세부 지침은 `지침/` 폴더에서 관리. 본 표는 인덱스 — `core` 항목은 위 §핵심 지침에 인라인.
