@@ -38,9 +38,23 @@ foreach ($inc in $Include) {
 $linkRx = [regex]'\[[^\]]*\]\(([^)]+)\)'
 
 foreach ($f in $files) {
-    $text = Get-Content -LiteralPath $f.FullName -Raw -Encoding UTF8
-    $text = [regex]::Replace($text, '(?s)```.*?```', '')
-    $text = [regex]::Replace($text, '`[^`]*`', '')
+    $raw = Get-Content -LiteralPath $f.FullName -Raw -Encoding UTF8
+    # 코드펜스 제거 — 라인 시작 ```(백틱 3+) 여는 delimiter를 같은 길이 이상으로만 닫음
+    # (인라인 ```bash 예시·4틱 블록이 홀짝을 틀지 않도록 라인 단위로 상태 추적)
+    $keep = @()
+    $inFence = $false; $fenceLen = 0
+    foreach ($ln in ($raw -split "`r?`n")) {
+        if ($ln -match '^\s*(`{3,})') {
+            $len = $matches[1].Length
+            if (-not $inFence) { $inFence = $true; $fenceLen = $len; continue }
+            elseif ($len -ge $fenceLen) { $inFence = $false; continue }
+            else { continue }
+        }
+        if (-not $inFence) { $keep += $ln }
+    }
+    # 인라인 코드는 줄 단위로 제거 — `[텍스트](url)` 전체가 인라인 코드면 예시로 보아 제외,
+    # [`텍스트`](url)처럼 표시텍스트만 백틱이면 URL은 살아 링크로 검사됨 (줄 단위라 백틱 홀짝 어긋남이 그 줄에 국한)
+    $text = (($keep | ForEach-Object { [regex]::Replace($_, '`[^`]*`', '') }) -join "`n")
     foreach ($m in $linkRx.Matches($text)) {
         $target = $m.Groups[1].Value.Trim()
         if ($target -match '^(https?:|mailto:|#)') { continue }

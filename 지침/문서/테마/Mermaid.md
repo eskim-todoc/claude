@@ -100,5 +100,5 @@ flowchart TD
 
 ## 6. 관련
 
-- [문서 테마 스타일.md](../테마%20토큰.md) — 토큰 SSOT
+- [테마 토큰.md](../테마%20토큰.md) — 토큰 SSOT
 - [HTML-아티팩트.md](HTML-아티팩트.md) · [Obsidian.md](Obsidian.md) — 다른 트랙

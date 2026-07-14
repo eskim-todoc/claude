@@ -54,7 +54,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 
 ### 4. Git 워크플로우
 
-- 브랜치 모델: `main`(사용자만) → `claude_main`(안정) → `claude_develop`(개발) → `claude_feature_*`(임시)
+- 브랜치 모델: `main`(사용자만·**직접 커밋 금지**) → `claude_main`(안정) → `claude_develop`(개발) → `claude_feature_*`(임시)
 - 모든 병합 `--no-ff`, **사용자 승인 후**에만 진행. 워크트리는 사용자 명시 시만
 - Git identity: `김은수 <eunsu.kim@to-doc.com>` (AI 표시 절대 금지)
 - 상세: [`지침/Git/브랜치, 병합 규칙.md`](지침/Git/브랜치,%20병합%20규칙.md), [`지침/Git/워크플로우.md`](지침/Git/워크플로우.md)
@@ -83,10 +83,11 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 - 상세: [`지침/코딩/작업 규칙.md`](지침/코딩/작업%20규칙.md)
 
 ## Credentials
-인증 정보는 `tools/credentials/` 폴더에서 서비스별로 관리 (gitignored).
+인증 정보는 `tools/credentials/` 폴더에서 서비스별로 관리 (gitignored). 상세: [`tools/README.md`](tools/README.md)·`tools/credentials/README.md`.
 
 - GitHub: `tools/credentials/github/classic.token`, `tools/credentials/github/fine-grained.token`
-- Slack Webhook: `tools/credentials/slack/webhook.url` — 작업 완료 알림 전송용 (사용방법: 형제 wiki repo `E:\workspace\projects\wiki\도구\Slack 작업 완료 알림.md`)
+- Slack Webhook: `tools/credentials/slack/webhook.url` — 작업 완료 알림 (설정: [`지침/설정/Slack 알림.md`](지침/설정/Slack%20알림.md))
+- Anthropic API: `tools/credentials/anthropic/api.key` — `rename_sessions.py` fallback (`ANTHROPIC_API_KEY` 환경변수 우선)
 
 ## Projects
 프로젝트(제품 모델 또는 독립 산출물)는 엄브렐러(`E:\workspace\`) 아래 `projects/<이름>/`에 **rules와 형제인 독립 repo**로 놓인다(예: `E:\workspace\projects\Sound1`). 각 프로젝트는 자기 `CLAUDE.md`로 self-describing하며, 어느 프로젝트에서 작업하든 세션 시작 시 이 루트 `CLAUDE.md`를 헌법으로 참조한다.
