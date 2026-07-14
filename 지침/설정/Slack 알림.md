@@ -27,6 +27,9 @@ tags: [설정, slack, hook, notification]
 > [!TIP]
 > 응답 말미에 명사구 한 줄 요약을 남기는 컨벤션([`../일반/커뮤니케이션 규칙.md`](../일반/커뮤니케이션%20규칙.md))이 이 알림의 품질을 좌우한다 — 첫 줄이 곧 알림 본문이 되기 때문.
 
+> [!NOTE]
+> 같은 Stop 훅에서 **우하단 커스텀 팝업**(웜 페이퍼 테마)도 병행 표시된다 — Slack DM은 그대로 유지하고 PC에 추가로 띄운다. 상세: [`완료 알림 팝업.md`](완료%20알림%20팝업.md).
+
 ## 트러블슈팅
 
 - **알림이 안 온다**: 스크립트는 webhook 파일이 없거나(`Test-Path` 실패) POST 실패 시 **`exit 0`으로 조용히 종료**(silent failure)한다. 먼저 `tools/credentials/slack/webhook.url` 존재를 확인하라.
