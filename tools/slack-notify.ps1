@@ -99,15 +99,6 @@ if ([Console]::IsInputRedirected) {
 
 if ($args.Count -ge 1 -and $args[0]) { $message = $args[0] }
 
-# 완료 팝업 (detached, 훅 즉시 반환 — Slack 성공/실패와 독립, 실패 무시)
-try {
-    $toast = Join-Path $PSScriptRoot 'toast-notify.ps1'
-    if (Test-Path $toast) {
-        Start-Process -FilePath 'powershell.exe' -WindowStyle Hidden `
-            -ArgumentList '-NoProfile','-Sta','-ExecutionPolicy','Bypass','-File',$toast,$message | Out-Null
-    }
-} catch {}
-
 $payload = @{ text = "✅ $message" } | ConvertTo-Json -Compress
 $bytes = [System.Text.Encoding]::UTF8.GetBytes($payload)
 
