@@ -1,0 +1,466 @@
+{
+  "summary": "헌법·지침 구조 개편 — 온디맨드 충족 최종 검증 (10노드 병렬)",
+  "agentCount": 10,
+  "logs": [
+    "온디맨드 충족 10노드 병렬 검증 시작",
+    "검증 10/10 완료"
+  ],
+  "result": [
+    {
+      "aspect": "지침 체계 온디맨드 충족 — CLAUDE.md/지침 README.md 진입점 기준 BFS 도달성 검증",
+      "verdict": "warn",
+      "confirm": "(1) CLAUDE.md → 지침/README.md 링크 실재 확인: CLAUDE.md 6·31·103행에 `[지침/README.md](지침/README.md)` 실제 존재, 대상 파일 지침/README.md(51행)도 실존.\n(2) 지침/ 하위 전체 38개 .md 전수 조사 후, 마크다운 링크만 따라가는 BFS 수행 — {CLAUDE.md, 지침/README.md} 두 진입점에서 38개 전부 도달 가능. Orphan 0건.\n  - depth 1(지침/README.md 표 직접 링크): 32개 — 작업 규칙.md, Git 3종, 공통 2종, 문서 6~8종(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/{HTML-아티팩트,Mermaid,Obsidian}), 서브에이전트 4종, 설정 3종, 코딩 4종, 일반 6종.\n  - depth 2(중첩 인덱스 경유, 의도된 2계층 설계 — 결함 아님): 문서/README.md(← 문서/작성 규칙.md 34행의 동일 폴더 `[README.md](README.md)` 링크), 문서/양식/{요구사항,분석,계획,이력 및 결과}.md 4종(← 일반/작업 진행 규칙.md 34~37행 및 일반/작업/4단계-프로세스.md 56~59행).\n결론: 개편 구조(슬림 CLAUDE.md + 지침/README.md SSOT + 카테고리 폴더)는 의미적으로 완전히 온디맨드 충족됨.",
+      "findings": [
+        {
+          "severity": "high",
+          "issue": "tools/check-links.ps1(이번 개편 S2 산출물)의 코드펜스 스트리핑 정규식이 리터럴 backtick-3개 등장 횟수만으로 열림/닫힘을 짝짓다 보니, (a) 인라인 코드로 '```bash' 같은 리터럴 텍스트를 보여주는 표기(작성-스타일.md 24·68행)가 홀짝을 틀어지게 하고, (b) 문서/양식/*.md 템플릿 4종처럼 전체를 4-backtick(````)으로 감싼 블록도 3개 매칭에 우연히 걸려 내부 전체가 스트립된다. 직접 재현: 작성-스타일.md에서 107~150행 구간(2285자)이 통째로 사라져 146행의 실제 dead link 2건이 검사망을 피하고 'OK — 깨진 상대링크 0건'이라는 거짓 안전 신호가 나옴.",
+          "fix": "check-links.ps1의 펜스 인식을 줄 시작 기준(^```)으로 제한하거나, 여는/닫는 델리미터의 backtick 개수를 일치시켜 페어링(4개짜리는 4개끼리만 매칭)하도록 정규식을 보강. 인라인 backtick 스트리핑과 펜스 스트리핑의 처리 순서·상호작용도 재점검 필요.",
+          "file": "tools/check-links.ps1",
+          "line": 42
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/문서/작성-스타일.md:146의 두 링크가 모두 dead link.",
+          "failure_scenario": "`[../테마/Mermaid.md](../테마/Mermaid.md)`는 지침/테마/Mermaid.md로 resolve(실제는 지침/문서/테마/Mermaid.md, 같은 문서/ 폴더 하위라 '../' 불필요). `[문서 테마 스타일.md](../문서%20테마%20스타일.md)`는 지침/문서 테마 스타일.md로 resolve하나 그런 파일 없음(개명·이동된 실제 파일은 지침/문서/테마 토큰.md). PowerShell Test-Path로 직접 재현·확인(둘 다 False).",
+          "file": "지침/문서/작성-스타일.md",
+          "line": 146,
+          "fix": "146행을 `[테마/Mermaid.md](테마/Mermaid.md)` · `[테마 토큰.md](테마%20토큰.md)`로 정정."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/문서/양식/{분석,계획,요구사항}.md의 '자체 검토' 표·TIP이 카테고리 폴더 분할 이전(모든 파일이 지침/일반/ 밑 평면 구조였던 시절)의 경로를 그대로 참조.",
+          "failure_scenario": "분석.md 65·121행, 계획.md 109·137행, 요구사항.md 119행 — 총 5개 링크가 '지침/일반/서브에이전트 활용.md'(실제 지침/서브에이전트/활용.md) 또는 '지침/일반/문서 작성 규칙.md'(실제 지침/문서/작성 규칙.md)를 가리켜 dead. 이 템플릿은 신규 작업 시작 시 복사되므로 방치 시 매 작업 폴더(docs/tasks/.../)마다 dead link가 재생산됨.",
+          "file": "지침/문서/양식/분석.md",
+          "line": 65,
+          "fix": "5개 링크의 '일반/서브에이전트 활용.md'→'서브에이전트/활용.md', '일반/문서 작성 규칙.md'→'문서/작성 규칙.md'로 경로 정정."
+        }
+      ]
+    },
+    {
+      "aspect": "신규 세션이 CLAUDE.md만 열어 Git 브랜치·병합·커밋 규칙 문서(Git/브랜치,병합 규칙.md·워크플로우.md·커밋 메시지.md)에 도달하는 경로/hop수 검증",
+      "verdict": "pass",
+      "findings": [
+        {
+          "severity": "low",
+          "issue": "CLAUDE.md §4 'Git 워크플로우' 섹션 텍스트에는 '커밋'이라는 단어가 없어, 커밋 메시지 규칙을 찾는 사용자가 제목만 보고는 커밋 메시지.md의 존재를 바로 유추하기 어려움 (실제로는 워크플로우.md 또는 지침/README.md를 한 번 더 거쳐야 발견) — ≤2-hop 기준 자체는 충족하므로 차단 사유는 아님",
+          "fix": "필요 시 CLAUDE.md §4 상세 링크 줄에 `Git/커밋 메시지.md`를 세 번째 직접 링크로 추가하면 1-hop화 가능 (다만 '핵심만 인라인, 전체는 README SSOT' 설계 원칙과 트레이드오프)"
+        }
+      ],
+      "confirm": "1) CLAUDE.md §4에서 `지침/Git/브랜치, 병합 규칙.md`, `지침/Git/워크플로우.md` 두 링크 모두 실제 파일과 정확히 일치(파일명 콤마·공백·URL인코딩 포함) — Read로 열림, frontmatter maturity:core 확인, 브랜치모델/--no-ff/Git Identity/main 직접커밋 금지 등 CLAUDE.md 요약과 본문 내용 일치. 2) `ls 지침/Git`으로 폴더 내 파일 3개(브랜치,병합규칙.md/워크플로우.md/커밋메시지.md)만 존재함을 확인, 여분/구버전 파일 없음. 3) 커밋 메시지.md는 워크플로우.md §2(line95) 및 지침/README.md Git 표 행 두 경로 모두에서 정확한 상대링크로 연결되어 2-hop 도달 확인, Read로 frontmatter maturity:stable·Prefix 19종·형식 실재 확인. 4) 세 문서 간 상호 역링크(브랜치,병합규칙.md↔워크플로우.md↔커밋메시지.md) 및 앵커(#작업-스코프-한-세션--한-repo)까지 GitHub 슬러그 규칙과 정확히 일치함을 확인 — 깨진 링크 없음. 5) 지침/README.md가 CLAUDE.md에서 '전체 지침 SSOT'로 직접 링크되어 있고 표에 Git 3파일 모두 정확한 경로로 등재됨을 확인."
+    },
+    {
+      "aspect": "서브에이전트 온디맨드 라우팅 시나리오 검증 (CLAUDE.md §5 → 지침/서브에이전트/{활용·오케스트레이션·로그 구조}.md)",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "medium",
+          "issue": "지침/문서/양식/분석.md:65,121 및 지침/문서/양식/계획.md:109,137 — 복사용 '양식 본문'(```markdown fenced block) 안의 [`서브에이전트 활용.md`] 링크가 리팩터 이전 경로 `../../../../지침/일반/서브에이전트%20활용.md`를 그대로 가리켜 깨져 있음. 실제 파일은 이번 개편으로 `지침/서브에이전트/활용.md`로 이동함(Glob으로 실존 확인, 구 경로엔 파일 없음). 같은 두 파일의 '바깥' 안내 텍스트(19·34행, 36행)는 `../../서브에이전트/활용.md`로 이미 정확히 갱신돼 있어, 템플릿 본문만 리팩터에서 누락된 것으로 확인됨.",
+          "fix": "4곳(분석.md 65·121행, 계획.md 109·137행) 모두 `../../../../지침/일반/서브에이전트%20활용.md` → `../../../../지침/서브에이전트/활용.md`로 정정. 이 템플릿은 향후 모든 신규 작업의 분석.md/계획.md에 그대로 복사되므로, 방치 시 매 작업마다 죽은 링크가 재생산됨."
+        }
+      ],
+      "confirm": "실제 Read/Grep으로 확인한 정상 항목: (1) E:\\workspace\\rules\\CLAUDE.md §5가 지침/서브에이전트/활용.md·오케스트레이션.md로 정확히 링크(파일 실존·내용 상호정합 확인). (2) 지침/README.md '서브에이전트' 카테고리 행이 서브에이전트/README.md·활용.md·오케스트레이션.md·로그 구조.md 4개를 모두 인덱싱. (3) 지침/서브에이전트/README.md가 '언제 어느 파일을 보는가' 절에서 단발 위임→활용.md, 다노드 fan-out→오케스트레이션.md, 감사 기록→로그 구조.md로 명확히 라우팅하며 실제 3파일 모두 Glob으로 실존 확인(활용.md·오케스트레이션.md·로그 구조.md·README.md). (4) 3파일 간 상호 링크(활용.md↔오케스트레이션.md, 오케스트레이션.md↔로그 구조.md, 로그 구조.md↔활용.md·오케스트레이션.md)가 전부 정상 상대경로+%20 인코딩(예: `[로그 구조.md](로그%20구조.md)`)으로 걸려 있어 깨진 링크 없음. (5) 지침/일반/에는 서브에이전트·워크플로우·에이전트로그 관련 구 파일이 물리적으로 전혀 남아있지 않음(find 결과 0건) — 순수 이동이며 중복 잔존 없음. (6) 계획 모드 자동 진입.md 파일은 실제로 삭제됐고(find 0건), 남은 언급 2곳(4단계-프로세스.md:257, 완료처리.md:55)은 모두 '폐지·삭제됨'을 명시한 과거형 역사 기록이라 현재형 오인 유발 소지 없음. (7) credentials 경로는 CLAUDE.md·지침/README.md 모두 tools/credentials/로 일관되게 기술."
+    },
+    {
+      "aspect": "Credentials 온디맨드 충족 검증 — \"GitHub 토큰·Slack webhook·API 키가 어디 있나?\" 시나리오",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "medium",
+          "issue": "CLAUDE.md L85-89 `## Credentials` 섹션이 GitHub·Slack 두 카테고리만 나열하고 Anthropic API 키(tools/credentials/anthropic/api.key)를 전혀 언급하지 않음. 이 파일은 rename_sessions.py에서 실사용 중(L25 CREDENTIALS_FALLBACK, L251 anthropic.Anthropic(api_key=...))이고 tools/credentials/README.md·tools/README.md(L12 \"anthropic·github·slack\")에는 문서화돼 있음. 사용자가 CLAUDE.md만 읽고 \"API 키가 어디 있나\" 질문하면 이 섹션에서 답을 찾을 수 없고, ## Tools 섹션까지 내려가 tools/README.md를 열어야 anthropic 존재를 알 수 있음 — 최상위 진입점 기준 온디맨드 충족 실패.",
+          "fix": "CLAUDE.md Credentials 섹션에 `- Anthropic API 키: tools/credentials/anthropic/api.key — rename_sessions.py fallback (ANTHROPIC_API_KEY 환경변수 우선)` 항목 추가."
+        },
+        {
+          "severity": "low",
+          "issue": "Credentials 섹션은 CLAUDE.md의 다른 핵심 섹션(1~7)과 달리 말미에 \"상세: [링크]\" 형식이 없어 tools/credentials/README.md로 연결되지 않음. 경로 정보가 CLAUDE.md와 README.md 양쪽에 중복 인라인되어 있어, 신규 서비스 추가 시 두 곳 다 갱신해야 하는 drift 위험이 있음 — 실제로 anthropic 항목에서 이 drift가 이미 발생함(tools/credentials/README.md의 '새 서비스 추가 방법' 3단계는 CLAUDE.md 갱신을 지시하지만 anthropic 추가 당시 반영되지 않음).",
+          "fix": "Credentials 섹션 말미에 `- 상세: tools/credentials/README.md` 링크를 추가해 다른 core 섹션과 동일한 '요약 인라인 + 상세 링크' 패턴을 통일."
+        }
+      ],
+      "confirm": "1) tools/credentials/ 폴더가 실제로 존재하며 anthropic/github/slack 3개 하위 폴더 모두 확인됨(ls). 2) 루트 레벨 `credentials/`는 존재하지 않음(find 전체 검색·직접 ls 모두 확인) — 구조개편 시 이동 완료, 잔재 없음. 3) .gitignore의 `credentials/` 패턴(앵커링 없음)이 tools/credentials/ 하위 전체 파일(anthropic/api.key, github/*.token, slack/webhook.url)을 재귀적으로 정확히 무시함을 `git check-ignore -v`로 실측 확인. 4) CLAUDE.md에 명시된 GitHub 토큰 경로(tools/credentials/github/classic.token, fine-grained.token)와 Slack webhook 경로(tools/credentials/slack/webhook.url)는 실제 파일과 정확히 일치. 5) tools/README.md와 tools/credentials/README.md가 온디맨드 상세 계층으로 정상 작동 — anthropic·github·slack 3종 모두 용도·참조처까지 문서화됨. 6) 실행 스크립트(tools/slack-notify.ps1 L4, tools/rename_sessions.py L25)와 .claude/memory/github.md 모두 새 경로(tools/credentials/...)로 정확히 갱신되어 런타임 참조가 깨지지 않음. 7) 저장소 전체 마크다운 grep 결과 구식 루트 `credentials/` 참조 0건 — 이동 관련 문서 drift 없음. 8) 커밋 fe89c16이 이동 작업을 명확히 기록하고 있어 이력 추적 가능."
+    },
+    {
+      "aspect": "지침 체계 온디맨드 충족 검증 — \"문서 작성 규칙·frontmatter 규약·요구사항.md 양식이 어디?\" 시나리오 (CLAUDE.md → 지침/README → 문서/README → 작성 규칙·메타-frontmatter·양식/)",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "high",
+          "issue": "지침/문서/양식/요구사항.md:119 — 템플릿 '자체 검토' 표의 링크가 `../../../../지침/일반/문서%20작성%20규칙.md`를 가리키나, 이 경로는 실존하지 않음(실제 위치는 `지침/문서/작성 규칙.md`, `find`로 MISSING 확인). 이 파일은 신규 작업마다 그대로 복사되는 템플릿이므로, 향후 생성되는 모든 요구사항.md에 죽은 링크가 반복 재생산됨.",
+          "fix": "링크 타깃을 `../../../../지침/문서/작성%20규칙.md`로 정정."
+        },
+        {
+          "severity": "high",
+          "issue": "지침/문서/양식/분석.md:65,121 및 계획.md:109,137 — '서브에이전트 활용.md' 링크가 `../../../../지침/일반/서브에이전트%20활용.md`를 가리키나 이 경로는 존재한 적이 없음(실제 위치는 `지침/서브에이전트/활용.md`). 두 템플릿(분석·계획)에 각 2곳씩 동일 결함이 있어, 향후 모든 분석.md·계획.md 사본에 죽은 링크가 반복 재생산됨.",
+          "fix": "링크 타깃을 `../../../../지침/서브에이전트/활용.md`로 정정 (4곳 모두)."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/문서/메타-frontmatter.md:119 — '선택: 서브폴더(...`지침/일반/문서/`, `지침/일반/작업/`...)' 예시 문구가 이번 개편 이전 경로. `지침/일반/문서/`는 이번 개편으로 `지침/문서/`(최상위)로 승격되어 더 이상 존재하지 않는데, core-maturity 문서 본문에 stale 경로가 현재 구조 예시인 것처럼 남아있음.",
+          "fix": "예시를 실제 구조(`지침/문서/양식/`, `지침/문서/테마/` 등)로 갱신."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/README.md의 '문서' 카테고리 행이 다른 카테고리와 다른 패턴을 따름 — 서브에이전트·설정·공통 카테고리는 각자 `<카테고리>/README.md`를 '폴더 인덱스' 앵커 행으로 명시하는데, 문서 카테고리만 `작성 규칙.md`를 '**문서 인덱스**'로 라벨링(11행)함. 그런데 작성 규칙.md 본문 §2(32~34행)는 스스로 'README.md가 유일 인덱스'라고 명시하며 인덱스 역할을 위임 — 두 SSOT 파일 간 라벨 모순. 또한 지침/README.md에는 `문서/README.md` 행도, `양식/`(템플릿 4종) 행도 전혀 없어 — 지침/README.md만 보는 독자는 양식/ 존재를 알 수 없고 작성 규칙.md를 열어야 비로소 발견함. 이는 CLAUDE.md 자신이 경계한 'R1 이중 인덱스 drift'가 지침/README.md ↔ 지침/문서/README.md 사이에서 실제로 발생한 사례.",
+          "fix": "지침/README.md에 다른 카테고리와 동일하게 `문서/README.md`(폴더 인덱스) 행을 앵커로 추가하거나, 최소한 `문서/양식/` 행을 추가해 최상위 표와 폴더 표의 파일 목록을 일치시킴."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/코딩/작업 규칙.md:66, docs/tasks/README.md:11·45 — href는 새 경로(`지침/문서/작성 규칙.md`)로 올바르게 갱신됐으나 표시 텍스트(링크 라벨)는 구 경로 문구(\"../일반/문서 작성 규칙.md\" 등)를 그대로 남겨 텍스트-대상 불일치.",
+          "fix": "라벨 텍스트를 실제 경로 표기로 정정 (기능상 링크는 깨지지 않으므로 낮은 우선순위)."
+        }
+      ],
+      "confirm": "시나리오 경로 자체는 정상: CLAUDE.md §6 → 지침/문서/작성 규칙.md → (§2에서) 지침/문서/README.md → 메타-frontmatter.md + 양식/{요구사항,분석,계획,이력 및 결과}.md 전부 실존·정확히 라우팅됨을 Read로 확인. 지침/README.md 경유 대체 경로도 동일 링크로 합류해 도달 자체는 문제없음. 지침/문서/양식/이력 및 결과.md는 자체검토 섹션이 없어(구조상 면제) 해당 링크 결함 없음. 지침/문서/작성-스타일.md·폴더-구조.md·테마 토큰.md·테마/ 3파일은 별도로 열람하지 않았으나 find로 실존은 확인."
+    },
+    {
+      "aspect": "Slack 알림·statusline·스피너 설정 온디맨드 충족 시나리오 — CLAUDE.md → 지침/설정/ 도달 경로 및 실행파일/설정문서 분리 검증",
+      "verdict": "pass",
+      "findings": [],
+      "confirm": "시나리오 경로 전체를 Read/Grep으로 실사 확인함.\n\n1) CLAUDE.md L109: \"환경설정 문서(slack·statusline·스피너)는 [`지침/설정/`](지침/설정/README.md).\" — Tools 섹션에서 지침/설정/README.md로 정확히 라우팅됨.\n\n2) 지침/README.md(SSOT) L27-29에도 동일하게 설정/README.md, 설정/Slack 알림.md, 설정/Statusline·스피너 설정.md 3행이 등재 — CLAUDE.md와 지침/README.md 두 경로 모두 동일 파일로 수렴(drift 없음).\n\n3) 지침/설정/README.md — TL;DR에서 \"실행 스크립트는 tools/(slack-notify.ps1)와 사용자 홈(statusline.ps1)에 있고, 본 폴더는 배선·설정 값·트러블슈팅만 설명\"이라고 명시. Slack 알림=Project scope(git 추적)/statusline·스피너=User scope(git 밖, 규약상 위치 고정)로 스코프 구분도 [!IMPORTANT]로 명확.\n\n4) 지침/설정/Slack 알림.md — frontmatter(name/purpose/type/applies_to/maturity: stable/tags) + TL;DR 완비. 실행 스크립트를 `../../tools/slack-notify.ps1` 상대링크로 참조(중복 코드 없음), 트러블슈팅(webhook 파일 부재 시 silent exit 0 등) 기술.\n\n5) 지침/설정/Statusline·스피너 설정.md — frontmatter+TL;DR 완비. User-scope 예외(tools/로 옮기지 않는 이유)를 명시적으로 문서화.\n\n6) tools/README.md — \"실행 파일은 여기에, 각 도구의 설정·사용법 설명 문서는 지침/설정/에 둔다\" 원칙 명시, 하단에 두 설정 문서로 역참조 링크 제공. slack-notify.ps1 실제 내용(Read 확인)은 순수 PowerShell 로직뿐이며 설정 설명/문서 텍스트가 섞여 있지 않음 — 실행 파일과 설정 문서의 분리가 명확.\n\n7) .claude/settings.json L20 Stop 훅이 `E:/workspace/rules/tools/slack-notify.ps1`을 실제로 호출 — 문서에 기술된 배선과 일치. tools/credentials/slack/ 디렉터리도 실존.\n\n8) 결정론적 링크체커(tools/check-links.ps1) 전체 실행 결과: 검사한 상대링크 308개(대상 41개 파일), 깨진 링크 0건 — 지침/설정/ 관련 상호 참조를 포함한 전체 인덱스 무결성 확인.\n\n9) 지침/일반/계획 모드 자동 진입.md는 실제로 파일시스템에서 삭제 확인(검색 결과 0건).\n\n결함 없음 — 시나리오가 요구한 \"CLAUDE.md → 지침/설정/{Slack 알림·Statusline·스피너 설정}.md 도달\" 및 \"실행 파일과 설정 문서 분리\"가 모두 실사 기준으로 충족됨."
+    },
+    {
+      "aspect": "지침 체계 개편 후 온디맨드 충족 검증 — 옛 경로 리터럴 11종의 활성 문서(지침/·CLAUDE.md·.claude/·tools/·docs/tasks/README·모듈 현황) 전수 잔존 확인",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "medium",
+          "issue": "지침/문서/테마 토큰.md:243 — §7.1 팔레트 값 변경 절차의 grep 예시 명령이 옛 경로를 대상으로 함: `grep -rni \"c15f3c\" \"지침/일반/테마/\" \"projects/wiki/\"`. 실제 테마 파일은 `지침/문서/테마/`(HTML-아티팩트.md·Mermaid.md·Obsidian.md)에 있어 이 폴더는 존재하지 않음.",
+          "fix": "명령을 `grep -rni \"c15f3c\" \"지침/문서/테마/\" \"projects/wiki/\"`로 수정. 그대로 실행하면 대상 폴더가 없어 조용히 빈 결과만 반환되므로 실제 유지보수 시 옛 hex 리터럴을 놓칠 위험이 있음."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/문서/메타-frontmatter.md:119 — §3.2 적용 대상 예시 목록에 존재하지 않는 경로 `지침/일반/문서/`가 그대로 남음(실제로는 `지침/문서/`로 최상위 승격되어 `지침/일반/` 아래에는 `문서/` 서브폴더가 없음). 같은 줄의 `지침/일반/작업/`은 실재하므로 이 항목만 drift.",
+          "fix": "`지침/일반/문서/`를 `지침/문서/`로 정정."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/코딩/작업 규칙.md:66 — 링크 표시 텍스트가 옛 경로 `../일반/문서 작성 규칙.md`를 그대로 노출(href는 `../문서/작성%20규칙.md`로 정상 작동, 라벨만 불일치).",
+          "fix": "표시 텍스트를 `../문서/작성 규칙.md`로 정정해 href와 일치시킴."
+        },
+        {
+          "severity": "low",
+          "issue": "docs/tasks/README.md:11 — 링크 표시 텍스트 `../지침/일반/문서 작성 규칙.md §3·§4`가 옛 경로 노출(href는 `../../지침/문서/작성%20규칙.md`로 정상).",
+          "fix": "표시 텍스트를 `../지침/문서/작성 규칙.md §3·§4`로 정정."
+        },
+        {
+          "severity": "low",
+          "issue": "docs/tasks/README.md:45 — 동일 패턴 반복. 링크 표시 텍스트 `../지침/일반/문서 작성 규칙.md`가 옛 경로 노출(href는 정상).",
+          "fix": "표시 텍스트를 `../지침/문서/작성 규칙.md`로 정정."
+        }
+      ],
+      "confirm": "CLAUDE.md, 지침/README.md, 지침/작업 규칙.md, .claude/(settings.json·memory/github.md·preferences.md), tools/(check-links.ps1·README.md·rename_sessions.py·rename_sessions.README.md·slack-notify.ps1·requirements 파일), docs/tasks/모듈 현황.md — 11종 옛 문자열 전부 0건. 특히 '일반/작업/양식/', '일반/서브에이전트 활용', '일반/워크플로우 오케스트레이션', '일반/에이전트 로그 구조', '일반/문서 테마 스타일', 'rules/credentials/'(tools 없이), 'E:\\Claude'는 활성 문서 전역에서 완전 0건(실제 폴더 구조도 지침/서브에이전트/·지침/문서/양식/·지침/문서/테마/로 정확히 이전 확인). '계획 모드 자동 진입.md'는 마크다운 링크(`[...](...)`) 형태로는 활성 문서 어디에도 없음 — deprecation 리플 규칙(완료처리.md §4)이 정확히 수행되어 파일도 삭제됨. 완료처리.md:55·4단계-프로세스.md:257의 언급은 하이퍼링크가 아니라 \"폐지 사례\"를 설명하는 평문이라 위반 아님. docs/tasks/meta/<날짜>_slug/ 하위 과거 스냅샷(예: 20260713_헌법-지침-구조개편의 계획/분석 문서 및 JSON 첨부)에는 옛 경로가 다수 남아 있으나 이는 작업 당시 기록을 그대로 보존하는 불변 스냅샷이라 검증 범위에서 제외함(요청사항과 일치)."
+    },
+    {
+      "aspect": "헌법·지침 구조 개편 — 신설·이동 지침 파일 frontmatter/TL;DR 전수 점검 + README 예외 관례 일관성 검증",
+      "verdict": "fail",
+      "findings": [
+        {
+          "severity": "blocker",
+          "issue": "검증 하네스 핵심 도구 tools/check-links.ps1이 지침/문서/작성-스타일.md에서 거짓 음성(false negative)을 낸다. 이 파일 24행 `(` ```bash `, ` ```powershell `, ` ```c `, ` ```json ` 등)`과 68행 ```` ```mermaid ```` 는 코드펜스 문법을 '설명하기 위한' 리터럴 백틱 예시인데, 스크립트의 코드펜스 제거 정규식 `(?s)```.*?```` 이 이를 실제 펜스 시작으로 오인해 이후 백틱 짝(parity)이 전체적으로 어긋난다. 그 결과 이 파일에서 `powershell -File tools/check-links.ps1 -Include \"지침/문서/작성-스타일.md\"` 실행 시 '검사한 상대링크: 0'이 출력되어 이 파일의 실링크 전부가 검사망을 빠져나간다(전체 41파일 스캔 시 308건에 이 파일의 기여분 0건으로 합산되어 드러나지 않음). '결정론적'이라 표방된 하네스가 자기 자신의 문법을 설명하는 문서에서 조용히 무력화된다는 것은 S13 온디맨드 검증('0건'이라는 결론)의 신뢰성을 근본적으로 훼손한다.",
+          "fix": "check-links.ps1의 코드펜스/인라인코드 제거 로직을 라인 시작 앵커(`^\\s*```` `) 기반으로 교체하거나, 최소한 지침/문서/작성-스타일.md처럼 예시 백틱을 포함한 파일은 별도 escape 표기(예: 4틱 델리미터 통일)로 리라이트하고 스크립트에 회귀 테스트(고정 fixture 파일)를 추가한다."
+        },
+        {
+          "severity": "high",
+          "issue": "지침/문서/작성-스타일.md:146의 링크 `[문서 테마 스타일.md](../문서%20테마%20스타일.md)`는 실제로 깨져 있다 — S6에서 '문서 테마 스타일.md'가 '지침/문서/테마 토큰.md'로 개명·이동됐는데(계획.md '테마 토큰.md ← 문서 테마 스타일.md'), 이 링크만 구 경로(`../문서 테마 스타일.md` → 지침/문서 테마 스타일.md, 존재하지 않음)로 갱신되지 않았다. 위 blocker 버그 때문에 링크체커가 이를 검출하지 못해 그대로 남아 있었다.",
+          "fix": "146행 링크 href를 `../테마 토큰.md`(URL 인코딩 `../테마%20토큰.md`)로 수정."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/문서/테마 토큰.md 자신이 개명 후에도 정체성 메타데이터를 갱신하지 않았다 — frontmatter `name:`(2행)과 H1 제목(10행), 내부 Mermaid 다이어그램 라벨(186행) 모두 여전히 옛 이름 '문서 테마 스타일'을 쓴다. 계획상 이 개명의 목적 자체가 '테마/ 폴더와 충돌 회피'였는데 파일 표제가 구 명칭으로 남아 목적을 무색하게 한다. 파급으로 지침/문서/테마/HTML-아티팩트.md:12·142와 지침/문서/테마/Obsidian.md:12·91·95 총 5곳이 앵커 텍스트를 `[문서 테마 스타일.md](../테마%20토큰.md)` 식으로 — href는 새 경로로 맞게 고쳤지만 링크 텍스트만 구 이름 그대로 — 남겨뒀다. path만 검사하는 링크체커는 이런 텍스트/제목 drift를 잡지 못하는 종류의 결함이다.",
+          "fix": "테마 토큰.md의 name/H1/다이어그램 라벨을 '테마 토큰'으로 통일하고, HTML-아티팩트.md·Obsidian.md의 앵커 텍스트 5곳을 '테마 토큰.md'로 교체."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/문서/메타-frontmatter.md §1.3 '적용 대상'은 '폴더별 README.md(자체 인덱스 성격이지만 일관성 우선)'을 frontmatter 필수 대상으로 명시한다. 그러나 이번 개편으로 신설된 지침/서브에이전트/README.md·지침/문서/README.md·지침/설정/README.md·지침/공통/README.md를 포함해 지침/README.md·tools/README.md·tools/credentials/README.md까지 지침/·tools/ 하위 폴더 README 7개 전부가 frontmatter를 갖지 않는다(100% 무관행이라 상호 간엔 일관되나, 성문 규칙과는 정면 모순). 같은 문서 §3.1 '형식' 템플릿도 frontmatter 없는 예시를 보여줘 문서 내부 자기모순이다. 계획.md는 '§3.2 개정'만 언급했을 뿐 §1.3의 이 문구는 이번 개편에서 손대지 않아 drift가 그대로 남았다. 참고로 docs/tasks/README.md는 반대로 frontmatter를 갖추고 있어(단 maturity 필드는 type=tasks라 면제 대상, 정상) 저장소 전체로 보면 'README 예외'가 스코프별로 다르게 적용되는 셈이다.",
+          "fix": "§1.3에서 '폴더별 README.md'를 frontmatter 필수 목록에서 제외하고 §3.1 형식과 일치시키는 명시적 예외 문구를 추가하거나(실무 100% 관행에 맞춤), 그게 아니라면 7개 README에 frontmatter를 실제로 추가해 성문 규칙을 충족시킨다."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/문서/README.md:9는 메타-frontmatter.md가 다루는 내용으로 'frontmatter·TL;DR·maturity·README 규약·dedup-check'를 나열하지만, 메타-frontmatter.md(전체 138행 확인)에는 'dedup-check' 절이 실재하지 않는다. 계획.md는 S6에서 '메타-frontmatter.md(★dedup-check+진입점 예외)' 추가를 명시했으나 실제 커밋(ca03a3f)에는 반영되지 않은 채 인덱스만 마치 존재하는 것처럼 광고한다.",
+          "fix": "메타-frontmatter.md에 dedup-check 절(신규 .md 작성 전 기존 SSOT 중복 여부를 Grep으로 확인하는 절차)을 실제로 추가하거나, 지침/문서/README.md의 해당 설명에서 'dedup-check' 언급을 제거한다."
+        }
+      ],
+      "confirm": "이번 개편으로 신설된 8개 파일(지침/서브에이전트·문서·설정·공통 각 README.md, 지침/설정/Slack 알림.md, 지침/설정/Statusline·스피너 설정.md, 지침/공통/경로·참조 표기.md, tools/README.md)과 tools/check-links.ps1(스크립트라 frontmatter 예외 처리 확인)을 Read로 직접 열어 확인. Slack 알림.md·Statusline·스피너 설정.md·경로·참조 표기.md는 name/purpose/type/applies_to/maturity/tags 6필드 frontmatter + 80자 이상 TL;DR 모두 완비. 4개 신설 카테고리 README(서브에이전트·문서·설정·공통)는 규약대로 frontmatter 없이 TL;DR+파일표 형식을 통일되게 따름. 추가로 find+grep 스크립트로 지침/ 하위 README.md를 제외한 .md 34개 전량(서브에이전트/활용·오케스트레이션·로그 구조, 문서/폴더-구조·작성-스타일·메타-frontmatter·테마 토큰·테마 3종·양식 4종 등 이동분 포함)을 프로그래매틱하게 스캔한 결과 name/purpose/type/maturity/TL;DR 5요소 모두 100% 완비(미비 0건)를 확인했다. tools/README.md는 스크립트 라우팅표·사용법을 명확히 문서화했고 tools/check-links.ps1 실행도 정상 동작(단, 위 finding처럼 특정 입력에서 false negative 있음). docs/tasks/README.md는 frontmatter를 갖추고 있어 §1.1 규칙(maturity는 지침 type만 필수)과 정합."
+    },
+    {
+      "aspect": "rules 저장소 헌법·지침 구조개편(docs/tasks/meta/20260713_헌법-지침-구조개편) R1~R10 온디맨드 충족 검증",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "high",
+          "issue": "R10(서브에이전트 대량 투입) '구현 후 온디맨드 충족 검증 ≥30%'과 완료 기준 '작업 목록·모듈 현황 등재, claude_develop 병합'이 미이행. git log(9cce4a3~5d447bd)에 계획서(계획.md §5)가 정의한 S13(온디맨드 검증 workflow: 링크체커+BFS크롤+시나리오질의+구경로grep) 커밋이 없고, S14(완료 처리) 커밋도 없음. 현재 브랜치는 claude_feature_헌법-지침-구조개편이며 claude_develop(deddb40)에 병합되지 않음.",
+          "fix": "S13 온디맨드 검증 workflow(서브에이전트 ≥30% 예산)를 실제 실행 — CLAUDE.md 기점 BFS 크롤·시나리오 질의 3종·구경로 리터럴 grep 0 확인 — 후 결함 있으면 S13-b 루프. 이어 S14로 docs/tasks/meta/작업 목록.md·모듈 현황.md 등재 + 이력 및 결과.md 완료 요약 작성 + claude_develop --no-ff 병합."
+        },
+        {
+          "severity": "high",
+          "issue": "R9 완료기준 '깨진 링크 0(서브에이전트 검증 + 시나리오 테스트)' 중 서브에이전트 검증·시나리오 테스트 부분이 문서화된 실행 흔적 없음. 실제로 실행한 것은 결정론적 링크체커(tools/check-links.ps1)뿐 — 직접 재현 결과: 검사한 상대링크 308(대상 파일 41), 깨진 링크 0, exit code 0. 이는 R3/R9가 명시한 '1차 기계적' 계층만 충족되고 '2차 LLM 시맨틱 BFS' 계층(작성-스타일.md에 기술된 레시피)이 미실행.",
+          "fix": "위 R10 fix와 함께 S13에서 서브에이전트로 CLAUDE.md→지침/README.md→각 카테고리 BFS 크롤을 수행해 orphan 파일 유무·hop 수·의미적 정합성까지 확인하고 결과를 이력 및 결과.md에 기록."
+        },
+        {
+          "severity": "medium",
+          "issue": "완료 처리 절차(완료처리.md) 미이행 3건 실측: (1) docs/tasks/meta/작업 목록.md에 '헌법-지침-구조개편' 작업 행이 아예 없음(마지막 등재 행은 2026-07-08 위키 정책이관), (2) docs/tasks/모듈 현황.md의 meta 행이 '최종 업데이트 2026-07-13·최근 작업 20260713_wiki-지침-제거·작업 수 27'로 정지되어 본 작업 반영 안 됨, (3) 이력 및 결과.md의 '## 완료 요약' 섹션이 placeholder `_(구현·검증·병합 후 작성)_` 그대로이고 시계열 로그도 계획 확정(entry 5, 커밋 9cce4a3)에서 멈춰 S1~S12 구현 로그가 없음.",
+          "fix": "S14 완료 처리 실행 시 위 3개 파일을 완료처리.md §1 절차대로 갱신."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/일반/컨텍스트 절약 규칙.md:60 — \"회고 `커뮤니케이션.md`의 '응답 말미 명사구 한 줄 요약 (Slack 알림 추출)'과 호환을 위해...\"가 실존하지 않는 문서(회고 폴더는 2026-05-18 Package C에서 폐지, 커뮤니케이션 규칙.md §학습 노트로 흡수됨)를 현재형으로 인용. 같은 파일 §6의 동일 유형 죽은 참조는 S1 커밋(ad55680)에서 [`docs/회고/커뮤니케이션.md`](../../회고/커뮤니케이션.md) 링크를 제거했지만, §2.5의 이 프로즈 문장(마크다운 링크 문법이 아님)은 놓쳐서 tools/check-links.ps1(하이퍼링크만 파싱)에도 안 걸림.",
+          "fix": "해당 문장을 '커뮤니케이션 규칙.md §학습 노트(2026-05-18 회고 흡수)'를 가리키도록 정정하거나 문장 자체를 제거."
+        }
+      ],
+      "confirm": "R1~R8은 파일 근거로 실제 구현 확인됨: R1 — CLAUDE.md(슬림 라우터, 초압축 core 인라인)·지침/README.md(전체 인덱스 SSOT)·지침/작업 규칙.md(상세 체크리스트)로 역할 3분리 완료. R2 — 지침/서브에이전트/{README,활용,오케스트레이션,로그 구조}.md 신설, 일반/에 잔재 없음(파일 목록 확인). R3 — 지침/일반/작업/4단계-프로세스.md §3.4 '할루시네이션 방지 검증 게이트'(단계별 재진술/근거동반/실패시나리오/구경로grep+링크체커) + 완료처리.md §4 deprecation 리플 규칙 신설 확인. R4 — 지침/문서/{README,작성 규칙,폴더-구조,메타-frontmatter,작성-스타일,테마 토큰,테마/,양식/} 전부 한 폴더로 통합, README.md가 유일 라우팅 인덱스임을 문서/작성 규칙.md §2가 명시. R5 — 지침/설정/{README,Slack 알림,Statusline·스피너 설정}.md 신설, tools/README.md에 4파일 전부(실사용 확인, 삭제 대상 0건 문서화). R6 — tools/credentials/{anthropic,github,slack} 확인, slack-notify.ps1:4·rename_sessions.py:25 코드가 새 경로를 가리킴 확인, .gitignore의 'credentials/' 패턴은 비앵커링이라 그대로 유효. R7 — CLAUDE.md Layout이 Sound1을 <name> 플레이스홀더로 변경, '프로젝트 내부 표준 구조' ASCII 트리 삭제 후 지침/일반/프로젝트 초기 세팅.md 링크로 대체 확인. R8 — 지침/공통/{README,경로·참조 표기}.md 신설, README가 '그랩백 방지' 조건(2개 카테고리 이상 중복+소유파일 없음)을 명시해 과잉추출 방지. 링크 무결성: tools/check-links.ps1 직접 재실행 결과 검사 상대링크 308(대상 41파일), 깨진 링크 0, exit 0."
+    },
+    {
+      "aspect": "rules 지침 체계 개편 후 SSOT 이동·축약 정합성 검증 (a~e 5개 축)",
+      "verdict": "warn",
+      "findings": [
+        {
+          "severity": "high",
+          "issue": "지침/문서/양식/분석.md:65,121 및 지침/문서/양식/계획.md:109,137 — 자체 검토용 예시 링크가 `../../../../지침/일반/서브에이전트%20활용.md`를 가리키는데, 이 경로는 존재하지 않는다(`Test-Path` False 확인). S5 리팩토링(커밋 3bfd7cb, 서브에이전트/ 폴더를 지침/일반/ 밖 최상위로 승격)으로 실제 파일은 `지침/서브에이전트/활용.md`로 이동했으나, 코드펜스 안 템플릿 본문의 예시 링크는 갱신되지 않았다. `tools/check-links.ps1`는 설계상 코드펜스 내부 링크를 검사 대상에서 제외하므로(도구 자체 README에 명시) 이 드리프트를 탐지하지 못했다.",
+          "fix": "4개 링크를 `../../../../지침/서브에이전트/활용.md`(파일명도 `서브에이전트 활용.md`→`활용.md`)로 수정. 이 템플릿은 앞으로 모든 신규 작업의 분석.md/계획.md에 그대로 복사되므로 방치하면 깨진 링크가 계속 재생산된다."
+        },
+        {
+          "severity": "medium",
+          "issue": "지침/작업 규칙.md:47 마스터 체크리스트는 \"각 단계 산출 직후 자체 검토 2축 수행: ① 지침 준수, ② 논리적 정합성\"이라고 명시하는데, 실제 SSOT인 지침/일반/작업/4단계-프로세스.md §3.2(152~158행)는 \"검토 3축\"(지침 준수·논리적 정합성·근거 검증)을 정의하고 §3.4에서 근거 검증을 할루시네이션 방지 게이트와 연동시킨다. 마스터 체크리스트가 3번째 축(근거 검증) 신설을 반영하지 못해 드리프트가 남아 있다.",
+          "fix": "작업 규칙.md §3의 해당 항목을 \"자체 검토 3축(지침 준수·논리적 정합성·근거 검증)\"으로 갱신해 4단계-프로세스.md §3.2와 정합시킨다."
+        },
+        {
+          "severity": "low",
+          "issue": "CLAUDE.md:32의 caveat는 \"main 직접커밋 금지·AI 표시 금지·병합 전 승인·코드 전 승인 등은 아래 문장으로 잔존\"한다고 명시하는데, 실제로 AI 표시 금지(59행)·병합 전 승인(58행)·코드 전 승인(80행)은 리터럴 문구로 존재하지만 \"main 직접커밋 금지\"는 57행에 \"main(사용자만)\"으로만 압축돼 있어 명시적 금지 문구가 아니라 함의로만 남는다.",
+          "fix": "57행에 \"(직접 커밋 금지)\" 같은 명시적 문구를 덧붙이거나 caveat 목록에서 표현 수준을 맞춘다."
+        },
+        {
+          "severity": "low",
+          "issue": "지침/문서/README.md:9의 메타-frontmatter.md 설명에 \"dedup-check\"라는 라벨이 붙어 있으나, 지침/문서/메타-frontmatter.md 본문에는 그 정확한 용어나 전용 체크리스트 섹션이 없다 — §4 \"CLAUDE.md와 폴더 README의 역할 구분\"에 \"중복 회피\"라는 개념 서술만 있다.",
+          "fix": "인덱스 라벨을 \"중복 회피\"로 본문 용어와 맞추거나, 메타-frontmatter.md에 \"dedup-check\" 명칭의 체크 항목을 실제로 추가한다."
+        }
+      ],
+      "confirm": "(a) CLAUDE.md 4항(존댓말 반말 금지 line 36), Git 4항(AI 표시 절대 금지 line 59, 사용자 승인 후에만 진행 line 58), 7항(사용자 승인 전 작성 금지 line 80) — 4개 중 3개 리터럴 확인, 1개(main 직접커밋 금지)는 함의로만 존재(위 low finding).\\n(b) 지침/일반/작업/4단계-프로세스.md §3.2 \\\"검토 3축\\\" 표(152~158행: 지침 준수·논리적 정합성·근거 검증)와 §3.4 \\\"할루시네이션 방지 검증 게이트\\\"(166~176행, ①~④ 단계별 게이트 + 재사용 검증 자산 NOTE, tools/check-links.ps1 연계) 모두 실재 확인.\\n(c) 지침/일반/작업/완료처리.md §4 \\\"deprecation 리플 규칙\\\"(48~55행) 명문화 확인 — 폐지 커밋 시 역링크 동시 정리 의무·Grep 전수 재확인·check-links.ps1 사후검사 3단계 모두 명시. 계획 모드 자동 진입.md 파일 자체는 실제로 삭제됨(Glob 0건) — 실례로 인용된 서술과 일치.\\n(d) 지침/작업 규칙.md TL;DR(\\\"서브에이전트는 트리거 기반...\\\")과 §3 위임정책 불릿(52행)이 문구 수준까지 정합 — 트리거/판단/모델·effort/폭주감시 4요소 모두 대응. (단, 같은 §3의 자체검토 축 개수는 위 medium finding처럼 별도로 어긋남.)\\n(e) 지침/서브에이전트/{README,활용,오케스트레이션,로그 구조}.md 4파일 전수 확인 — 상호 링크가 모두 현재 파일명(활용.md·오케스트레이션.md·로그 구조.md)으로 정확히 개명 반영됨. git log로 원래 파일명이 \\\"에이전트 로그 구조.md\\\"(커밋 c74e4b5)였고 이후 로그 구조.md로 개명, 서브에이전트 폴더 자체도 지침/일반/ 밖으로 승격(커밋 3bfd7cb)된 이력을 확인했고, 지침 폴더 전체에서 구 이름(\\\"에이전트 로그 구조.md\\\") 잔존 참조 0건.\\ntools/check-links.ps1 전체 실행 결과: 검사 대상 308개 상대링크(41개 파일) 중 깨진 링크 0건 — 단 코드펜스 내부(양식 템플릿) 링크는 도구 설계상 검사 제외 대상이라 위 high finding은 수동 대조로 별도 확인함."
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "검증:BFS링크도달",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "ad6f5893112a11562",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892040,
+      "queuedAt": 1783985888943,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "지침 체계 온디맨드 충족 — CLAUDE.md/지침 README.md 진입점 …",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[검증] CLAUDE.md와 지침/README.md를 진입점으로, 마크다운 링크만 따라가 지침/ 전체 .md에 도달 가능한지 B…",
+      "lastProgressAt": 1783986522926,
+      "tokens": 144850,
+      "toolCalls": 37,
+      "durationMs": 630885,
+      "resultPreview": "{\"aspect\":\"지침 체계 온디맨드 충족 — CLAUDE.md/지침 README.md 진입점 기준 BFS 도달성 검증\",\"verdict\":\"warn\",\"confirm\":\"(1) CLAUDE.md → 지침/README.md 링크 실재 확인: CLAUDE.md 6·31·103행에 `[지침/README.md](지침/README.md)` 실제 존재, 대상 파일 지침/README.md(51행)도 실존.\\n(2) 지침/ 하위 전체 38개 .md 전수 조사 후, 마크다운 링크만 따라가는 BFS 수행 — {CLAUDE.md, 지침/README.md} 두 진입점에서 38개 전부 도달 가능. Orphan 0건.\\n  - depth 1(지침/README.md 표 직접 링크): 32개 — 작업 규칙.md, Git 3종, 공통…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "검증:시나리오_Git",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "ad4e64debec78526f",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892364,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "신규 세션이 CLAUDE.md만 열어 Git 브랜치·병합·커밋 규칙 문서…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[시나리오 테스트] 신규 세션이 \"Git 브랜치 정책·병합·커밋 규칙\"을 알고 싶다. CLAUDE.md만 열어 출발해 실제 링크…",
+      "lastProgressAt": 1783985980542,
+      "tokens": 55053,
+      "toolCalls": 7,
+      "durationMs": 88177,
+      "resultPreview": "{\"aspect\":\"신규 세션이 CLAUDE.md만 열어 Git 브랜치·병합·커밋 규칙 문서(Git/브랜치,병합 규칙.md·워크플로우.md·커밋 메시지.md)에 도달하는 경로/hop수 검증\",\"verdict\":\"pass\",\"findings\":[{\"severity\":\"low\",\"issue\":\"CLAUDE.md §4 'Git 워크플로우' 섹션 텍스트에는 '커밋'이라는 단어가 없어, 커밋 메시지 규칙을 찾는 사용자가 제목만 보고는 커밋 메시지.md의 존재를 바로 유추하기 어려움 (실제로는 워크플로우.md 또는 지침/README.md를 한 번 더 거쳐야 발견) — ≤2-hop 기준 자체는 충족하므로 차단 사유는 아님\",\"fix\":\"필요 시 CLAUDE.md §4 상세 링크 줄에 `Git/커밋 메시지.md`를 세 번…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "검증:시나리오_서브에이전트",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a143551c0253b90dc",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985894192,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "서브에이전트 온디맨드 라우팅 시나리오 검증 (CLAUDE.md §5 → …",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[시나리오 테스트] \"서브에이전트를 언제·어떻게 쓰나, fan-out 오케스트레이션은?\" 질문. CLAUDE.md §5에서 출발…",
+      "lastProgressAt": 1783986039991,
+      "tokens": 82033,
+      "toolCalls": 21,
+      "durationMs": 145799,
+      "resultPreview": "{\"aspect\":\"서브에이전트 온디맨드 라우팅 시나리오 검증 (CLAUDE.md §5 → 지침/서브에이전트/{활용·오케스트레이션·로그 구조}.md)\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"medium\",\"issue\":\"지침/문서/양식/분석.md:65,121 및 지침/문서/양식/계획.md:109,137 — 복사용 '양식 본문'(```markdown fenced block) 안의 [`서브에이전트 활용.md`] 링크가 리팩터 이전 경로 `../../../../지침/일반/서브에이전트%20활용.md`를 그대로 가리켜 깨져 있음. 실제 파일은 이번 개편으로 `지침/서브에이전트/활용.md`로 이동함(Glob으로 실존 확인, 구 경로엔 파일 없음). 같은 두 파일의 '바깥' 안내 텍…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "검증:시나리오_credential",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "af62ccdfaca27d3a7",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892229,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Credentials 온디맨드 충족 검증 — \"GitHub 토큰·Slack webhook…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[시나리오 테스트] \"GitHub 토큰·Slack webhook·API 키가 어디 있나?\" CLAUDE.md Credential…",
+      "lastProgressAt": 1783986011451,
+      "tokens": 54604,
+      "toolCalls": 14,
+      "durationMs": 119221,
+      "resultPreview": "{\"aspect\":\"Credentials 온디맨드 충족 검증 — \\\"GitHub 토큰·Slack webhook·API 키가 어디 있나?\\\" 시나리오\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"medium\",\"issue\":\"CLAUDE.md L85-89 `## Credentials` 섹션이 GitHub·Slack 두 카테고리만 나열하고 Anthropic API 키(tools/credentials/anthropic/api.key)를 전혀 언급하지 않음. 이 파일은 rename_sessions.py에서 실사용 중(L25 CREDENTIALS_FALLBACK, L251 anthropic.Anthropic(api_key=...))이고 tools/credentials/README.md…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "검증:시나리오_문서양식",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "aa48d75ef6449e86b",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985891566,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "지침 체계 온디맨드 충족 검증 — \"문서 작성 규칙·frontmatter …",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[시나리오 테스트] \"문서 작성 규칙·frontmatter 규약·요구사항.md 양식이 어디?\" CLAUDE.md에서 출발해 지침…",
+      "lastProgressAt": 1783986195792,
+      "tokens": 108246,
+      "toolCalls": 17,
+      "durationMs": 304224,
+      "resultPreview": "{\"aspect\":\"지침 체계 온디맨드 충족 검증 — \\\"문서 작성 규칙·frontmatter 규약·요구사항.md 양식이 어디?\\\" 시나리오 (CLAUDE.md → 지침/README → 문서/README → 작성 규칙·메타-frontmatter·양식/)\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"high\",\"issue\":\"지침/문서/양식/요구사항.md:119 — 템플릿 '자체 검토' 표의 링크가 `../../../../지침/일반/문서%20작성%20규칙.md`를 가리키나, 이 경로는 실존하지 않음(실제 위치는 `지침/문서/작성 규칙.md`, `find`로 MISSING 확인). 이 파일은 신규 작업마다 그대로 복사되는 템플릿이므로, 향후 생성되는 모든 요구사항.md에 죽은 링…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "검증:시나리오_설정",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "aa0cf9ae6154a8e76",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892024,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Slack 알림·statusline·스피너 설정 온디맨드 충족 시나리오 — …",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[시나리오 테스트] \"Slack 알림·statusline·스피너 한글 설정은?\" CLAUDE.md Tools/설정 경로에서 출발…",
+      "lastProgressAt": 1783985970124,
+      "tokens": 51738,
+      "toolCalls": 13,
+      "durationMs": 78099,
+      "resultPreview": "{\"aspect\":\"Slack 알림·statusline·스피너 설정 온디맨드 충족 시나리오 — CLAUDE.md → 지침/설정/ 도달 경로 및 실행파일/설정문서 분리 검증\",\"verdict\":\"pass\",\"findings\":[],\"confirm\":\"시나리오 경로 전체를 Read/Grep으로 실사 확인함.\\n\\n1) CLAUDE.md L109: \\\"환경설정 문서(slack·statusline·스피너)는 [`지침/설정/`](지침/설정/README.md).\\\" — Tools 섹션에서 지침/설정/README.md로 정확히 라우팅됨.\\n\\n2) 지침/README.md(SSOT) L27-29에도 동일하게 설정/README.md, 설정/Slack 알림.md, 설정/Statusline·스피너 설정.md 3행이 등재 — C…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "검증:옛경로잔존",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a7504e7c7bc83d070",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892852,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "지침 체계 개편 후 온디맨드 충족 검증 — 옛 경로 리터럴 11종…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[검증] 옛 경로 리터럴이 활성 문서(지침/·CLAUDE.md·.claude/·tools/·docs/tasks/README·모듈…",
+      "lastProgressAt": 1783986064164,
+      "tokens": 91240,
+      "toolCalls": 30,
+      "durationMs": 171311,
+      "resultPreview": "{\"aspect\":\"지침 체계 개편 후 온디맨드 충족 검증 — 옛 경로 리터럴 11종의 활성 문서(지침/·CLAUDE.md·.claude/·tools/·docs/tasks/README·모듈 현황) 전수 잔존 확인\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"medium\",\"issue\":\"지침/문서/테마 토큰.md:243 — §7.1 팔레트 값 변경 절차의 grep 예시 명령이 옛 경로를 대상으로 함: `grep -rni \\\"c15f3c\\\" \\\"지침/일반/테마/\\\" \\\"projects/wiki/\\\"`. 실제 테마 파일은 `지침/문서/테마/`(HTML-아티팩트.md·Mermaid.md·Obsidian.md)에 있어 이 폴더는 존재하지 않음.\",\"fix\":\"명령을 `grep -rn…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "검증:frontmatter전수",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "aef21cdd150ccfcf4",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892598,
+      "queuedAt": 1783985888944,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "헌법·지침 구조 개편 — 신설·이동 지침 파일 frontmatter/TL;DR…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[검증] 신설·이동된 지침 파일의 frontmatter(name·purpose·type·maturity·tags)+TL;DR 완…",
+      "lastProgressAt": 1783986469113,
+      "tokens": 114879,
+      "toolCalls": 62,
+      "durationMs": 576515,
+      "resultPreview": "{\"aspect\":\"헌법·지침 구조 개편 — 신설·이동 지침 파일 frontmatter/TL;DR 전수 점검 + README 예외 관례 일관성 검증\",\"verdict\":\"fail\",\"findings\":[{\"severity\":\"blocker\",\"issue\":\"검증 하네스 핵심 도구 tools/check-links.ps1이 지침/문서/작성-스타일.md에서 거짓 음성(false negative)을 낸다. 이 파일 24행 `(` ```bash `, ` ```powershell `, ` ```c `, ` ```json ` 등)`과 68행 ```` ```mermaid ```` 는 코드펜스 문법을 '설명하기 위한' 리터럴 백틱 예시인데, 스크립트의 코드펜스 제거 정규식 `(?s)```.*?```` 이 이를 실제 펜스 시…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "검증:R커버리지",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a789e410fea10b43b",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985892510,
+      "queuedAt": 1783985888945,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "rules 저장소 헌법·지침 구조개편(docs/tasks/meta/20260713_헌…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[검증] docs/tasks/meta/20260713_헌법-지침-구조개편/요구사항.md의 R1~R10을 Read하고, 각 요구사…",
+      "lastProgressAt": 1783986257126,
+      "tokens": 140434,
+      "toolCalls": 38,
+      "durationMs": 364616,
+      "resultPreview": "{\"aspect\":\"rules 저장소 헌법·지침 구조개편(docs/tasks/meta/20260713_헌법-지침-구조개편) R1~R10 온디맨드 충족 검증\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"high\",\"issue\":\"R10(서브에이전트 대량 투입) '구현 후 온디맨드 충족 검증 ≥30%'과 완료 기준 '작업 목록·모듈 현황 등재, claude_develop 병합'이 미이행. git log(9cce4a3~5d447bd)에 계획서(계획.md §5)가 정의한 S13(온디맨드 검증 workflow: 링크체커+BFS크롤+시나리오질의+구경로grep) 커밋이 없고, S14(완료 처리) 커밋도 없음. 현재 브랜치는 claude_feature_헌법-지침-구조개편이며 claude_d…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "검증:내용정합성",
+      "phaseIndex": 1,
+      "phaseTitle": "Verify",
+      "agentId": "a6890fd8ceee331c2",
+      "agentType": "general-purpose",
+      "model": "claude-sonnet-5",
+      "state": "done",
+      "startedAt": 1783985891811,
+      "queuedAt": 1783985888945,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "rules 지침 체계 개편 후 SSOT 이동·축약 정합성 검증 (a~e 5개…",
+      "promptPreview": "너는 개편 완료된 E:\\workspace\\rules 지침 체계의 **온디맨드 충족**을 검증한다. 개편 결과: CLAUDE.md는 슬림 라우터(핵심지침 초압축+지침/README 링크), 지침/README.md가 전체 인덱스 SSOT, 카테고리는 지침/{일반,Git,코딩,서브에이전트,문서,설정,공통}/. 문서/는 최상위(작성 규칙·폴더-구조·메타-frontmatter·작성-스타일·테마 토큰·테마/·양식/). credentials는 tools/credentials/. 계획 모드 자동 진입.md는 삭제됨. 반드시 Read/Grep으로 실제 파일을 열어 사실 기반 판정하라. 추측 금지.\n\n[검증] SSOT 축약·이동 과정에서 내용 정합성이 깨졌는지 확인하라. (a) CLAUDE.md 핵심지침이 되돌리기 어려운 규칙…",
+      "lastProgressAt": 1783986190558,
+      "tokens": 116577,
+      "toolCalls": 34,
+      "durationMs": 298746,
+      "resultPreview": "{\"aspect\":\"rules 지침 체계 개편 후 SSOT 이동·축약 정합성 검증 (a~e 5개 축)\",\"verdict\":\"warn\",\"findings\":[{\"severity\":\"high\",\"issue\":\"지침/문서/양식/분석.md:65,121 및 지침/문서/양식/계획.md:109,137 — 자체 검토용 예시 링크가 `../../../../지침/일반/서브에이전트%20활용.md`를 가리키는데, 이 경로는 존재하지 않는다(`Test-Path` False 확인). S5 리팩토링(커밋 3bfd7cb, 서브에이전트/ 폴더를 지침/일반/ 밖 최상위로 승격)으로 실제 파일은 `지침/서브에이전트/활용.md`로 이동했으나, 코드펜스 안 템플릿 본문의 예시 링크는 갱신되지 않았다. `tools/check-links.ps1`는…"
+    }
+  ],
+  "totalTokens": 959654,
+  "totalToolCalls": 273
+}

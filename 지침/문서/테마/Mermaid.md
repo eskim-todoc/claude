@@ -9,12 +9,12 @@ tags: [docs, style, theme, mermaid, diagram]
 
 # 웜 페이퍼 테마 — Mermaid 적용
 
-**TL;DR**: 문서 frontmatter에 `theme: warm-paper`가 있을 때만 웜 페이퍼 팔레트를 Mermaid에 적용한다. `themeVariables`로 전역 색을 잡고 `classDef`로 노드 유형별 채색하되, **stroke는 잉크·액센트 계열**로 잡아 대비를 확보한다(옅은 구분선 토큰을 테두리에 쓰면 대비 실패). [작성-스타일.md §4.3.1](../문서/작성-스타일.md) 8요소 구조 정책은 그대로 준수한다.
+**TL;DR**: 문서 frontmatter에 `theme: warm-paper`가 있을 때만 웜 페이퍼 팔레트를 Mermaid에 적용한다. `themeVariables`로 전역 색을 잡고 `classDef`로 노드 유형별 채색하되, **stroke는 잉크·액센트 계열**로 잡아 대비를 확보한다(옅은 구분선 토큰을 테두리에 쓰면 대비 실패). [작성-스타일.md §4.3.1](../작성-스타일.md) 8요소 구조 정책은 그대로 준수한다.
 
 ## 1. 선택 기준 (기계적)
 
 > [!IMPORTANT]
-> **`theme: warm-paper`일 때만 적용한다.** 문서 frontmatter에 `theme: warm-paper` 필드가 있으면 아래 웜 페이퍼 classDef를 쓰고, 없으면 [작성-스타일.md §4.3.2](../문서/작성-스타일.md)의 기본 5색 muted 팔레트를 쓴다. 두 팔레트는 **같은 taxonomy 슬롯(terminal·step·io·trigger·core)의 대체재**이지 병용 대상이 아니다.
+> **`theme: warm-paper`일 때만 적용한다.** 문서 frontmatter에 `theme: warm-paper` 필드가 있으면 아래 웜 페이퍼 classDef를 쓰고, 없으면 [작성-스타일.md §4.3.2](../작성-스타일.md)의 기본 5색 muted 팔레트를 쓴다. 두 팔레트는 **같은 taxonomy 슬롯(terminal·step·io·trigger·core)의 대체재**이지 병용 대상이 아니다.
 
 ```yaml
 ---
@@ -68,7 +68,7 @@ flowchart 5 taxonomy에 대응. **stroke는 반드시 잉크·액센트 계열**
 
 ## 4. 예시 (flowchart)
 
-노드 라벨 특수문자는 큰따옴표로 감싼다([작성-스타일.md §4.5](../문서/작성-스타일.md)).
+노드 라벨 특수문자는 큰따옴표로 감싼다([작성-스타일.md §4.5](../작성-스타일.md)).
 
 ```
 %%{init: {'theme':'base','themeVariables':{'darkMode':false,'background':'#EFE7D6','primaryColor':'#FBF7EE','primaryTextColor':'#33291C','lineColor':'#6B5C46'}}}%%
@@ -94,11 +94,11 @@ flowchart TD
 
 | 기존 정책 | 관계 |
 |---|---|
-| [§4.3.1](../문서/작성-스타일.md) flowchart 8요소 구조 정책 | **무충돌** — 색과 무관한 구조 규칙(방향·노드 모양·라벨 등). 그대로 준수 |
-| [§4.3.2](../문서/작성-스타일.md) 기본 5색 muted 팔레트 | **대체 팔레트** — `theme: warm-paper`일 때 이 파일 §3 classDef로 전환(§1) |
-| [§4.5](../문서/작성-스타일.md) 노드 라벨 안전 규칙 | **보완** — 특수문자 큰따옴표·`<br/>` 줄바꿈 등 그대로 적용 |
+| [§4.3.1](../작성-스타일.md) flowchart 8요소 구조 정책 | **무충돌** — 색과 무관한 구조 규칙(방향·노드 모양·라벨 등). 그대로 준수 |
+| [§4.3.2](../작성-스타일.md) 기본 5색 muted 팔레트 | **대체 팔레트** — `theme: warm-paper`일 때 이 파일 §3 classDef로 전환(§1) |
+| [§4.5](../작성-스타일.md) 노드 라벨 안전 규칙 | **보완** — 특수문자 큰따옴표·`<br/>` 줄바꿈 등 그대로 적용 |
 
 ## 6. 관련
 
-- [문서 테마 스타일.md](../문서%20테마%20스타일.md) — 토큰 SSOT
+- [테마 토큰.md](../테마%20토큰.md) — 토큰 SSOT
 - [HTML-아티팩트.md](HTML-아티팩트.md) · [Obsidian.md](Obsidian.md) — 다른 트랙

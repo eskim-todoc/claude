@@ -9,7 +9,7 @@ tags: [docs, style, theme, obsidian, wiki, css-snippet]
 
 # 웜 페이퍼 테마 — Obsidian 적용
 
-**TL;DR**: [문서 테마 스타일.md](../문서%20테마%20스타일.md) 팔레트를 Obsidian CSS 변수로 오버라이드하는 `.theme-light` 스니펫. 표준 변수 + GitHub Alert 콜아웃 + Things 테마 보강 3계층. **베이스 스킴을 Light로 전환해야** 적용된다(wiki Vault는 현재 다크 베이스).
+**TL;DR**: [테마 토큰.md](../테마%20토큰.md) 팔레트를 Obsidian CSS 변수로 오버라이드하는 `.theme-light` 스니펫. 표준 변수 + GitHub Alert 콜아웃 + Things 테마 보강 3계층. **베이스 스킴을 Light로 전환해야** 적용된다(wiki Vault는 현재 다크 베이스).
 
 ## 1. CSS 스니펫
 
@@ -88,9 +88,9 @@ wiki Vault가 커뮤니티 테마 **Things**를 쓰는 경우, 헤더·태그는
 
 ## 3. 라이트 전용
 
-웜 페이퍼는 다크 변형이 없다([문서 테마 스타일.md §6](../문서%20테마%20스타일.md)). 다크 모드가 필요하면 이 스니펫 대신 Obsidian 기본 다크를 쓴다(웜 페이퍼는 라이트에서만).
+웜 페이퍼는 다크 변형이 없다([테마 토큰.md §6](../테마%20토큰.md)). 다크 모드가 필요하면 이 스니펫 대신 Obsidian 기본 다크를 쓴다(웜 페이퍼는 라이트에서만).
 
 ## 4. 관련
 
-- [문서 테마 스타일.md](../문서%20테마%20스타일.md) — 토큰 SSOT
+- [테마 토큰.md](../테마%20토큰.md) — 토큰 SSOT
 - [HTML-아티팩트.md](HTML-아티팩트.md) · [Mermaid.md](Mermaid.md) — 다른 트랙
