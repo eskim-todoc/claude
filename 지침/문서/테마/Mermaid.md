@@ -3,7 +3,6 @@ name: 웜 페이퍼 테마 — Mermaid 적용
 purpose: 웜 페이퍼 팔레트를 Mermaid 다이어그램에 적용하는 themeVariables·classDef (대비 안전)
 type: 지침
 applies_to: [root, projects]
-maturity: experimental
 tags: [docs, style, theme, mermaid, diagram]
 ---
 

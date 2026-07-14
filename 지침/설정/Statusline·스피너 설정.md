@@ -3,7 +3,6 @@ name: Statusline·스피너 설정
 purpose: 상태줄·스피너 동사·UI 언어 한글화 설정(사용자 홈 User scope) 캡처
 type: 지침
 applies_to: [root]
-maturity: stable
 tags: [설정, statusline, spinner, 한글화, user-scope]
 ---
 

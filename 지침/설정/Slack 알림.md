@@ -3,7 +3,6 @@ name: Slack 알림
 purpose: Stop 훅 기반 Slack DM 작업 완료 알림 배선·동작·트러블슈팅
 type: 지침
 applies_to: [root]
-maturity: stable
 tags: [설정, slack, hook, notification]
 ---
 
