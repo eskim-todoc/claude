@@ -3,7 +3,6 @@ name: 웜 페이퍼 테마 — HTML·아티팩트 적용
 purpose: 웜 페이퍼 테마를 HTML 뷰어·Artifact에 적용하는 복붙 CSS 변수·컴포넌트 스니펫
 type: 지침
 applies_to: [root, projects]
-maturity: experimental
 tags: [docs, style, theme, html, artifact, css]
 ---
 

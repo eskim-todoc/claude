@@ -3,13 +3,12 @@ name: 문서 메타데이터 — Frontmatter + TL;DR + 폴더 README
 purpose: 영속 .md의 frontmatter·TL;DR·폴더 README 작성 규칙 (LLM lazy-loading)
 type: 지침
 applies_to: [root, projects]
-maturity: core
 tags: [docs, frontmatter, metadata, lazy-loading, tldr]
 ---
 
 # 문서 메타데이터: Frontmatter + TL;DR + 폴더 README
 
-**TL;DR**: LLM lazy-loading 위해 3패턴 적용. (1) YAML frontmatter(name·purpose·type·maturity·tags) 모든 영속 .md에 의무. (2) TL;DR 80~250자, 핵심 결정·결론 보존. (3) 폴더별 README는 파일 단위 인덱스(CLAUDE.md는 폴더 단위). 적용 효과 30~50% 토큰 절감.
+**TL;DR**: LLM lazy-loading 위해 3패턴 적용. (1) YAML frontmatter(name·purpose·type·tags) 모든 영속 .md에 의무. (2) TL;DR 80~250자, 핵심 결정·결론 보존. (3) 폴더별 README는 파일 단위 인덱스(CLAUDE.md는 폴더 단위). 적용 효과 30~50% 토큰 절감.
 
 > [!IMPORTANT]
 > LLM(Claude)이 매 세션마다 긴 md를 모두 읽는 비용을 줄이기 위해, lazy loading을 가능하게 하는 3패턴을 적용한다.
@@ -23,7 +22,6 @@ tags: [docs, frontmatter, metadata, lazy-loading, tldr]
 name: 문서 메타데이터
 purpose: 영속 .md의 frontmatter·TL;DR·폴더 README 작성 규칙
 type: 지침
-maturity: core
 ---
 ```
 
@@ -34,26 +32,10 @@ maturity: core
 | `name` | O | 파일 제목 (한국어) | `문서 메타데이터` |
 | `purpose` | O | 한 줄 목적 (50자 이내) | `영속 .md의 frontmatter·TL;DR 규칙` |
 | `type` | O | `지침` / `사용방법` / `참고` / `tasks/<단계>` / `메타` | `지침` |
-| `maturity` | O (지침만) | `core` / `stable` / `experimental` | `core` |
 | `applies_to` | - | 적용 범위 한정 시 배열 | `[root, projects]` / `[Sound1]` |
 | `tags` | - | 검색·필터용 키워드 배열 | `[git, branch, merge]` |
 
-### 1.2 `maturity` 라벨 (2026-05-18~ 회고 흡수와 함께 도입)
-
-회고와 지침이 통합되면서 항목별 성숙도를 명시:
-
-| 등급 | 의미 | 비고 |
-|---|---|---|
-| `core` | 반드시 지켜야 할 절대 규칙 | CLAUDE.md 인라인 후보. 위반 시 즉시 중단 |
-| `stable` | 검증된 패턴·정책 | 일반 적용. 변경 시 회고 트리거 |
-| `experimental` | 최근 추가·1~2회 적용·검증 부족 | 분기별 정기 재검토 (core/stable로 승격 또는 폐기) |
-
-라벨은 frontmatter 외에 섹션 헤더 옆 인라인 마커도 가능:
-```markdown
-## 새 항목 *(maturity: experimental)*
-```
-
-### 1.3 적용 대상
+### 1.2 적용 대상
 
 - **필수 적용**: 모든 영속 `.md` 문서. 구체적으로:
   - `지침/`, `사용방법/`, `참고/` 하위 전부
@@ -65,7 +47,7 @@ maturity: core
 > [!IMPORTANT]
 > 신규 작성 시 의무. 기존 문서 소급은 [`작성-스타일.md §6`](작성-스타일.md) 원칙대로 — 기존 문서 손댈 때 같이 변경(점진적). 일괄 소급은 사용자 명시 요청 시에만.
 
-### 1.4 `type` 값 — tasks 하위 확장
+### 1.3 `type` 값 — tasks 하위 확장
 
 기본 값(`지침`/`사용방법`/`참고`/`메타`)에 더해 tasks 하위는 **`tasks/<파일명>` 형태**로 세분화한다 (예: `tasks/요구사항`, `tasks/분석`, `tasks/계획`, `tasks/이력`). 검색·필터 시 모듈별/단계별 추출이 가능하다.
 
@@ -122,16 +104,15 @@ name: ...
 
 | 위치 | 역할 | 인덱싱 깊이 |
 |---|---|---|
-| `CLAUDE.md` (루트 진입점) | 전역 진입점, 폴더 단위 1줄 인덱스 + `maturity:core` 풀텍스트 인라인 | **폴더까지** + 핵심 본문 |
+| `CLAUDE.md` (루트 진입점) | 전역 진입점, 폴더 단위 1줄 인덱스 + 핵심(절대 준수) 규칙 풀텍스트 인라인 | **폴더까지** + 핵심 본문 |
 | `<폴더>/README.md` (폴더 인덱스) | 폴더 내 파일 단위 1줄 인덱스 | **파일까지** |
 
 - **중복 회피(dedup-check)**: CLAUDE.md는 폴더 존재만 표시(루트는 `지침/`), 그 안 파일 인덱스는 `지침/README.md`가 SSOT. **신규 .md 작성 전 동일 규칙이 기존 SSOT 파일에 있는지 `Grep`으로 확인**하고, 있으면 그 파일에 두고 여기선 1줄+링크만 건다(중복 재생산 방지).
 - CLAUDE.md의 표가 너무 깊어지면 폴더 README로 분산.
-- **2026-05-18~ 변경**: CLAUDE.md에 `maturity: core` 항목 본문은 인라인 (자동 주입 보장 위해)
+- **2026-05-18~ 변경**: CLAUDE.md에 핵심(절대 준수) 규칙 항목 본문은 인라인 (자동 주입 보장 위해)
 
 ## 5. 적용 효과
 
 - **frontmatter + TL;DR**: 본문 ~5%만 읽고 파일 필요성 판단 → 파일당 ~95% 토큰 절감
 - **폴더 README**: 폴더 진입 시 자식 파일 전수 로드 회피 → 폴더당 ~70% 토큰 절감
-- **maturity 라벨**: grep 필터로 `core`만 추출 가능 → CLAUDE.md 인라인 자동화 기반
 - **합계**: 일반 작업당 ~30~50% 토큰 절감 예상

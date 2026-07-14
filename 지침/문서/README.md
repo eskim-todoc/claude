@@ -6,7 +6,7 @@
 |---|---|
 | [작성 규칙.md](작성%20규칙.md) | 문서 작성 개념·docs 적용범위·구 prefix 매핑 (개념 설명 전용) |
 | [폴더-구조.md](폴더-구조.md) | docs/ 레이아웃·tasks 3단 레지스트리·완료 처리 |
-| [메타-frontmatter.md](메타-frontmatter.md) | frontmatter·TL;DR·maturity·README 규약·dedup-check |
+| [메타-frontmatter.md](메타-frontmatter.md) | frontmatter·TL;DR·README 규약·dedup-check |
 | [작성-스타일.md](작성-스타일.md) | GFM·Alert·Mermaid·라벨링·온디맨드 링크 무결성 레시피 |
 | [테마 토큰.md](테마%20토큰.md) | 웜 페이퍼 테마 색 토큰 SSOT (HTML·Mermaid·Obsidian 3트랙 인덱스) |
 | [테마/](테마/) | HTML-아티팩트·Mermaid·Obsidian 적용 CSS 스니펫 |

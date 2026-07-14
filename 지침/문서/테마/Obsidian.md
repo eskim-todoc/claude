@@ -3,7 +3,6 @@ name: 웜 페이퍼 테마 — Obsidian 적용
 purpose: 웜 페이퍼 팔레트를 Obsidian(특히 wiki Vault)에 CSS 스니펫으로 적용하는 가이드
 type: 지침
 applies_to: [root, projects]
-maturity: experimental
 tags: [docs, style, theme, obsidian, wiki, css-snippet]
 ---
 
