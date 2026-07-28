@@ -9,7 +9,7 @@ rules repo의 공용 스크립트·자동화 보관소. 실행 파일은 여기�
 | [`rename_sessions.py`](rename_sessions.py) | Claude Code Desktop 세션 제목 일괄 요약 변경 | 수동 실행 (`rename_sessions.README.md` 참조) |
 | `rename_sessions.README.md` | `rename_sessions.py` 사용법 | — |
 | `requirements-rename-sessions.txt` | `rename_sessions.py` 파이썬 의존성 | — |
-| `credentials/` | 서비스별 인증 토큰·SSH 키(anthropic·github·slack) — **gitignored**, 로컬 전용 | slack-notify·rename_sessions·git remote(SSH) |
+| `credentials/` | 서비스별 인증 토큰·SSH 키(anthropic·github·gitlab·slack) — **gitignored**, 로컬 전용 | slack-notify·rename_sessions·git remote(SSH) |
 
 ## check-links.ps1
 
@@ -22,13 +22,23 @@ powershell -NoProfile -File tools/check-links.ps1 -Include 지침 # 대상 지�
 
 ## Git remote SSH 배선
 
-전 GitHub repo remote를 HTTPS→SSH로 전환하고 `credentials/github/ssh-key`로 인증한다(2026-07-14~). 실제 키·상세 절차는 `credentials/README.md`(gitignored)에 있고, 재현 절차 요지는:
+repo remote는 SSH로 인증하며, **키는 호스트별로 분리**한다. 실제 키·상세 절차는 `credentials/README.md`(gitignored)에 있다.
 
-1. `git remote set-url origin git@github.com:<owner>/<repo>.git`
-2. `git config core.sshCommand 'ssh -i "E:/workspace/rules/tools/credentials/github/ssh-key" -o IdentitiesOnly=yes'`
-3. 검증 — `git ls-remote origin HEAD` 성공 또는 `ssh -T git@github.com` → `Hi eskim-todoc!`
+| 호스트 | 사용할 키 | remote 형식 | 등록 계정 | 배선 시점 |
+|---|---|---|---|---|
+| GitHub | `credentials/github/ssh-key` | `git@github.com:<owner>/<repo>.git` | `eskim-todoc` | 2026-07-14~ |
+| GitLab | `credentials/gitlab/ssh-key` | `git@gitlab.com:<owner>/<repo>.git` | `kes0481_todoc` | 2026-07-28~ |
 
-공개키 `ssh-key.pub`은 GitHub `eskim-todoc` 계정에 등록됨. GitLab(sullivan-1-5-fw)은 미등록으로 HTTPS 유지. `core.sshCommand`는 각 repo `.git/config`에 로컬 저장(비추적)이라 클론·환경 재구성 시 위 절차를 재수행한다.
+> [!IMPORTANT]
+> **GitLab 저장소에는 반드시 `credentials/gitlab/ssh-key`를 쓴다.** 두 공개키는 각자 호스트 계정에만 등록돼 있어 교차 사용하면 인증에 실패한다(GitHub 키로 GitLab 접근 불가, 그 반대도 동일).
+
+재현 절차:
+
+1. remote 전환 — `git remote set-url origin git@<호스트>:<owner>/<repo>.git`
+2. 키 배선 — `git config core.sshCommand 'ssh -i "E:/workspace/rules/tools/credentials/<github|gitlab>/ssh-key" -o IdentitiesOnly=yes'`
+3. 검증 — `git ls-remote origin HEAD` 성공, 또는 `ssh -T git@github.com` → `Hi eskim-todoc!` / `ssh -T git@gitlab.com` → `Welcome to GitLab, @kes0481_todoc!`
+
+`core.sshCommand`는 각 repo `.git/config`에 로컬 저장(비추적)이라 클론·환경 재구성 시 위 절차를 재수행한다.
 
 ## 설정·사용법 문서 위치
 

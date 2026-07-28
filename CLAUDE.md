@@ -90,6 +90,7 @@ E:\workspace\                        git 아닌 로컬 엄브렐러 (버전 관�
 인증 정보는 `tools/credentials/` 폴더에서 서비스별로 관리 (gitignored). 상세: [`tools/README.md`](tools/README.md)·`tools/credentials/README.md`.
 
 - GitHub: `tools/credentials/github/classic.token`, `tools/credentials/github/fine-grained.token`
+- **Git remote SSH (호스트별 키 분리)**: GitHub repo → `tools/credentials/github/ssh-key`, **GitLab repo → `tools/credentials/gitlab/ssh-key`**. 교차 사용 시 인증 실패 — 각 repo `core.sshCommand`에 해당 호스트 키를 배선 ([`tools/README.md §Git remote SSH 배선`](tools/README.md))
 - Slack Webhook: `tools/credentials/slack/webhook.url` — 작업 완료 알림 (설정: [`지침/설정/Slack 알림.md`](지침/설정/Slack%20알림.md))
 - Anthropic API: `tools/credentials/anthropic/api.key` — `rename_sessions.py` fallback (`ANTHROPIC_API_KEY` 환경변수 우선)
 
