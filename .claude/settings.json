@@ -11,18 +11,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"E:/workspace/rules/tools/slack-notify.ps1\" > /dev/null 2>&1",
-            "async": true,
-            "timeout": 15
-          }
-        ]
-      }
     ]
   },
   "plansDirectory": "./docs/plans",
